@@ -11,12 +11,6 @@ project(DISSCO
 # add_subdirectory(LASS)
 add_subdirectory(CMOD)
 
-# add_executable(lassie main.cpp)
-# target_include_directories(naivebayes PRIVATE ./)
-
-# add_subdirectory(libbayes/)
-# target_link_libraries(naivebayes libbayes)
-
 set_target_properties(parser muparser PROPERTIES
         C_STANDARD 11
         C_STANDARD_REQUIRED ON
@@ -24,21 +18,3 @@ set_target_properties(parser muparser PROPERTIES
         CXX_STANDARD 11
         CXX_STANDARD_REQUIRED ON
         CXX_EXTENSIONS OFF)
-
-# if (${CMAKE_CXX_COMPILER_ID} STREQUAL "Clang"
-#         OR ${CMAKE_CXX_COMPILER_ID} STREQUAL "GNU")
-#     target_compile_options(naivebayes PRIVATE
-#             -Wall
-#             -Wextra
-#             -Wswitch
-#             -Wconversion
-#             -Wparentheses
-#             -Wfloat-equal
-#             -Wzero-as-null-pointer-constant
-#             -Wpedantic
-#             -pedantic
-#             -pedantic-errors)
-# elseif (${CMAKE_CXX_COMPILER_ID} STREQUAL "MSVC")
-#     target_compile_options(naivebayes PRIVATE
-#             /W3)
-# endif ()
