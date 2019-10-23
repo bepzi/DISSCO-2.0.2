@@ -7,10 +7,10 @@ if (${CMAKE_CXX_COMPILER_ID} STREQUAL "Clang"
             -Wall
             -Wextra
             -Wswitch
-            -Wconversion
             -Wparentheses
             -Wfloat-equal
             -Wpedantic
+            -Wno-unused-function
             -pedantic
             -pedantic-errors)
 endif ()
