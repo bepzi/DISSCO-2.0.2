@@ -2,6 +2,7 @@ Makefile
 *.make
 lib/
 obj/
+build/
 cmod
 lassie
 UpgradeProjectFormat
