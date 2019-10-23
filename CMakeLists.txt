@@ -18,6 +18,9 @@ add_subdirectory(CMOD)
 # target_link_libraries(naivebayes libbayes)
 
 set_target_properties(parser muparser PROPERTIES
+        C_STANDARD 11
+        C_STANDARD_REQUIRED ON
+        C_EXTENSIONS ON  # TODO: Don't rely on GNU extensions
         CXX_STANDARD 11
         CXX_STANDARD_REQUIRED ON
         CXX_EXTENSIONS OFF)
