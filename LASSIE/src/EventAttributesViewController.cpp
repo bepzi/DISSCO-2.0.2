@@ -2222,7 +2222,7 @@ void EventAttributesViewController::LayerBox::on_label_drop_drag_data_received(
 
     set_size_request(-1, layerInEvent->size() * 25 + 140);
 
-    Gtk::Adjustment* adjustment = m_ScrolledWindow2.get_vadjustment();
+    Gtk::Adjustment* adjustment = m_ScrolledWindow2.get_vadjustment().get();
     adjustment->set_value(adjustment->get_upper());
 }
 
@@ -2819,7 +2819,7 @@ void EventAttributesViewController::addNewLayerButtonClicked() {
     // so that the right click of delete event works
     showAttributesOfEvent(currentlyShownEvent);
 
-    Gtk::Adjustment* adjustment = scrolledWindow.get_vadjustment();
+    Gtk::Adjustment* adjustment = scrolledWindow.get_vadjustment().get();
     // 200 is the height of a layer box
     adjustment->set_value(adjustment->get_value() + 200);
 }
@@ -3302,7 +3302,7 @@ void EventAttributesViewController::addModifierButtonClicked() {
 
     show_all_children();
 
-    Gtk::Adjustment* adjustment = scrolledWindow.get_vadjustment();
+    Gtk::Adjustment* adjustment = scrolledWindow.get_vadjustment().get();
     adjustment->set_value(adjustment->get_upper());
 }
 
@@ -4083,7 +4083,7 @@ void EventAttributesViewController::addPartialButtonClicked() {
     attributesRefBuilderSound->get_widget("SoundAttributesNumPartialEntry", entry);
     entry->set_text(currentlyShownEvent->getEventExtraInfo()->getNumPartials());
     show_all_children();
-    Gtk::Adjustment* adjustment = scrolledWindow.get_vadjustment();
+    Gtk::Adjustment* adjustment = scrolledWindow.get_vadjustment().get();
     adjustment->set_value(adjustment->get_upper());
 }
 

@@ -132,7 +132,7 @@ public:
     std::string searchPossibleParents(string _fileName);
 
     ///////////////////////////////////drag and drop targets
-    std::list<Gtk::TargetEntry> listTargets;
+    std::vector<Gtk::TargetEntry> listTargets;
 
     //////////////////////////////////////////////////////////////////
     // so that palette can push new event back to ievent

@@ -11,6 +11,7 @@ ReleaseFlags = {"Optimize"}
 
 solution "dissco"
   configurations {"Debug", "Release"}
+  defines { "GTKMM_DISABLE_DEPRECATED" }
 
 project "lass"
   language "C++"
@@ -87,9 +88,9 @@ project "lassie"
   kind "ConsoleApp"
   files {"LASSIE/src/**.h", "LASSIE/src/**.cpp"}
   excludes {"LASSIE/src/UpgradeProjectFormat.*", "LASSIE/src/test/**"}
-  buildoptions {"`pkg-config --cflags gtkmm-2.4`",
+  buildoptions {"`pkg-config --cflags gtkmm-3.0`",
     "-Wno-deprecated", "-gstabs"}
-  linkoptions {"`pkg-config --libs --cflags gtkmm-2.4`", "-Wno-deprecated", "-lxerces-c"}
+  linkoptions {"`pkg-config --libs --cflags gtkmm-3.0`", "-Wno-deprecated", "-lxerces-c"}
   libdirs {"/usr/local/lib"}
   links {"lcmod", "lass", "parser", "pthread", "sndfile"}
   configuration "Debug" flags(DebugFlags)
@@ -102,9 +103,9 @@ project "lassie"
     -- kind "ConsoleApp"
     -- files {"LASSIE/src/**.h", "LASSIE/src/**.cpp"}
     -- excludes {"LASSIE/src/Main.cpp", "LASSIE/src/UpgradeProjectFormat.*"}
-    -- buildoptions {"`pkg-config --cflags gtkmm-2.4`",
+    -- buildoptions {"`pkg-config --cflags gtkmm-3.0`",
     --               "-Wno-deprecated", "-gstabs", "-g"}
-    -- linkoptions {"`pkg-config --libs --cflags gtkmm-2.4`", "-Wno-deprecated", "-lxerces-c"}
+    -- linkoptions {"`pkg-config --libs --cflags gtkmm-3.0`", "-Wno-deprecated", "-lxerces-c"}
     -- libdirs {"/usr/local/lib"}
     -- links {"lcmod", "lass", "parser", "pthread", "sndfile", "lassie", "boost_unit_test_framework"}
     -- configuration "Debug" flags(DebugFlags)
@@ -117,9 +118,9 @@ project "lassie"
     -- language "C++"
     -- kind "ConsoleApp"
     -- files {"LASS/src/test/**.h", "LASS/src/test/**.cpp"}
-    -- buildoptions {"`pkg-config --cflags gtkmm-2.4`",
+    -- buildoptions {"`pkg-config --cflags gtkmm-3.0`",
     --               "-Wno-deprecated", "-gstabs", "-g"}
-    -- linkoptions {"`pkg-config --libs --cflags gtkmm-2.4`", "-Wno-deprecated", "-lxerces-c"}
+    -- linkoptions {"`pkg-config --libs --cflags gtkmm-3.0`", "-Wno-deprecated", "-lxerces-c"}
     -- libdirs {"/usr/local/lib"}
     -- includedirs {"/usr/local/include"}
     -- links {"lass", "boost_unit_test_framework"}
@@ -130,9 +131,9 @@ project "lassie"
     -- language "C++"
     -- kind "ConsoleApp"
     -- files {"CMOD/src/test/**.h", "CMOD/src/test/**.cpp"}
-    -- buildoptions {"`pkg-config --cflags gtkmm-2.4`",
+    -- buildoptions {"`pkg-config --cflags gtkmm-3.0`",
     --               "-Wno-deprecated", "-gstabs", "-g"}
-    -- linkoptions {"`pkg-config --libs --cflags gtkmm-2.4`", "-Wno-deprecated", "-lxerces-c"}
+    -- linkoptions {"`pkg-config --libs --cflags gtkmm-3.0`", "-Wno-deprecated", "-lxerces-c"}
     -- libdirs {"/usr/local/lib"}
     -- links {"lcmod", "lass", "parser", "pthread", "sndfile", "lassie", "boost_unit_test_framework"}
     -- configuration "Debug" flags(DebugFlags)

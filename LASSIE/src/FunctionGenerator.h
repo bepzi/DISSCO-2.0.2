@@ -32,8 +32,8 @@
 #ifndef FUNCTIONGENERATOR_H
 #define FUNCTIONGENERATOR_H
 
-#include "EnvelopeLibraryEntry.h"
 #include "LASSIE.h"
+#include "EnvelopeLibraryEntry.h"
 
 typedef enum {
     functionRandom,
