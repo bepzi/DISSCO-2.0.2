@@ -1591,44 +1591,44 @@ string IEvent::getEventFolderName() {
 
 bool IEvent::haveString(const string& _string) {
     size_t position = maxChildDur.find(_string, 0);
-    if (position != -1) {
+    if (position != basic_string<char>::npos) {
         return true;
     }
 
     position = timeSignatureEntry1.find(_string, 0);
-    if (position != -1) {
+    if (position != basic_string<char>::npos) {
         return true;
     }
     position = timeSignatureEntry2.find(_string, 0);
-    if (position != -1) {
+    if (position != basic_string<char>::npos) {
         return true;
     }
     position = unitsPerSecond.find(_string, 0);
-    if (position != -1) {
+    if (position != basic_string<char>::npos) {
         return true;
     }
     position = tempoValueEntry.find(_string, 0);
-    if (position != -1) {
+    if (position != basic_string<char>::npos) {
         return true;
     }
     position = tempoFractionEntry1.find(_string, 0);
-    if (position != -1) {
+    if (position != basic_string<char>::npos) {
         return true;
     }
     position = tempoFractionEntry2.find(_string, 0);
-    if (position != -1) {
+    if (position != basic_string<char>::npos) {
         return true;
     }
     position = numChildrenEntry1.find(_string, 0);
-    if (position != -1) {
+    if (position != basic_string<char>::npos) {
         return true;
     }
     position = numChildrenEntry2.find(_string, 0);
-    if (position != -1) {
+    if (position != basic_string<char>::npos) {
         return true;
     }
     position = numChildrenEntry3.find(_string, 0);
-    if (position != -1) {
+    if (position != basic_string<char>::npos) {
         return true;
     }
 
@@ -1638,44 +1638,44 @@ bool IEvent::haveString(const string& _string) {
     while (i != layers.end()) {
         thisLayer = (*i)->outputChildrenNameString();
         position = thisLayer.find(_string, 0);
-        if (position != -1) {
+        if (position != basic_string<char>::npos) {
             return true;
         }
         i++;
     }
 
     position = childEventDefEntry1.find(_string, 0);
-    if (position != -1) {
+    if (position != basic_string<char>::npos) {
         return true;
     }
 
     position = childEventDefEntry2.find(_string, 0);
-    if (position != -1) {
+    if (position != basic_string<char>::npos) {
         return true;
     }
 
     position = childEventDefEntry3.find(_string, 0);
-    if (position != -1) {
+    if (position != basic_string<char>::npos) {
         return true;
     }
 
     position = numChildrenEntry3.find(_string, 0);
-    if (position != -1) {
+    if (position != basic_string<char>::npos) {
         return true;
     }
 
     position = numChildrenEntry3.find(_string, 0);
-    if (position != -1) {
+    if (position != basic_string<char>::npos) {
         return true;
     }
 
     position = childEventDefAttackSieve.find(_string, 0);
-    if (position != -1) {
+    if (position != basic_string<char>::npos) {
         return true;
     }
 
     position = childEventDefDurationSieve.find(_string, 0);
-    if (position != -1) {
+    if (position != basic_string<char>::npos) {
         return true;
     }
 
@@ -1688,7 +1688,7 @@ bool IEvent::haveString(const string& _string) {
 
 bool IEvent::EnvelopeExtraInfo::haveString(string _string) {
     size_t position = envelopeBuilder.find(_string, 0);
-    if (position != -1) {
+    if (position != basic_string<char>::npos) {
         return true;
     }
     return false;
@@ -1696,28 +1696,28 @@ bool IEvent::EnvelopeExtraInfo::haveString(string _string) {
 
 bool IEvent::PatternExtraInfo::haveString(string _string) {
     size_t position = patternBuilder.find(_string, 0);
-    if (position != -1) {
+    if (position != basic_string<char>::npos) {
         return true;
     }
     return false;
 }
 bool IEvent::SpatializationExtraInfo::haveString(string _string) {
     size_t position = spatializationBuilder.find(_string, 0);
-    if (position != -1) {
+    if (position != basic_string<char>::npos) {
         return true;
     }
     return false;
 }
 bool IEvent::SieveExtraInfo::haveString(string _string) {
     size_t position = sieveBuilder.find(_string, 0);
-    if (position != -1) {
+    if (position != basic_string<char>::npos) {
         return true;
     }
     return false;
 }
 bool IEvent::ReverbExtraInfo::haveString(string _string) {
     size_t position = reverbBuilder.find(_string, 0);
-    if (position != -1) {
+    if (position != basic_string<char>::npos) {
         return true;
     }
     return false;
@@ -1725,7 +1725,7 @@ bool IEvent::ReverbExtraInfo::haveString(string _string) {
 
 bool IEvent::FilterExtraInfo::haveString(string _string) {
     size_t position = filterBuilder.find(_string, 0);
-    if (position != -1) {
+    if (position != basic_string<char>::npos) {
         return true;
     }
     return false;
@@ -1733,7 +1733,7 @@ bool IEvent::FilterExtraInfo::haveString(string _string) {
 
 bool IEvent::MeasureExtraInfo::haveString(string _string) {
     size_t position = measureBuilder.find(_string, 0);
-    if (position != -1) {
+    if (position != basic_string<char>::npos) {
         return true;
     }
     return false;
@@ -1743,17 +1743,17 @@ bool IEvent::NoteExtraInfo::haveString(string _string) { return false; }
 
 bool IEvent::SoundExtraInfo::haveString(string _string) {
     size_t position = deviation.find(_string, 0);
-    if (position != -1) {
+    if (position != basic_string<char>::npos) {
         return true;
     }
 
     position = spectrumGenBuilder.find(_string, 0);
-    if (position != -1) {
+    if (position != basic_string<char>::npos) {
         return true;
     }
 
     position = getSoundSpectrumEnvelopesString().find(_string, 0);
-    if (position != -1) {
+    if (position != basic_string<char>::npos) {
         return true;
     }
 
@@ -1762,23 +1762,23 @@ bool IEvent::SoundExtraInfo::haveString(string _string) {
 
 bool IEvent::BottomEventExtraInfo::haveString(string _string) {
     size_t position = frequencyEntry1.find(_string, 0);
-    if (position != -1) {
+    if (position != basic_string<char>::npos) {
         return true;
     }
     position = frequencyEntry2.find(_string, 0);
-    if (position != -1) {
+    if (position != basic_string<char>::npos) {
         return true;
     }
     position = loudness.find(_string, 0);
-    if (position != -1) {
+    if (position != basic_string<char>::npos) {
         return true;
     }
     position = spatialization.find(_string, 0);
-    if (position != -1) {
+    if (position != basic_string<char>::npos) {
         return true;
     }
     position = reverb.find(_string, 0);
-    if (position != -1) {
+    if (position != basic_string<char>::npos) {
         return true;
     }
 
@@ -1795,7 +1795,7 @@ bool IEvent::BottomEventExtraInfo::haveString(string _string) {
             mod = mod->next;
         }
         position = stringbuffer.find(_string, 0);
-        if (position != -1) {
+        if (position != basic_string<char>::npos) {
             return true;
         }
     }
