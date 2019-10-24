@@ -233,7 +233,7 @@ bool EnvLibDrawingArea::mouseButtonPressed(GdkEventButton* event) {
         nodeX = candidateNode->x * width * width / (width + 1);
         nodeY = getAdjustedY(candidateNode->y) * height * height / (height + 1);
     }
-    if (nodeActivated == false) {
+    if (!nodeActivated) {
         activeNode = NULL;
         envelopeLibraryWindow->setEntries("", "");
 

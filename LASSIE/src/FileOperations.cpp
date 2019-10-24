@@ -46,9 +46,9 @@ ProjectViewController* FileOperations::newProject(MainWindow* _mainWindow) {
     // Handle the response:
     if (result == Gtk::RESPONSE_OK) {
         bool checker = false;
-        while (checker == false) {
+        while (!checker) {
             checker = checkFilePathValidity(dialog.get_filename());
-            if (checker == false) {
+            if (!checker) {
                 fileNameError window;
                 return newProject(_mainWindow);
             } else {
@@ -86,9 +86,9 @@ std::string FileOperations::saveAs(MainWindow* _mainWindow) {  // return new
     // Handle the response:
     if (result == Gtk::RESPONSE_OK) {
         bool checker = false;
-        while (checker == false) {
+        while (!checker) {
             checker = checkFilePathValidity(dialog.get_filename());
-            if (checker == false) {
+            if (!checker) {
                 fileNameError window;
                 return saveAs(_mainWindow);
             } else {

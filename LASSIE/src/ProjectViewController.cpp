@@ -1426,7 +1426,7 @@ IEvent* ProjectViewController::getEventByTypeAndName(EventType type, std::string
 
     while (i != events.end() && !found) {
         if ((*i)->getEventName() == _name && (*i)->getEventType() == type) {
-            found == true;
+            found;
             beReturn = *i;
         }
         i++;
@@ -1617,7 +1617,7 @@ ProjectViewController::ProjectViewController(MainWindow* _mainWindow, std::strin
     duration = IEvent::getFunctionString(element);
     // synthesis
     element = element->getNextElementSibling();
-    synthesis = (IEvent::getFunctionString(element) == "True") ? true : false;
+    synthesis = IEvent::getFunctionString(element) == "True";
     // numOfChannels
     element = element->getNextElementSibling();
     numOfChannels = IEvent::getFunctionString(element);
@@ -1636,7 +1636,7 @@ ProjectViewController::ProjectViewController(MainWindow* _mainWindow, std::strin
     // Output Particel
     element = element->getNextElementSibling();
     if (element) {
-        outputParticel = (IEvent::getFunctionString(element) == "True") ? true : false;
+        outputParticel = IEvent::getFunctionString(element) == "True";
     } else
         outputParticel = false;
     // restore notemodifiers
@@ -1947,7 +1947,7 @@ void ProjectViewController::projectPropertiesDialogFunctionButtonClicked() {
 //---------------------------------------------------------------------------//
 
 void ProjectViewController::modified() {
-    if (modifiedButNotSaved == false) {
+    if (!modifiedButNotSaved) {
         modifiedButNotSaved = true;
         sharedPointers->mainWindow->setUnsavedTitle();
     }

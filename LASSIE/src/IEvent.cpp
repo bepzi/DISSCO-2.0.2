@@ -735,7 +735,7 @@ std::string EventBottomModifier::getSaveToDiskString() {
             "                " +
             ((applyHowFlag == 0) ? "\"SOUND\",\n" : "\"PARTIAL\",\n") + "                " +
             ampValue + ",\n" + "                " + rateValue +
-            ((groupName == "" || groupName == "")
+            (groupName == ""
                  ? "\n              >"
                  : (",\n                <\"MUT_EX\", \"" + groupName + "\">\n              >"));
 
@@ -749,7 +749,7 @@ std::string EventBottomModifier::getSaveToDiskString() {
             "                " +
             ((applyHowFlag == 0) ? "\"SOUND\",\n" : "\"PARTIAL\",\n") + "                " +
             ampValue + ",\n" + "                " + rateValue +
-            ((groupName == "" || groupName == "")
+            (groupName == ""
                  ? "\n              >"
                  : (",\n                <\"MUT_EX\", \"" + groupName + "\">\n              >"));
 
@@ -763,7 +763,7 @@ std::string EventBottomModifier::getSaveToDiskString() {
             "                " +
             ((applyHowFlag == 0) ? "\"SOUND\",\n" : "\"PARTIAL\",\n") + "                " +
             ampValue +
-            ((groupName == "" || groupName == "")
+            (groupName == ""
                  ? "\n              >"
                  : (",\n                <\"MUT_EX\", \"" + groupName + "\">\n              >"));
     } else if (type == modifierBend) {
@@ -776,7 +776,7 @@ std::string EventBottomModifier::getSaveToDiskString() {
             "                " +
             ((applyHowFlag == 0) ? "\"SOUND\",\n" : "\"PARTIAL\",\n") + "                " +
             ampValue +
-            ((groupName == "" || groupName == "")
+            (groupName == ""
                  ? "\n              >"
                  : (",\n                <\"MUT_EX\", \"" + groupName + "\">\n              >"));
 
@@ -790,7 +790,7 @@ std::string EventBottomModifier::getSaveToDiskString() {
             "                " +
             ((applyHowFlag == 0) ? "\"SOUND\",\n" : "\"PARTIAL\",\n") + "                " +
             ampValue +
-            ((groupName == "" || groupName == "")
+            (groupName == ""
                  ? "\n              >"
                  : (",\n                <\"MUT_EX\", \"" + groupName + "\">\n              >"));
 
@@ -804,7 +804,7 @@ std::string EventBottomModifier::getSaveToDiskString() {
             "                " +
             ((applyHowFlag == 0) ? "\"SOUND\",\n" : "\"PARTIAL\",\n") + "                " +
             ampValue + ",\n" + "                " + rateValue + ",\n" + "                " + width +
-            ((groupName == "" || groupName == "")
+            (groupName == ""
                  ? "\n              >"
                  : (",\n                <\"MUT_EX\", \"" + groupName + "\">\n              >"));
 
@@ -818,7 +818,7 @@ std::string EventBottomModifier::getSaveToDiskString() {
             "                " +
             ((applyHowFlag == 0) ? "\"SOUND\",\n" : "\"PARTIAL\",\n") + "                " +
             ampValue + ",\n" + "                " + rateValue + ",\n" + "                " + width +
-            ((groupName == "" || groupName == "")
+            (groupName == ""
                  ? "\n              >"
                  : (",\n                <\"MUT_EX\", \"" + groupName + "\">\n              >"));
 
@@ -832,7 +832,7 @@ std::string EventBottomModifier::getSaveToDiskString() {
             "                " +
             ((applyHowFlag == 0) ? "\"SOUND\",\n" : "\"PARTIAL\",\n") + "                " +
             ampValue +
-            ((groupName == "" || groupName == "")
+            (groupName == ""
                  ? "\n              >"
                  : (",\n                <\"MUT_EX\", \"" + groupName + "\">\n              >"));
     }
@@ -849,7 +849,7 @@ std::string EventBottomModifier::getSaveLASSIEMetaDataString() {
     std::string stringbuffer = "<" + string(temp1) + "," + string(temp2) + ",`" + probability +
                                "`,`" + ampValue + "`,`" + rateValue + "`,`" + width;
 
-    if (groupName != "" && groupName != "") {
+    if (groupName != "") {
         stringbuffer = stringbuffer + "`,`" + groupName + "`>";
     } else {
         stringbuffer = stringbuffer + "`>";

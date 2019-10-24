@@ -587,7 +587,7 @@ EventAttributesViewController::EventAttributesViewController(SharedPointers* _sh
 }
 
 void EventAttributesViewController::modified() {
-    if (entryChangedByShowCurrentEvent == false) {
+    if (!entryChangedByShowCurrentEvent) {
         sharedPointers->projectView->modified();
     }
 }
@@ -1616,7 +1616,7 @@ void EventAttributesViewController::showCurrentEventData() {
             for (j; j != currentlyShownEvent->layers.end(); ++j) {
                 LayerBox* newbox =
                     new LayerBox(this, projectView, *j,
-                                 (currentlyShownEvent->getFlagChildEventDef() == 2 ? true : false));
+                                                currentlyShownEvent->getFlagChildEventDef() == 2);
 
                 layerBoxes->pack_start((Gtk::Widget&)*newbox, Gtk::PACK_SHRINK);
                 layerBoxesStorage.push_back(newbox);
@@ -2432,7 +2432,7 @@ void EventAttributesViewController::discreteButtonClicked() {
     radioButton->set_sensitive(false);
 
     attributesRefBuilder->get_widget("attributesChildEventDefDiscreteButton", radioButton);
-    if (radioButton->get_active() == false) {
+    if (!radioButton->get_active()) {
         radioButton->set_active();
     }
 }
@@ -3273,7 +3273,7 @@ void BottomEventModifierAlignment::on_type_combo_changed() {
 }
 
 void EventAttributesViewController::addModifierButtonClicked() {
-    if (entryChangedByShowCurrentEvent == false) {
+    if (!entryChangedByShowCurrentEvent) {
         modified();
     }
     EventBottomModifier* newModifier;
@@ -3872,7 +3872,7 @@ void EventAttributesViewController::tempoAsNoteValueButtonClicked() {
 
     originalTempoValueForFraction = entry->get_text();
 
-    if (tempoEntryAsNoteValueModifiedFlag == false) {
+    if (!tempoEntryAsNoteValueModifiedFlag) {
         entry->set_text(originalTempoValueForNoteValue);
     } else {
         tempo->setTempo(generateTempoStringByFraction());
@@ -3919,7 +3919,7 @@ void EventAttributesViewController::tempoAsFractionButtonClicked() {
 
     label->set_text(" second(s)");
 
-    if (tempoEntryAsNoteValueModifiedFlag == false) {
+    if (!tempoEntryAsNoteValueModifiedFlag) {
         attributesRefBuilder->get_widget("attributesStandardTempoValueEntry", entry);
         entry->set_text(originalTempoValueForFraction);
     } else {  // modified
@@ -4006,7 +4006,7 @@ void EventAttributesViewController::LayerBox::deleteObject() {
         EventDiscretePackage* removedEventPackage = row[m_Columns.columnEntry];
         IEvent* removedEvent = removedEventPackage->event;
         // remove removeEvent's parent
-        if (removedEvent->removeParent(attributesView->getCurrentlyShownEvent()) != true) {
+        if (!removedEvent->removeParent(attributesView->getCurrentlyShownEvent())) {
             cout << "remove parent fail" << endl;
         }
 

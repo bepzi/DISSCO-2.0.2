@@ -392,7 +392,7 @@ void MainWindow::menuFileNewProject() {
 //-----------------------------------------------------------------------------
 
 void MainWindow::menuFileNewObject() {
-    if (projectView != NULL && projectView->getEmptyProject() == false) {
+    if (projectView != NULL && !projectView->getEmptyProject()) {
         projectView->insertObject();
     }
 }
@@ -454,7 +454,7 @@ void MainWindow::menuFileOpenXML() {
 //-----------------------------------------------------------------------------
 
 void MainWindow::menuFileSave() {
-    if (projectView->getEmptyProject() == false) {
+    if (!projectView->getEmptyProject()) {
         projectView->save();
     }
 }
@@ -710,7 +710,7 @@ void MainWindow::disableNewAndOpenProject() {
 //-----------------------------------------------------------------------------
 
 void MainWindow::menuProjectConfigureNoteModifiers() {
-    if (projectView != NULL && projectView->getEmptyProject() == false) {
+    if (projectView != NULL && !projectView->getEmptyProject()) {
         projectView->configureNoteModifiers();
     }
 }

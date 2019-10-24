@@ -4767,7 +4767,7 @@ void FunctionGenerator::makeFilterDBGainFunButtonClicked() {
     Gtk::Entry* entry;
     attributesRefBuilder->get_widget("MakeFilterDBGainEntry", entry);
 
-    if (entry->get_sensitive() == false) return;
+    if (!entry->get_sensitive()) return;
 
     FunctionGenerator* generator = new FunctionGenerator(functionReturnFloat, entry->get_text());
     generator->run();
