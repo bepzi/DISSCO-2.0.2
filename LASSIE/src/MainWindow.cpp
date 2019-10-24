@@ -355,7 +355,7 @@ MainWindow::MainWindow() {
  *
  *******************************************************************************/
 MainWindow::~MainWindow() {
-    for (auto & project : projects) {
+    for (auto& project : projects) {
         delete project;
     }
 }

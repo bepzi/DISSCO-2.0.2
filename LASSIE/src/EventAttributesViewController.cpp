@@ -3559,9 +3559,7 @@ void EventAttributesViewController::insertFunctionString(FunctionButton _button)
         }
     }
 
-
-        delete generator;
-
+    delete generator;
 }
 
 void EventAttributesViewController::LayerBox::byLayerWeightButtonClicked() {

@@ -614,7 +614,9 @@ public:
     // Sieve
     class SieveExtraInfo : public EventExtraInfo {
     public:
-        explicit SieveExtraInfo(SieveExtraInfo* _original) { sieveBuilder = _original->sieveBuilder; }
+        explicit SieveExtraInfo(SieveExtraInfo* _original) {
+            sieveBuilder = _original->sieveBuilder;
+        }
         SieveExtraInfo() { sieveBuilder = ""; }
         ~SieveExtraInfo() = default;
         std::string getSieveBuilder() override;

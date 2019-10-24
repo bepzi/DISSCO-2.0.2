@@ -92,8 +92,7 @@ IEvent::IEvent() {
 }
 
 IEvent::~IEvent() {
-
-        delete extraInfo;
+    delete extraInfo;
 
     // delete layers here
 }
@@ -116,7 +115,7 @@ void IEvent::setEventType(EventType _type) {
     eventType = _type;
     changedButNotSaved = true;
 
-        delete extraInfo;
+    delete extraInfo;
 
     if (_type == eventSound) {
         // EventExtraInfo* SoundEventExtraInfo;

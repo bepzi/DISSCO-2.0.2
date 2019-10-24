@@ -1394,13 +1394,13 @@ void ProjectViewController::save() {
     // save markov models
     fputs("  <MarkovModelLibrary>\n", file);
     fprintf(file, "%ld\n", markovModels.size());
-    for (auto & markovModel : markovModels) {
+    for (auto& markovModel : markovModels) {
         fprintf(file, "%s\n", markovModel.to_str().c_str());
     }
     fputs("  </MarkovModelLibrary>\n", file);
 
     fputs("  <Events>\n", file);
-    for (auto & event : events) {
+    for (auto& event : events) {
         if (event->getEventType() != eventFolder) {
             stringBuffer = event->getXMLString();
             fputs(stringBuffer.c_str(), file);
