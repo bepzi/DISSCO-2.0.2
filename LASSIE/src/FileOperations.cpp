@@ -207,7 +207,7 @@ bool FileOperations::checkFilePathValidity(std::string _filePath) {
 
 fileNameError::fileNameError() { fileNameError::inappropriateProjectName(); }
 
-fileNameError::~fileNameError() {}
+fileNameError::~fileNameError() = default;
 
 void fileNameError::inappropriateProjectName() {
     Gtk::MessageDialog dialog(*this, "Inappropriate Project Name");
@@ -220,7 +220,7 @@ void fileNameError::inappropriateProjectName() {
 
 fileNameExist::fileNameExist() { fileNameExist::duplicateProjectName(); }
 
-fileNameExist::~fileNameExist() {}
+fileNameExist::~fileNameExist() = default;
 
 void fileNameExist::duplicateProjectName() {
     Gtk::MessageDialog dialog(*this, "Folder with the same name exists");

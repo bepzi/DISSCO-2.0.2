@@ -3526,7 +3526,7 @@ FunctionGenerator::SelectSubAlignment::SelectSubAlignment(FunctionGenerator* _pa
     entry->set_text("");
 }
 
-FunctionGenerator::SelectSubAlignment::~SelectSubAlignment() {}
+FunctionGenerator::SelectSubAlignment::~SelectSubAlignment() = default;
 
 void FunctionGenerator::SelectSubAlignment::appendNewNode(SelectSubAlignment* _newNode) {
     if (next == nullptr) {
@@ -3742,7 +3742,7 @@ FunctionGenerator::StochosSubAlignment::StochosSubAlignment(FunctionGenerator* _
     entry->set_text("ENV");
 }
 
-FunctionGenerator::StochosSubAlignment::~StochosSubAlignment() {}
+FunctionGenerator::StochosSubAlignment::~StochosSubAlignment() = default;
 
 void FunctionGenerator::StochosSubAlignment::switchTo(int _methodFlag) {
     remove();
@@ -5177,7 +5177,7 @@ FunctionGenerator::SPAPartialAlignment::SPAPartialAlignment(FunctionGenerator* _
         sigc::mem_fun(*this, &FunctionGenerator::SPAPartialAlignment::textChanged));
 }
 
-FunctionGenerator::SPAPartialAlignment::~SPAPartialAlignment() {}
+FunctionGenerator::SPAPartialAlignment::~SPAPartialAlignment() = default;
 
 void FunctionGenerator::SPAPartialAlignment::setNumber(int _number) {
     std::stringstream out;

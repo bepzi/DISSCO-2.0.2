@@ -128,7 +128,7 @@ EnvLibDrawingArea::EnvLibDrawingArea(EnvelopeLibraryWindow* _envelopeLibraryWind
     if (!m_pMenuPopup) g_warning("menu not found");
 }
 
-EnvLibDrawingArea::~EnvLibDrawingArea() {}
+EnvLibDrawingArea::~EnvLibDrawingArea() = default;
 
 bool EnvLibDrawingArea::on_expose_event(GdkEventExpose* event) {
     EnvelopeLibraryEntry* activeEnvelope = envelopeLibraryWindow->getActiveEnvelope();

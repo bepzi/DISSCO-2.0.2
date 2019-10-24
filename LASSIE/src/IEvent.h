@@ -115,7 +115,7 @@ public:
     std::string getXMLString();
     bool link(ProjectViewController* _projectView, IEvent* _thisEvent);
 
-    ~EventDiscretePackage() {}
+    ~EventDiscretePackage() = default;
 };
 
 class EventLayer {
@@ -162,7 +162,7 @@ public:
         next = nullptr;
         envString = "";
     }
-    ~SpectrumPartial(){};
+    ~SpectrumPartial()= default;
 };
 
 /*! \brief The class representing each event file in CMOD
@@ -570,7 +570,7 @@ public:
             envelopeBuilder = _original->envelopeBuilder;
         }
         EnvelopeExtraInfo() { envelopeBuilder = ""; }
-        ~EnvelopeExtraInfo() {}
+        ~EnvelopeExtraInfo() = default;
         std::string getEnvelopeBuilder() override;
         void setEnvelopeBuilder(std::string _string) override;
         bool haveString(string _string) override;
@@ -586,7 +586,7 @@ public:
             patternBuilder = _original->patternBuilder;
         }
         PatternExtraInfo() { patternBuilder = ""; }
-        ~PatternExtraInfo() {}
+        ~PatternExtraInfo() = default;
         std::string getPatternBuilder() override;
         void setPatternBuilder(std::string _string) override;
         bool haveString(string _string) override;
@@ -602,7 +602,7 @@ public:
             spatializationBuilder = _original->spatializationBuilder;
         }
         SpatializationExtraInfo() { spatializationBuilder = ""; }
-        ~SpatializationExtraInfo() {}
+        ~SpatializationExtraInfo() = default;
         std::string getSpatializationBuilder() override;
         void setSpatializationBuilder(std::string _string) override;
         bool haveString(string _string) override;
@@ -616,7 +616,7 @@ public:
     public:
         SieveExtraInfo(SieveExtraInfo* _original) { sieveBuilder = _original->sieveBuilder; }
         SieveExtraInfo() { sieveBuilder = ""; }
-        ~SieveExtraInfo() {}
+        ~SieveExtraInfo() = default;
         std::string getSieveBuilder() override;
         void setSieveBuilder(std::string _string) override;
         bool haveString(string _string) override;
@@ -630,7 +630,7 @@ public:
     public:
         ReverbExtraInfo(ReverbExtraInfo* _original);
         ReverbExtraInfo() { reverbBuilder = ""; }
-        ~ReverbExtraInfo() {}
+        ~ReverbExtraInfo() = default;
         std::string getReverbBuilder() override;
         void setReverbBuilder(std::string _string) override;
         bool haveString(string _string) override;
@@ -644,7 +644,7 @@ public:
     public:
         FilterExtraInfo(FilterExtraInfo* _original);
         FilterExtraInfo() { filterBuilder = ""; }
-        ~FilterExtraInfo() {}
+        ~FilterExtraInfo() = default;
         std::string getFilterBuilder() override;
         void setFilterBuilder(std::string _string) override;
         bool haveString(string _string) override;
@@ -658,7 +658,7 @@ public:
     public:
         MeasureExtraInfo(MeasureExtraInfo* _original);
         MeasureExtraInfo() { measureBuilder = ""; }
-        ~MeasureExtraInfo() {}
+        ~MeasureExtraInfo() = default;
         std::string getMeasureBuilder() override;
         void setMeasureBuilder(std::string _string) override;
         bool haveString(string _string) override;

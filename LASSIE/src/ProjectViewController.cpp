@@ -2255,7 +2255,7 @@ CustomNoteModifierHBox::CustomNoteModifierHBox(ProjectViewController* _projectVi
 
 //---------------------------------------------------------------------------//
 
-CustomNoteModifierHBox::~CustomNoteModifierHBox() {}
+CustomNoteModifierHBox::~CustomNoteModifierHBox() = default;
 
 //---------------------------------------------------------------------------//
 

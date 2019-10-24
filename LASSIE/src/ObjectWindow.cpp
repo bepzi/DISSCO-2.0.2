@@ -137,7 +137,7 @@ ObjectWindow::ObjectWindow(EventType _type, ProjectViewController* _projectView)
     show_all_children();
 }
 
-ObjectWindow::~ObjectWindow() {}
+ObjectWindow::~ObjectWindow() = default;
 
 void ObjectWindow::setActiveProject(ProjectViewController* _project) {
     // clean up the drawing area
@@ -278,7 +278,7 @@ ObjectWindowObjectPackage::ObjectWindowObjectPackage(ProjectViewController* _pro
 }
 
 void ObjectWindowObjectPackage::showContent() { projectView->showAttributes(ievent); }
-ObjectWindowObjectPackage::~ObjectWindowObjectPackage() {}
+ObjectWindowObjectPackage::~ObjectWindowObjectPackage() = default;
 int ObjectWindowObjectPackage::count() {
     if (next == nullptr) {
         return 1;

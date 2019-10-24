@@ -105,7 +105,7 @@ IEvent::SoundExtraInfo::SoundExtraInfo() {
     spectrumGenBuilder = "";
 }
 
-IEvent::SoundExtraInfo::~SoundExtraInfo() {}
+IEvent::SoundExtraInfo::~SoundExtraInfo() = default;
 
 void IEvent::setEventName(std::string _eventName) {
     eventName = std::move(_eventName);
@@ -586,7 +586,7 @@ IEvent::BottomEventExtraInfo::BottomEventExtraInfo() {
     modifiers = nullptr;
     childTypeFlag = -1;
 }
-IEvent::BottomEventExtraInfo::~BottomEventExtraInfo() {}
+IEvent::BottomEventExtraInfo::~BottomEventExtraInfo() = default;
 
 int IEvent::BottomEventExtraInfo::getFrequencyFlag() {
     return frequencyFlag;  // 0 = Well_tempered, 1 = Fundamental, 2 = Continuum
@@ -683,7 +683,7 @@ EventBottomModifier::EventBottomModifier() {
     next = nullptr;
 }
 
-EventBottomModifier::~EventBottomModifier() {}
+EventBottomModifier::~EventBottomModifier() = default;
 
 ModifierType EventBottomModifier::getModifierType() { return type; }
 void EventBottomModifier::setModifierType(ModifierType _type) { type = _type; }
@@ -1327,9 +1327,9 @@ void IEvent::deleteLayer(EventLayer* _deleteLayer) {
     delete (*i);
 }
 
-IEvent::NoteExtraInfo::NoteExtraInfo() {}
+IEvent::NoteExtraInfo::NoteExtraInfo() = default;
 
-IEvent::NoteExtraInfo::~NoteExtraInfo() {}
+IEvent::NoteExtraInfo::~NoteExtraInfo() = default;
 
 std::list<std::string> IEvent::NoteExtraInfo::getNoteModifiers() { return modifiers; }
 

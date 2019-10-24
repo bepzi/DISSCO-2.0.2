@@ -203,7 +203,7 @@ PaletteViewController::PaletteViewController(SharedPointers* _sharedPointers)
     show_all_children();
 }
 
-PaletteViewController::~PaletteViewController() {}
+PaletteViewController::~PaletteViewController() = default;
 
 void PaletteViewController::objectActivated(const Gtk::TreeModel::Path& _path,
                                             Gtk::TreeViewColumn* /* _column */) {

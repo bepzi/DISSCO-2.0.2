@@ -616,7 +616,7 @@ bool EventAttributesViewController::checkDurationSieve() {
     return true;
 }
 
-EventAttributesViewController::~EventAttributesViewController() {}
+EventAttributesViewController::~EventAttributesViewController() = default;
 
 void EventAttributesViewController::showAttributesOfEvent(IEvent* _event) {
     if (_event == nullptr) {  // if the current shown event is deleted.
@@ -2555,7 +2555,7 @@ void EventAttributesViewController::byLayerButtonClicked() {
 
 IEvent* EventAttributesViewController::getCurrentEvent() { return currentlyShownEvent; }
 
-EventAttributesViewController::LayerBox::~LayerBox() {}
+EventAttributesViewController::LayerBox::~LayerBox() = default;
 
 EventAttributesViewController::LayerBox::LayerBox(EventAttributesViewController* _attributesView,
                                                   ProjectViewController* _projectView,
@@ -3218,7 +3218,7 @@ BottomEventModifierAlignment::BottomEventModifierAlignment(
 
 void BottomEventModifierAlignment::modified() { attributesView->modified(); }
 
-BottomEventModifierAlignment::~BottomEventModifierAlignment() {}
+BottomEventModifierAlignment::~BottomEventModifierAlignment() = default;
 
 void BottomEventModifierAlignment::on_applyHow_combo_changed() {
     attributesView->modified();
