@@ -165,40 +165,42 @@ EventType IEvent::getEventType() { return eventType; }
 
 std::string IEvent::getEventTypeString() {
     switch (eventType) {
-        case 0:
+        case eventTop:
             return "Top";
-        case 1:
+        case eventHigh:
             return "High";
-        case 2:
+        case eventMid:
             return "Mid";
-        case 3:
+        case eventLow:
             return "Low";
-        case 4:
+        case eventBottom:
             return "Bottom";
-        case 5:
+        case eventSound:
             return "Spectrum";
-        case 6:
+        case eventEnv:
             // return "Env.";
             return "Envelope";
-        case 7:
+        case eventSiv:
             return "Sieve";
-        case 8:
+        case eventSpa:
             // return "Spat.";
             return "Spatialization";
-        case 9:
+        case eventPat:
             // return "Pat.";
             return "Pattern";
-        case 10:
+        case eventRev:
             return "Reverb";
             // return "Rev.";
-        case 11:
+        case eventFolder:
             return "Folder";
-        case 12:
+        case eventNote:
             return "Note";
-        case 13:
+        case eventFil:
             return "Filter";
-        case 14:
+        case eventMea:
             return "Measurement";
+        default:
+            return "";
     }
 }
 
@@ -940,19 +942,19 @@ IEvent::BottomEventExtraInfo::BottomEventExtraInfo(int _childTypeFlag) {
     frequencyContinuumFlag = (value == nullptr) ? 0 : value->getInt();
 
     value = file_data["LASSIEBOTTOMfrequencyEntry1"];
-    frequencyEntry1 = (value == nullptr) ? "" : value->getString();
+    frequencyEntry1 = (value == nullptr) ? std::string() : value->getString();
 
     value = file_data["LASSIEBOTTOMfrequencyEntry2"];
-    frequencyEntry2 = (value == nullptr) ? "" : value->getString();
+    frequencyEntry2 = (value == nullptr) ? std::string() : value->getString();
 
     value = file_data["LASSIEBOTTOMloudness"];
-    loudness = (value == nullptr) ? "" : value->getString();
+    loudness = (value == nullptr) ? std::string() : value->getString();
 
     value = file_data["LASSIEBOTTOMspatialization"];
-    spatialization = (value == nullptr) ? "" : value->getString();
+    spatialization = (value == nullptr) ? std::string() : value->getString();
 
     value = file_data["LASSIEBOTTOMreverb"];
-    reverb = (value == nullptr) ? "" : value->getString();
+    reverb = (value == nullptr) ? std::string() : value->getString();
 
     // read modifiers
     modifiers = nullptr;
@@ -1028,7 +1030,7 @@ EventLayer::EventLayer(FileValue* _thisLayerFileValue, IEvent* _thisEvent) {
         return;
     }
 
-    for (discretePackagesIter; discretePackagesIter != discretePackages.end();
+    for (; discretePackagesIter != discretePackages.end();
          discretePackagesIter++) {
         children.push_back(new EventDiscretePackage(&(*discretePackagesIter)));
     }
@@ -1145,15 +1147,13 @@ std::string EventDiscretePackage::getXMLString() {
 }
 
 void IEvent::link(ProjectViewController* _projectView) {
-    auto i = layers.begin();
-    for (i; i != layers.end(); i++) {
-        (*i)->link(_projectView, this);  // link each layer
+    for (auto & layer : layers) {
+        layer->link(_projectView, this);  // link each layer
     }
 }
 
 void EventLayer::link(ProjectViewController* _projectView, IEvent* _thisEvent) {
-    auto i = children.begin();
-    for (i; i != children.end(); i++) {
+    for (auto i = children.begin(); i != children.end(); i++) {
         if (!(*i)->link(_projectView, _thisEvent)) {  // link each layer
             cout << "Linking with parent failed, removing " << (*i)->eventName
                  << " from"
@@ -1209,7 +1209,7 @@ void IEvent::parseNonEvent() {
         // extraInfo-> setNumPartials((value == NULL)? "": value->getString());
 
         value = file_data["LASSIESOUNDdeviation"];
-        extraInfo->setDeviation((value == nullptr) ? "" : value->getString());
+        extraInfo->setDeviation((value == nullptr) ? std::string() : value->getString());
 
         value = file_data["LASSIESOUNDspectrum"];
 
@@ -1222,7 +1222,7 @@ void IEvent::parseNonEvent() {
             fileValueListIter++;
         }
 
-        for (fileValueListIter; fileValueListIter != fileValueList.end(); fileValueListIter++) {
+        for (; fileValueListIter != fileValueList.end(); fileValueListIter++) {
             thisPartial = extraInfo->addPartial();
             thisPartial->envString = fileValueListIter->getString();
         }
@@ -1231,27 +1231,27 @@ void IEvent::parseNonEvent() {
     } else if (eventType == eventEnv) {
         extraInfo = (EventExtraInfo*)new EnvelopeExtraInfo();
         value = file_data["LASSIEENV"];
-        extraInfo->setEnvelopeBuilder((value == nullptr) ? "" : value->getString());
+        extraInfo->setEnvelopeBuilder((value == nullptr) ? std::string() : value->getString());
 
     } else if (eventType == eventSiv) {
         extraInfo = (EventExtraInfo*)new SieveExtraInfo();
         value = file_data["LASSIESIV"];
-        extraInfo->setSieveBuilder((value == nullptr) ? "" : value->getString());
+        extraInfo->setSieveBuilder((value == nullptr) ? std::string() : value->getString());
 
     } else if (eventType == eventSpa) {
         extraInfo = (EventExtraInfo*)new SpatializationExtraInfo();
         value = file_data["LASSIESPA"];
-        extraInfo->setSpatializationBuilder((value == nullptr) ? "" : value->getString());
+        extraInfo->setSpatializationBuilder((value == nullptr) ? std::string() : value->getString());
 
     } else if (eventType == eventPat) {
         extraInfo = (EventExtraInfo*)new PatternExtraInfo();
         value = file_data["LASSIEPAT"];
-        extraInfo->setPatternBuilder((value == nullptr) ? "" : value->getString());
+        extraInfo->setPatternBuilder((value == nullptr) ? std::string() : value->getString());
 
     } else if (eventType == eventRev) {
         extraInfo = (EventExtraInfo*)new ReverbExtraInfo();
         value = file_data["LASSIEREV"];
-        extraInfo->setReverbBuilder((value == nullptr) ? "" : value->getString());
+        extraInfo->setReverbBuilder((value == nullptr) ? std::string() : value->getString());
 
     } else if (eventType == eventNote) {
         extraInfo = (EventExtraInfo*)new NoteExtraInfo();
@@ -1556,36 +1556,38 @@ int IEvent::getEventOrderInPalette() { return eventOrderInPalette; }
 
 string IEvent::getEventFolderName() {
     switch (eventType) {
-        case 0:
+        case eventTop:
             return "Top";
-        case 1:
+        case eventHigh:
             return "High";
-        case 2:
+        case eventMid:
             return "Mid";
-        case 3:
+        case eventLow:
             return "Low";
-        case 4:
+        case eventBottom:
             return "Bottom";
-        case 5:
+        case eventSound:
             return "Spectrum";
-        case 6:
+        case eventEnv:
             return "Envelope";
-        case 7:
+        case eventSiv:
             return "Sieve";
-        case 8:
+        case eventSpa:
             return "Spatialization";
-        case 9:
+        case eventPat:
             return "Pattern";
-        case 10:
+        case eventRev:
             return "Reverb";
-        case 11:
+        case eventFolder:
             return "Folder";
-        case 12:
+        case eventNote:
             return "Note";
-        case 13:
+        case eventFil:
             return "Filter";
-        case 14:
+        case eventMea:
             return "Measurement";
+        default:
+            return "";
     }
 }
 
@@ -1799,50 +1801,38 @@ void IEvent::makeSuperColliderCode() {
 
 string IEvent::getXMLString() {
     switch (eventType) {
-        case 0:
+        case eventTop:
             return getXMLTHMLB();
-            break;
-        case 1:
+        case eventHigh:
             return getXMLTHMLB();
-            break;
-        case 2:
+        case eventMid:
             return getXMLTHMLB();
-            break;
-        case 3:
+        case eventLow:
             return getXMLTHMLB();
-            break;
-        case 4:
+        case eventBottom:
             return getXMLTHMLB();
-            break;
-        case 5:
+        case eventSound:
             return getXMLSound();
-            break;
-        case 6:
+        case eventEnv:
             return getXMLEnv();
-            break;
-        case 7:
+        case eventSiv:
             return getXMLSiv();
-            break;
-        case 8:
+        case eventSpa:
             return getXMLSpa();
-            break;
-        case 9:
+        case eventPat:
             return getXMLPat();
-            break;
-        case 10:
+        case eventRev:
             return getXMLRev();
+        case eventFolder:  // no need to save folder
             break;
-        case 11:  // no need to save folder
-            break;
-        case 12:
+        case eventNote:
             return getXMLNote();
-            break;
-        case 13:
+        case eventFil:
             return getXMLFil();
-            break;
-        case 14:
+        case eventMea:
             return getXMLMea();
-            break;
+        default:
+            return "";
     }
 }
 
