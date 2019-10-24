@@ -1212,7 +1212,7 @@ void EventAttributesViewController::showCurrentEventData() {
                 // check if original value is an integer or a fraction
 
                 string originalValue = currentlyShownEvent->getTempoValueEntry();
-                size_t foundSlash = originalValue.find("/");
+                size_t foundSlash = originalValue.find('/');
                 if (foundSlash != string::npos) {  // it is fraction
                     string entry1 = originalValue.substr(0, foundSlash);
 
@@ -3929,7 +3929,7 @@ void EventAttributesViewController::tempoAsFractionButtonClicked() {
         attributesRefBuilder->get_widget("attributesStandardTempoValueEntry", entry);
         string originalValue = entry->get_text();
 
-        size_t foundSlash = originalValue.find("/");
+        size_t foundSlash = originalValue.find('/');
         string entry1;
         int value;
         char charBuffer[20];
