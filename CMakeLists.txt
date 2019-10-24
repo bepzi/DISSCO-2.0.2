@@ -21,7 +21,7 @@ add_subdirectory(LASSIE)
 add_subdirectory(LASS)
 add_subdirectory(CMOD)
 
-set_target_properties(parser muparser PROPERTIES
+set_target_properties(parser muparser lcmod cmod lass lassie PROPERTIES
         C_STANDARD 11
         C_STANDARD_REQUIRED ON
         C_EXTENSIONS ON
