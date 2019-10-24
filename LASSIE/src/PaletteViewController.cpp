@@ -275,9 +275,7 @@ void PaletteViewController::insertEvent(IEvent* _event, const std::string& _pare
     // find the row of the given name
     Gtk::TreeModel::Children children = refTreeModel->children();
 
-    for (Gtk::TreeModel::Children::iterator iter = children.begin(); iter != children.end();
-         ++iter) {
-        Gtk::TreeModel::Row row = *iter;
+    for (auto row : children) {
         if (row[columns.columnObjectName] == _parentName) insertTo = row;
     }
 
@@ -294,9 +292,7 @@ void PaletteViewController::refreshObjectName(IEvent* _event) {
     Gtk::TreeModel::Row toChange;
     // find the row of the given event
     Gtk::TreeModel::Children children = refTreeModel->children();
-    for (Gtk::TreeModel::Children::iterator iter = children.begin(); iter != children.end();
-         iter++) {
-        Gtk::TreeModel::Row row = *iter;
+    for (auto row : children) {
         // std::cout<<row[columns.columnObjectName]<<std::endl;
         if (row[columns.columnEntry] == _event) toChange = row;
     }

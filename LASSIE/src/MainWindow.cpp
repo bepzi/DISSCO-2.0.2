@@ -355,9 +355,8 @@ MainWindow::MainWindow() {
  *
  *******************************************************************************/
 MainWindow::~MainWindow() {
-    for (std::vector<ProjectViewController*>::iterator it = projects.begin(); it != projects.end();
-         it++) {
-        delete *it;
+    for (auto & project : projects) {
+        delete project;
     }
 }
 

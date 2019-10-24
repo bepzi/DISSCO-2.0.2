@@ -1394,19 +1394,19 @@ void ProjectViewController::save() {
     // save markov models
     fputs("  <MarkovModelLibrary>\n", file);
     fprintf(file, "%ld\n", markovModels.size());
-    for (int i = 0; i < markovModels.size(); i++) {
-        fprintf(file, "%s\n", markovModels[i].to_str().c_str());
+    for (auto & markovModel : markovModels) {
+        fprintf(file, "%s\n", markovModel.to_str().c_str());
     }
     fputs("  </MarkovModelLibrary>\n", file);
 
     fputs("  <Events>\n", file);
-    for (std::vector<IEvent*>::iterator iter = events.begin(); iter != events.end(); iter++) {
-        if ((*iter)->getEventType() != eventFolder) {
-            stringBuffer = (*iter)->getXMLString();
+    for (auto & event : events) {
+        if (event->getEventType() != eventFolder) {
+            stringBuffer = event->getXMLString();
             fputs(stringBuffer.c_str(), file);
         }
 
-        (*iter)->saveToDisk(pathAndName);
+        event->saveToDisk(pathAndName);
     }
     fputs("  </Events>\n", file);
 
