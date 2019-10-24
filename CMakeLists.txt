@@ -17,6 +17,9 @@ pkg_check_modules(XERCESC xerces-c)
 
 # TODO: Delete all occurences of -Wno-deprecated and fix those warnings
 
+# TODO: This is only because LASSIE directly calls the CMOD executable
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/../)
+
 add_subdirectory(LASSIE)
 add_subdirectory(LASS)
 add_subdirectory(CMOD)
