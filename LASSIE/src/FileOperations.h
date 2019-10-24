@@ -51,7 +51,7 @@ std::string stringToPath(std::string _filePath);
 
 bool checkFilePathValidity(std::string _filePath);
 // void Inappropriate_Project_Name();
-};  // namespace FileOperations
+}  // namespace FileOperations
 
 class fileNameError : public Gtk::Window {
 public:

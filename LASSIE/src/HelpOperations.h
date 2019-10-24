@@ -35,6 +35,6 @@
 namespace HelpOperations {
 void showAbout();
 void showContents();
-};  // namespace HelpOperations
+}  // namespace HelpOperations
 
 #endif  // end defining namespace HelpOperations

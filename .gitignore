@@ -3,6 +3,8 @@ Makefile
 lib/
 obj/
 build/
+cmake-build-*
+.idea/
 cmod
 lassie
 UpgradeProjectFormat

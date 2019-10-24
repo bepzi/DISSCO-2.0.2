@@ -1,4 +1,4 @@
-add_library(parser STATIC lex.yy.c)
+add_library(parser STATIC lex.yy.c Parser.cpp)
 target_include_directories(parser PUBLIC "./")
 
 if (${CMAKE_CXX_COMPILER_ID} STREQUAL "Clang"
@@ -11,6 +11,7 @@ if (${CMAKE_CXX_COMPILER_ID} STREQUAL "Clang"
             -Wfloat-equal
             -Wpedantic
             -Wno-unused-function
+            -Wno-write-strings
             -pedantic
             -pedantic-errors)
 endif ()

@@ -621,7 +621,7 @@ void IEvent::BottomEventExtraInfo::setReverb(std::string _string) { reverb = _st
 std::string IEvent::BottomEventExtraInfo::getFilter() { return filter; }
 void IEvent::BottomEventExtraInfo::setFilter(std::string _string) { filter = _string; }
 
-void IEvent::BottomEventExtraInfo::setChildTypeFlag(int _type) { childTypeFlag = _type; };
+void IEvent::BottomEventExtraInfo::setChildTypeFlag(int _type) { childTypeFlag = _type; }
 
 int IEvent::BottomEventExtraInfo::getChildTypeFlag() { return childTypeFlag; }
 

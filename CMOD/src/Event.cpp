@@ -1114,7 +1114,7 @@ int Event::getAvailableEDU() {
         cout << approximateEDUs << " to " << quantizedEDUs << endl;
     }
     return quantizedEDUs;
-};
+}
 
 //----------------------------------------------------------------------------//
 // Checked

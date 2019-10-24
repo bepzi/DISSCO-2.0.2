@@ -13,6 +13,7 @@ if (${CMAKE_CXX_COMPILER_ID} STREQUAL "Clang"
             -Wparentheses
             -Wfloat-equal
             -Wzero-as-null-pointer-constant
+            -Wno-deprecated
             -Wpedantic
             -pedantic
             -pedantic-errors)
