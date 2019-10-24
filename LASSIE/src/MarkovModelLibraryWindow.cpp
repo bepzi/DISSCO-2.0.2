@@ -142,7 +142,7 @@ MarkovModelLibraryWindow::MarkovModelLibraryWindow() {
     if (!m_pMenuPopup) g_warning("menu not found");
 }
 
-MarkovModelLibraryWindow::~MarkovModelLibraryWindow() {}
+MarkovModelLibraryWindow::~MarkovModelLibraryWindow() = default;
 
 void MarkovModelLibraryWindow::createNewModel() {
     int newIdx = activeProject->createNewMarkovModel();

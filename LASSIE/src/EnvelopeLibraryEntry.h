@@ -55,7 +55,7 @@ public:
     envSegmentProperty segmentProperty;
 
     EnvLibEntrySeg();
-    ~EnvLibEntrySeg() {}
+    ~EnvLibEntrySeg() = default;
 };
 
 class EnvLibEntryNode {
@@ -66,7 +66,7 @@ public:
     EnvLibEntrySeg* rightSeg;
     EnvLibEntryNode(double _x, double _y);
     int countNumOfNodes();
-    ~EnvLibEntryNode() {}
+    ~EnvLibEntryNode() = default;
 };
 
 class EnvelopeLibraryEntry {

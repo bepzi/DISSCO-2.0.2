@@ -209,7 +209,7 @@ EnvelopeLibraryWindow::EnvelopeLibraryWindow() {
     show_all();
 }
 
-EnvelopeLibraryWindow::~EnvelopeLibraryWindow() {}
+EnvelopeLibraryWindow::~EnvelopeLibraryWindow() = default;
 
 bool EnvelopeLibraryWindow::onRightClick(GdkEventButton* event) {
     // test if right click

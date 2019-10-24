@@ -4274,7 +4274,7 @@ FunctionGenerator::MakeEnvelopeSubAlignment::MakeEnvelopeSubAlignment(FunctionGe
         sigc::mem_fun(*this, &FunctionGenerator::MakeEnvelopeSubAlignment::textChanged));
 }
 
-FunctionGenerator::MakeEnvelopeSubAlignment::~MakeEnvelopeSubAlignment() {}
+FunctionGenerator::MakeEnvelopeSubAlignment::~MakeEnvelopeSubAlignment() = default;
 
 std::string FunctionGenerator::MakeEnvelopeSubAlignment::getXValueString() {
     Gtk::Entry* entry;

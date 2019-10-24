@@ -42,4 +42,4 @@ SharedPointers::SharedPointers() {
     projectTreeView = nullptr;
     eventAttributesView = nullptr;
 }
-SharedPointers::~SharedPointers() {}
+SharedPointers::~SharedPointers() = default;

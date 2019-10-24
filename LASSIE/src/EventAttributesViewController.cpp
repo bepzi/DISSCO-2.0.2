@@ -4115,7 +4115,7 @@ SoundPartialHBox::SoundPartialHBox(SpectrumPartial* _partial,
 
 void SoundPartialHBox::modified() { attributes->modified(); }
 
-SoundPartialHBox::~SoundPartialHBox() {}
+SoundPartialHBox::~SoundPartialHBox() = default;
 
 void SoundPartialHBox::functionButtonClicked() {
     auto* generator =
