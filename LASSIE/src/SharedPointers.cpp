@@ -36,10 +36,10 @@
 #include "ProjectViewController.h"
 
 SharedPointers::SharedPointers() {
-    mainWindow = NULL;
-    paletteView = NULL;
-    projectView = NULL;
-    projectTreeView = NULL;
-    eventAttributesView = NULL;
+    mainWindow = nullptr;
+    paletteView = nullptr;
+    projectView = nullptr;
+    projectTreeView = nullptr;
+    eventAttributesView = nullptr;
 }
 SharedPointers::~SharedPointers() {}

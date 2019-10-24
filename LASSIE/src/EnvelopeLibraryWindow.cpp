@@ -37,7 +37,7 @@
 EnvelopeLibraryWindow::EnvelopeLibraryWindow() {
     set_title("Envelope Library");
     set_border_width(3);
-    activeEnvelope = NULL;
+    activeEnvelope = nullptr;
 
     attributesRefBuilder = Gtk::Builder::create();
 #ifdef GLIBMM_EXCEPTIONS_ENABLED
@@ -137,7 +137,7 @@ EnvelopeLibraryWindow::EnvelopeLibraryWindow() {
 
     /////////////////////set up popup menu ///////////////////////////////
 
-    m_pMenuPopup = 0;
+    m_pMenuPopup = nullptr;
 
     //    the signal handler i wished to put was overriden by the object default
     // signal handler, so to avoid this, we have to add a paramater to the
@@ -272,13 +272,13 @@ void EnvelopeLibraryWindow::setActiveProject(ProjectViewController* _project) {
     refreshEnvelopeList();
 
     EnvelopeLibraryEntry* thisEntry = activeProject->getEnvelopeLibraryEntries();
-    while (thisEntry != NULL) {
+    while (thisEntry != nullptr) {
         Gtk::TreeModel::Row childrow = *(refTreeModel->append());
         childrow[columns.columnObjectNumber] = thisEntry->getNumberString();
         childrow[columns.columnEntry] = thisEntry;
         thisEntry = thisEntry->next;
     }
-    activeEnvelope = NULL;
+    activeEnvelope = nullptr;
 }
 
 EnvelopeLibraryEntry* EnvelopeLibraryWindow::getActiveEnvelope() { return activeEnvelope; }

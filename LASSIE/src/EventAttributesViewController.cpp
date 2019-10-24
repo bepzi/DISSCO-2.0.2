@@ -40,13 +40,13 @@
 #include "SharedPointers.h"
 
 EventAttributesViewController::EventAttributesViewController(SharedPointers* _sharedPointers) {
-    soundPartialHboxes = NULL;
+    soundPartialHboxes = nullptr;
     tempoEntryAsNoteValueModifiedFlag = false;
     tempo = new Tempo();
     sharedPointers = _sharedPointers;
     projectView = sharedPointers->projectView;
-    currentlyShownEvent = NULL;
-    modifiers = NULL;  // for bottom
+    currentlyShownEvent = nullptr;
+    modifiers = nullptr;  // for bottom
     add(scrolledWindow);
     entryChangedByShowCurrentEvent = false;
     // Load the GtkBuilder files and instantiate their widgets:
@@ -136,7 +136,7 @@ EventAttributesViewController::EventAttributesViewController(SharedPointers* _sh
     attributesRefBuilder->get_widget("attributesStandardTempoAsNoteValueHBox", hBox);
     Gtk::Alignment* alignment;
     attributesRefBuilder->get_widget("attributesStandardTempoAlignment", alignment);
-    if (hBox->get_parent() == NULL) {
+    if (hBox->get_parent() == nullptr) {
         alignment->add(*hBox);
     }
 
@@ -598,7 +598,7 @@ bool EventAttributesViewController::checkAttackSieve() {
     std::string text = entry->get_text();
 
     IEvent* sieve = projectView->getEventByTypeAndName(eventSiv, text);
-    if (sieve == NULL) {
+    if (sieve == nullptr) {
         return false;
     }
     return true;
@@ -610,7 +610,7 @@ bool EventAttributesViewController::checkDurationSieve() {
     std::string text = entry->get_text();
 
     IEvent* sieve = projectView->getEventByTypeAndName(eventSiv, text);
-    if (sieve == NULL) {
+    if (sieve == nullptr) {
         return false;
     }
     return true;
@@ -619,11 +619,11 @@ bool EventAttributesViewController::checkDurationSieve() {
 EventAttributesViewController::~EventAttributesViewController() {}
 
 void EventAttributesViewController::showAttributesOfEvent(IEvent* _event) {
-    if (_event == NULL) {  // if the current shown event is deleted.
-        currentlyShownEvent = NULL;
+    if (_event == nullptr) {  // if the current shown event is deleted.
+        currentlyShownEvent = nullptr;
 
         // clear previous object's bottom modifiers if exist
-        while (modifiers != NULL) {
+        while (modifiers != nullptr) {
             BottomEventModifierAlignment* temp = modifiers->next;
 
             modifiers->get_parent()->remove(*modifiers);
@@ -632,9 +632,9 @@ void EventAttributesViewController::showAttributesOfEvent(IEvent* _event) {
         }
 
         // clear soundPartialHboxes ;
-        if (soundPartialHboxes != NULL) {
+        if (soundPartialHboxes != nullptr) {
             soundPartialHboxes->clear();
-            soundPartialHboxes = NULL;
+            soundPartialHboxes = nullptr;
         }
         // scrolledWindow.remove(); //remove the child from the main scrolled
         // window
@@ -661,10 +661,10 @@ void EventAttributesViewController::showAttributesOfEvent(IEvent* _event) {
 
 void EventAttributesViewController::saveCurrentShownEventData() {
     // check if the current event is NULL or not
-    if (currentlyShownEvent == NULL) {
+    if (currentlyShownEvent == nullptr) {
         return;
     }
-    if (soundPartialHboxes != NULL) {
+    if (soundPartialHboxes != nullptr) {
         soundPartialHboxes->saveString();
         currentlyShownEvent->setChangedButNotSaved(true);
     }
@@ -956,7 +956,7 @@ void EventAttributesViewController::saveCurrentShownEventData() {
 
         }  // end handle BottomExtraInfo
 
-        if (modifiers != NULL) {
+        if (modifiers != nullptr) {
             modifiers->saveToEvent();
         }
 
@@ -1065,7 +1065,7 @@ void EventAttributesViewController::saveCurrentShownEventData() {
 
 void EventAttributesViewController::showCurrentEventData() {
     // clear previous object's bottom modifiers if exist
-    while (modifiers != NULL) {
+    while (modifiers != nullptr) {
         BottomEventModifierAlignment* temp = modifiers->next;
 
         modifiers->get_parent()->remove(*modifiers);
@@ -1074,9 +1074,9 @@ void EventAttributesViewController::showCurrentEventData() {
     }
 
     // clear soundPartialHboxes ;
-    if (soundPartialHboxes != NULL) {
+    if (soundPartialHboxes != nullptr) {
         soundPartialHboxes->clear();
-        soundPartialHboxes = NULL;
+        soundPartialHboxes = nullptr;
     }
 
     Gtk::Viewport* temp = (Gtk::Viewport*)scrolledWindow.get_child();
@@ -1364,7 +1364,7 @@ void EventAttributesViewController::showCurrentEventData() {
 
                 attributesRefBuilder->get_widget("ChildEventsDefinitionContinuumSweepAlignment",
                                                  alignment);
-                if (alignment->get_child() == NULL) {  // alignment is empty
+                if (alignment->get_child() == nullptr) {  // alignment is empty
                     attributesRefBuilder->get_widget("ChildEventsDefinitionContinuumSweepVBox",
                                                      vbox);
                     alignment->add(*vbox);
@@ -1458,7 +1458,7 @@ void EventAttributesViewController::showCurrentEventData() {
 
                 attributesRefBuilder->get_widget("ChildEventsDefinitionContinuumSweepAlignment",
                                                  alignment);
-                if (alignment->get_child() == NULL) {  // alignment is empty
+                if (alignment->get_child() == nullptr) {  // alignment is empty
                     attributesRefBuilder->get_widget("ChildEventsDefinitionContinuumSweepVBox",
                                                      vbox);
                     alignment->add(*vbox);
@@ -1550,7 +1550,7 @@ void EventAttributesViewController::showCurrentEventData() {
 
                 attributesRefBuilder->get_widget("ChildrenEventsDefinitionDiscreteAlignment",
                                                  alignment);
-                if (alignment->get_child() == NULL) {  // alignment is empty
+                if (alignment->get_child() == nullptr) {  // alignment is empty
                     attributesRefBuilder->get_widget("ChildrenEventsDefinitionDiscreteVBox", vbox);
                     alignment->add(*vbox);
 
@@ -1632,7 +1632,7 @@ void EventAttributesViewController::showCurrentEventData() {
             if (currentlyShownEvent->getFlagChildEventDef() != 2) {
                 std::vector<LayerBox*>::iterator i = layerBoxesStorage.begin();
                 for (i; i != layerBoxesStorage.end(); i++) {
-                    if ((*i)->weightColumn.get_tree_view() != NULL) {
+                    if ((*i)->weightColumn.get_tree_view() != nullptr) {
                         (*i)->m_TreeView.remove_column((*i)->weightColumn);
                         (*i)->m_TreeView.remove_column((*i)->attackEnvColumn);
                         (*i)->m_TreeView.remove_column((*i)->attackEnvScaleColumn);
@@ -1644,7 +1644,7 @@ void EventAttributesViewController::showCurrentEventData() {
             } else {
                 std::vector<LayerBox*>::iterator i = layerBoxesStorage.begin();
                 for (i; i != layerBoxesStorage.end(); i++) {
-                    if ((*i)->weightColumn.get_tree_view() == NULL) {
+                    if ((*i)->weightColumn.get_tree_view() == nullptr) {
                         (*i)->m_TreeView.append_column((*i)->weightColumn);
                         (*i)->m_TreeView.append_column((*i)->attackEnvColumn);
                         (*i)->m_TreeView.append_column((*i)->attackEnvScaleColumn);
@@ -1799,13 +1799,13 @@ void EventAttributesViewController::showCurrentEventData() {
                     */
                     //////////////////////////////////////////new code
 
-                    if (button->get_parent() != NULL) {
+                    if (button->get_parent() != nullptr) {
                         button->get_parent()->remove(*button);
                     }
-                    if (label->get_parent() != NULL) {
+                    if (label->get_parent() != nullptr) {
                         label->get_parent()->remove(*label);
                     }
-                    if (vbox->get_parent() != NULL) {
+                    if (vbox->get_parent() != nullptr) {
                         vbox->get_parent()->remove(*vbox);
                     }
 
@@ -1819,11 +1819,11 @@ void EventAttributesViewController::showCurrentEventData() {
                         currentlyShownEvent->getEventExtraInfo()->getModifiers();
 
                     BottomEventModifierAlignment* nextModifierAlignment;
-                    while (EBmodifiers != NULL) {
-                        if (modifiers == NULL) {  // if the first modifier
+                    while (EBmodifiers != nullptr) {
+                        if (modifiers == nullptr) {  // if the first modifier
 
                             modifiers = new BottomEventModifierAlignment(EBmodifiers, this);
-                            modifiers->prev = NULL;
+                            modifiers->prev = nullptr;
 
                             nextModifierAlignment = modifiers;
                             vbox->pack_start(*nextModifierAlignment, Gtk::PACK_SHRINK);
@@ -1847,7 +1847,7 @@ void EventAttributesViewController::showCurrentEventData() {
                     attributesRefBuilder->get_widget("BottomSubAttributesVBox", vbox2);
                     attributesRefBuilder->get_widget("BottomSubAttributesModifiersVBox", vbox);
 
-                    if (button->get_parent() != NULL) {
+                    if (button->get_parent() != nullptr) {
                         attributesRefBuilder->get_widget("ModifierLabel", label);
 
                         vbox2->remove(*label);
@@ -1873,13 +1873,13 @@ void EventAttributesViewController::showCurrentEventData() {
                 attributesRefBuilder->get_widget("BottomSubAttributesModifiersVBox", vbox);
 
                 attributesRefBuilder->get_widget("ModifierLabel", label);
-                if (button->get_parent() != NULL) {
+                if (button->get_parent() != nullptr) {
                     button->get_parent()->remove(*button);
                 }
-                if (label->get_parent() != NULL) {
+                if (label->get_parent() != nullptr) {
                     label->get_parent()->remove(*label);
                 }
-                if (vbox->get_parent() != NULL) {
+                if (vbox->get_parent() != nullptr) {
                     vbox->get_parent()->remove(*vbox);
                 }
                 // cout<<"add them to the right vbox"<<endl;
@@ -1889,14 +1889,14 @@ void EventAttributesViewController::showCurrentEventData() {
 
                 EventBottomModifier* EBmodifiers = currentlyShownEvent->getModifiers();
 
-                if (EBmodifiers != NULL) {
+                if (EBmodifiers != nullptr) {
                 }
                 BottomEventModifierAlignment* nextModifierAlignment;
-                while (EBmodifiers != NULL) {
-                    if (modifiers == NULL) {  // if the first modifier
+                while (EBmodifiers != nullptr) {
+                    if (modifiers == nullptr) {  // if the first modifier
 
                         modifiers = new BottomEventModifierAlignment(EBmodifiers, this);
-                        modifiers->prev = NULL;
+                        modifiers->prev = nullptr;
 
                         nextModifierAlignment = modifiers;
                         vbox->pack_start(*nextModifierAlignment, Gtk::PACK_SHRINK);
@@ -1981,18 +1981,18 @@ void EventAttributesViewController::switchToSoundAttributes() {
 
     SpectrumPartial* partials = extraInfo->getSpectrumPartials();
 
-    SoundPartialHBox* currentBox = NULL;
+    SoundPartialHBox* currentBox = nullptr;
     Gtk::VBox* vbox;
     attributesRefBuilderSound->get_widget("SpectrumVBox", vbox);
 
-    if (partials != NULL) {
+    if (partials != nullptr) {
         soundPartialHboxes = new SoundPartialHBox(partials, this);
         partials = partials->next;
         currentBox = soundPartialHboxes;
         vbox->pack_start(*currentBox, Gtk::PACK_SHRINK);
     }
 
-    while (partials != NULL) {
+    while (partials != nullptr) {
         currentBox->next = new SoundPartialHBox(partials, this);
         currentBox->next->prev = currentBox;
         currentBox = currentBox->next;
@@ -2000,7 +2000,7 @@ void EventAttributesViewController::switchToSoundAttributes() {
         vbox->pack_start(*currentBox, Gtk::PACK_SHRINK);
     }
 
-    if (soundPartialHboxes != NULL) {
+    if (soundPartialHboxes != nullptr) {
         soundPartialHboxes->setPartialNumber(1);
     }
 
@@ -2229,7 +2229,7 @@ void EventAttributesViewController::LayerBox::on_label_drop_drag_data_received(
 void EventAttributesViewController::refresh() { showAttributesOfEvent(currentlyShownEvent); }
 
 void EventAttributesViewController::continuumButtonClicked() {
-    if (currentlyShownEvent == NULL) return;
+    if (currentlyShownEvent == nullptr) return;
     modified();
     Gtk::RadioButton* radioButton;
     attributesRefBuilder->get_widget("attributesChildEventDefDiscreteButton", radioButton);
@@ -2248,7 +2248,7 @@ void EventAttributesViewController::continuumButtonClicked() {
     Gtk::Alignment* alignment;
     Gtk::VBox* vbox;
     attributesRefBuilder->get_widget("ChildEventsDefinitionContinuumSweepAlignment", alignment);
-    if (alignment->get_child() == NULL) {  // alignment is empty
+    if (alignment->get_child() == nullptr) {  // alignment is empty
         attributesRefBuilder->get_widget("ChildEventsDefinitionContinuumSweepVBox", vbox);
         alignment->add(*vbox);
 
@@ -2297,7 +2297,7 @@ void EventAttributesViewController::continuumButtonClicked() {
 }
 
 void EventAttributesViewController::sweepButtonClicked() {
-    if (currentlyShownEvent == NULL) return;
+    if (currentlyShownEvent == nullptr) return;
     modified();
     Gtk::RadioButton* radioButton;
     attributesRefBuilder->get_widget("attributesChildEventDefDiscreteButton", radioButton);
@@ -2317,7 +2317,7 @@ void EventAttributesViewController::sweepButtonClicked() {
     Gtk::Alignment* alignment;
     Gtk::VBox* vbox;
     attributesRefBuilder->get_widget("ChildEventsDefinitionContinuumSweepAlignment", alignment);
-    if (alignment->get_child() == NULL) {  // alignment is empty
+    if (alignment->get_child() == nullptr) {  // alignment is empty
         attributesRefBuilder->get_widget("ChildEventsDefinitionContinuumSweepVBox", vbox);
         alignment->add(*vbox);
 
@@ -2366,7 +2366,7 @@ void EventAttributesViewController::sweepButtonClicked() {
 }
 
 void EventAttributesViewController::discreteButtonClicked() {
-    if (currentlyShownEvent == NULL) return;
+    if (currentlyShownEvent == nullptr) return;
     modified();
     Gtk::RadioButton* radioButton;
     attributesRefBuilder->get_widget("attributesChildEventDefDiscreteButton", radioButton);
@@ -2388,7 +2388,7 @@ void EventAttributesViewController::discreteButtonClicked() {
     Gtk::VBox* vbox;
 
     attributesRefBuilder->get_widget("ChildrenEventsDefinitionDiscreteAlignment", alignment);
-    if (alignment->get_child() == NULL) {  // alignment is empty
+    if (alignment->get_child() == nullptr) {  // alignment is empty
         attributesRefBuilder->get_widget("ChildrenEventsDefinitionDiscreteVBox", vbox);
         alignment->add(*vbox);
 
@@ -2438,7 +2438,7 @@ void EventAttributesViewController::discreteButtonClicked() {
 }
 
 void EventAttributesViewController::densityButtonClicked() {
-    if (currentlyShownEvent == NULL) return;
+    if (currentlyShownEvent == nullptr) return;
     modified();
     currentlyShownEvent->setFlagNumChildren(1);
     Gtk::Label* label;
@@ -2477,7 +2477,7 @@ void EventAttributesViewController::densityButtonClicked() {
 }
 
 void EventAttributesViewController::fixedButtonClicked() {
-    if (currentlyShownEvent == NULL) return;
+    if (currentlyShownEvent == nullptr) return;
     modified();
 
     currentlyShownEvent->setFlagNumChildren(0);
@@ -2517,7 +2517,7 @@ void EventAttributesViewController::fixedButtonClicked() {
 }
 
 void EventAttributesViewController::byLayerButtonClicked() {
-    if (currentlyShownEvent == NULL) return;
+    if (currentlyShownEvent == nullptr) return;
     modified();
 
     currentlyShownEvent->setFlagNumChildren(2);
@@ -2790,7 +2790,7 @@ EventAttributesViewController::LayerBox::LayerBox(EventAttributesViewController*
 }
 
 void EventAttributesViewController::addNewLayerButtonClicked() {
-    if (currentlyShownEvent == NULL || currentlyShownEvent->getEventType() >= 5) {
+    if (currentlyShownEvent == nullptr || currentlyShownEvent->getEventType() >= 5) {
         // if not a legal event, return;
         return;
     }
@@ -3041,8 +3041,8 @@ BottomEventModifierAlignment::BottomEventModifierAlignment(
     EventBottomModifier* _modifier, EventAttributesViewController* _attributesView) {
     modifier = _modifier;
     attributesView = _attributesView;
-    prev = NULL;
-    next = NULL;
+    prev = nullptr;
+    next = nullptr;
     Gtk::VBox* vbox;
     Gtk::ComboBox* combobox;
 
@@ -3285,12 +3285,12 @@ void EventAttributesViewController::addModifierButtonClicked() {
 
     BottomEventModifierAlignment* newModifierAlignment =
         new BottomEventModifierAlignment(newModifier, this);
-    if (modifiers == NULL) {
-        newModifierAlignment->prev = NULL;
+    if (modifiers == nullptr) {
+        newModifierAlignment->prev = nullptr;
         modifiers = newModifierAlignment;
     } else {  // modifiers exist
         BottomEventModifierAlignment* temp = modifiers;
-        while (temp->next != NULL) {
+        while (temp->next != nullptr) {
             temp = temp->next;
         }
         newModifierAlignment->prev = temp;
@@ -3343,7 +3343,7 @@ void BottomEventModifierAlignment::saveToEvent() {
         modifier->setWidth("");
     }
 
-    if (next != NULL) {
+    if (next != nullptr) {
         next->saveToEvent();
     }
 }
@@ -3368,12 +3368,12 @@ void EventAttributesViewController::removeModifierAlignment(
     BottomEventModifierAlignment* search = modifiers;
     if (modifiers == _alignment) {
         modifiers = modifiers->next;
-        if (modifiers != NULL) {
-            modifiers->prev = NULL;
+        if (modifiers != nullptr) {
+            modifiers->prev = nullptr;
         }
     } else {
         _alignment->prev->next = _alignment->next;
-        if (_alignment->next != NULL) {
+        if (_alignment->next != nullptr) {
             _alignment->next->prev = _alignment->prev;
         }
     }
@@ -3426,7 +3426,7 @@ void EventAttributesViewController::generatespectrumFunButtonClicked() {
 
 void EventAttributesViewController::insertFunctionString(FunctionButton _button) {
     Gtk::Entry* entry;
-    FunctionGenerator* generator = NULL;
+    FunctionGenerator* generator = nullptr;
 
     if (_button == maxChildDurFunButton) {
         attributesRefBuilder->get_widget("attributesStandardMaxChildDurEntry", entry);
@@ -3848,7 +3848,7 @@ void EventAttributesViewController::spatializationFunButtonClicked() {
 }
 
 void EventAttributesViewController::tempoAsNoteValueButtonClicked() {
-    if (currentlyShownEvent == NULL) {
+    if (currentlyShownEvent == nullptr) {
         return;
     }
     modified();
@@ -3896,7 +3896,7 @@ void EventAttributesViewController::tempoAsNoteValueButtonClicked() {
 }
 
 void EventAttributesViewController::tempoAsFractionButtonClicked() {
-    if (currentlyShownEvent == NULL) {
+    if (currentlyShownEvent == nullptr) {
         return;
     }
 
@@ -3964,7 +3964,7 @@ void EventAttributesViewController::tempoAsFractionButtonClicked() {
 }
 
 void EventAttributesViewController::deleteKeyPressed(Gtk::Widget* _focus) {
-    if (currentlyShownEvent == NULL || layerBoxesStorage.size() == 0) return;
+    if (currentlyShownEvent == nullptr || layerBoxesStorage.size() == 0) return;
     cout << "not returned!" << endl;
     vector<LayerBox*>::iterator layerBoxesIter = layerBoxesStorage.begin();
 
@@ -4063,10 +4063,10 @@ void EventAttributesViewController::addPartialButtonClicked() {
         new SoundPartialHBox(currentlyShownEvent->getEventExtraInfo()->addPartial(), this);
     SoundPartialHBox* end = soundPartialHboxes;
 
-    if (soundPartialHboxes == NULL) {
+    if (soundPartialHboxes == nullptr) {
         soundPartialHboxes = newBox;
     } else {
-        while (end->next != NULL) {
+        while (end->next != nullptr) {
             end = end->next;
         }
         end->next = newBox;
@@ -4090,8 +4090,8 @@ void EventAttributesViewController::addPartialButtonClicked() {
 SoundPartialHBox::SoundPartialHBox(SpectrumPartial* _partial,
                                    EventAttributesViewController* _attributes) {
     attributes = _attributes;
-    prev = NULL;
-    next = NULL;
+    prev = nullptr;
+    next = nullptr;
     removeButton.set_label("Remove Partial");
 
     functionButton.set_label("Insert Function");
@@ -4135,7 +4135,7 @@ void SoundPartialHBox::setPartialNumber(int _number) {
     string labeltext = "Partial " + string(charbuffer);
     label.set_text(labeltext);
 
-    if (next != NULL) {
+    if (next != nullptr) {
         next->setPartialNumber(_number + 1);
     }
 }
@@ -4157,8 +4157,8 @@ void EventAttributesViewController::removeSoundPartial(SoundPartialHBox* _remove
 
     if (soundPartialHboxes == _remove) {
         soundPartialHboxes = soundPartialHboxes->next;
-        if (soundPartialHboxes != NULL) {
-            soundPartialHboxes->prev = NULL;
+        if (soundPartialHboxes != nullptr) {
+            soundPartialHboxes->prev = nullptr;
         }
     }
 
@@ -4169,7 +4169,7 @@ void EventAttributesViewController::removeSoundPartial(SoundPartialHBox* _remove
         }
 
         search->prev->next = search->next;
-        if (search->next != NULL) {
+        if (search->next != nullptr) {
             search->next->prev = search->prev;
         }
     }
@@ -4178,14 +4178,14 @@ void EventAttributesViewController::removeSoundPartial(SoundPartialHBox* _remove
     Gtk::Entry* entry;
     attributesRefBuilderSound->get_widget("SoundAttributesNumPartialEntry", entry);
     entry->set_text(currentlyShownEvent->getEventExtraInfo()->getNumPartials());
-    if (soundPartialHboxes != NULL) {
+    if (soundPartialHboxes != nullptr) {
         soundPartialHboxes->setPartialNumber(1);
     }
     show_all_children();
 }
 
 void SoundPartialHBox::clear() {
-    if (next != NULL) {
+    if (next != nullptr) {
         next->clear();
     }
     delete this;
@@ -4193,7 +4193,7 @@ void SoundPartialHBox::clear() {
 
 void SoundPartialHBox::saveString() {
     partial->envString = envelopeEntry.get_text();
-    if (next != NULL) {
+    if (next != nullptr) {
         next->saveString();
     }
 }
@@ -4221,7 +4221,7 @@ int EventAttributesViewController::LayerBox::refreshChildTypeIndex(int _index) {
 }
 
 void EventAttributesViewController::buildNoteModifiersList() {
-    if (currentlyShownEvent != NULL && currentlyShownEvent->getEventType() == eventNote) {
+    if (currentlyShownEvent != nullptr && currentlyShownEvent->getEventType() == eventNote) {
         saveCurrentShownEventData();
     }
 
@@ -4276,7 +4276,7 @@ void EventAttributesViewController::buildNoteModifiersList() {
 
     show_all_children();
 
-    if (currentlyShownEvent != NULL && currentlyShownEvent->getEventType() == eventNote) {
+    if (currentlyShownEvent != nullptr && currentlyShownEvent->getEventType() == eventNote) {
         showCurrentEventData();
     }
 }

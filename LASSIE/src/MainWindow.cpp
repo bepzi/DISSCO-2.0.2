@@ -367,7 +367,7 @@ MainWindow::~MainWindow() {
 void MainWindow::menuFileNewProject() {
     ProjectViewController* newProject = FileOperations::newProject(this);
 
-    if (newProject != NULL) {
+    if (newProject != nullptr) {
         menuRefActionGroup->get_action("FileNewObject")->set_sensitive(true);
         menuRefActionGroup->get_action("FileSave")->set_sensitive(true);
         menuRefActionGroup->get_action("FileSaveAs")->set_sensitive(true);
@@ -392,7 +392,7 @@ void MainWindow::menuFileNewProject() {
 //-----------------------------------------------------------------------------
 
 void MainWindow::menuFileNewObject() {
-    if (projectView != NULL && !projectView->getEmptyProject()) {
+    if (projectView != nullptr && !projectView->getEmptyProject()) {
         projectView->insertObject();
     }
 }
@@ -402,7 +402,7 @@ void MainWindow::menuFileNewObject() {
 void MainWindow::menuFileOpen() {
     ProjectViewController* openProject = FileOperations::openProject(this);
 
-    if (openProject != NULL) {
+    if (openProject != nullptr) {
         menuRefActionGroup->get_action("FileNewObject")->set_sensitive(true);
         menuRefActionGroup->get_action("FileSave")->set_sensitive(true);
         menuRefActionGroup->get_action("FileSaveAs")->set_sensitive(true);
@@ -429,7 +429,7 @@ void MainWindow::menuFileOpen() {
 void MainWindow::menuFileOpenXML() {
     ProjectViewController* openProject = FileOperations::openXMLProject(this);
 
-    if (openProject != NULL) {
+    if (openProject != nullptr) {
         menuRefActionGroup->get_action("FileNewObject")->set_sensitive(true);
         menuRefActionGroup->get_action("FileSave")->set_sensitive(true);
         menuRefActionGroup->get_action("FileSaveAs")->set_sensitive(true);
@@ -585,7 +585,7 @@ void MainWindow::showMarkovModelLibraryWindow() { markovModelLibraryWindow->show
 int MainWindow::captureKeyStroke(Gtk::Widget* _widget, GdkEventKey* _gdkEventKey) {
     // delete key stroke
     if (_gdkEventKey->type == 8 && _gdkEventKey->keyval == 65535) {
-        if (projectView != NULL && projectView->getPathAndName() != " ") {
+        if (projectView != nullptr && projectView->getPathAndName() != " ") {
             projectView->deleteKeyPressed(get_focus());
         }
     }
@@ -710,7 +710,7 @@ void MainWindow::disableNewAndOpenProject() {
 //-----------------------------------------------------------------------------
 
 void MainWindow::menuProjectConfigureNoteModifiers() {
-    if (projectView != NULL && !projectView->getEmptyProject()) {
+    if (projectView != nullptr && !projectView->getEmptyProject()) {
         projectView->configureNoteModifiers();
     }
 }

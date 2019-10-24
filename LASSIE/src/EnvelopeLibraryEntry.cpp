@@ -35,8 +35,8 @@
 
 EnvelopeLibraryEntry::EnvelopeLibraryEntry(int _number) {
     number = _number;
-    prev = NULL;
-    next = NULL;
+    prev = nullptr;
+    next = nullptr;
 
     head = new EnvLibEntryNode(0, 0);
     head->rightSeg = new EnvLibEntrySeg();
@@ -47,8 +47,8 @@ EnvelopeLibraryEntry::EnvelopeLibraryEntry(int _number) {
 
 EnvelopeLibraryEntry::EnvelopeLibraryEntry(EnvelopeLibraryEntry* _originalEnvelope, int _number) {
     number = _number;
-    prev = NULL;
-    next = NULL;
+    prev = nullptr;
+    next = nullptr;
 
     EnvLibEntryNode* originalEnvelopeCurrentNode = _originalEnvelope->head;
     EnvLibEntryNode* duplicationCurrentNode;
@@ -56,7 +56,7 @@ EnvelopeLibraryEntry::EnvelopeLibraryEntry(EnvelopeLibraryEntry* _originalEnvelo
     head = new EnvLibEntryNode(originalEnvelopeCurrentNode->x, originalEnvelopeCurrentNode->y);
     duplicationCurrentNode = head;
 
-    while (originalEnvelopeCurrentNode->rightSeg != NULL) {
+    while (originalEnvelopeCurrentNode->rightSeg != nullptr) {
         EnvLibEntrySeg* newSegment = new EnvLibEntrySeg();
         newSegment->segmentType = originalEnvelopeCurrentNode->rightSeg->segmentType;
         newSegment->segmentProperty = originalEnvelopeCurrentNode->rightSeg->segmentProperty;
@@ -83,14 +83,14 @@ EnvelopeLibraryEntry::~EnvelopeLibraryEntry() {  // delete segments!}
 }
 
 int EnvelopeLibraryEntry::count() {
-    if (next == NULL)
+    if (next == nullptr)
         return 1;
     else
         return next->count() + 1;
 }
 
 EnvelopeLibraryEntry* EnvelopeLibraryEntry::createNewEnvelope() {
-    if (next != NULL)
+    if (next != nullptr)
         return next->createNewEnvelope();
     else {
         next = new EnvelopeLibraryEntry(number + 1);
@@ -101,7 +101,7 @@ EnvelopeLibraryEntry* EnvelopeLibraryEntry::createNewEnvelope() {
 
 EnvelopeLibraryEntry* EnvelopeLibraryEntry::duplicateEnvelope(
     EnvelopeLibraryEntry* _originalEnvelope) {
-    if (next != NULL)
+    if (next != nullptr)
         return next->duplicateEnvelope(_originalEnvelope);
     else {
         next = new EnvelopeLibraryEntry(_originalEnvelope, number + 1);
@@ -123,15 +123,15 @@ Glib::ustring EnvelopeLibraryEntry::getNumberString() {
 }
 
 EnvelopeLibraryEntry::EnvelopeLibraryEntry(Envelope* _envelope, int _number) {
-    prev = NULL;
-    next = NULL;
+    prev = nullptr;
+    next = nullptr;
     number = _number;
     Collection<envelope_segment>* segments = _envelope->getSegments();
 
-    EnvLibEntryNode* currentNode = NULL;
-    EnvLibEntryNode* prevNode = NULL;
-    EnvLibEntrySeg* currentSeg = NULL;
-    EnvLibEntrySeg* prevSeg = NULL;
+    EnvLibEntryNode* currentNode = nullptr;
+    EnvLibEntryNode* prevNode = nullptr;
+    EnvLibEntrySeg* currentSeg = nullptr;
+    EnvLibEntrySeg* prevSeg = nullptr;
 
     int i = 0;
     for (i; i < segments->size() - 1; i++) {
@@ -170,14 +170,14 @@ EnvelopeLibraryEntry::EnvelopeLibraryEntry(Envelope* _envelope, int _number) {
 }
 
 EnvLibEntrySeg::EnvLibEntrySeg()
-    : leftNode(NULL),
-      rightNode(NULL),
+    : leftNode(nullptr),
+      rightNode(nullptr),
       segmentType(envSegmentTypeLinear),
       segmentProperty(envSegmentPropertyFlexible) {}
 
 EnvLibEntryNode::EnvLibEntryNode(double _x, double _y)
-    : leftSeg(NULL), rightSeg(NULL), x(_x), y(_y) {}
+    : leftSeg(nullptr), rightSeg(nullptr), x(_x), y(_y) {}
 
 int EnvLibEntryNode::countNumOfNodes() {
-    return (rightSeg == NULL) ? 1 : 1 + rightSeg->rightNode->countNumOfNodes();
+    return (rightSeg == nullptr) ? 1 : 1 + rightSeg->rightNode->countNumOfNodes();
 }

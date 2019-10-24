@@ -155,9 +155,9 @@ void ObjectWindow::refresh() {
         table->remove(*(*iter));
     }
 
-    if (objects != NULL) {
+    if (objects != nullptr) {
         objects->clear();
-        objects = NULL;
+        objects = nullptr;
     }
     switch (type) {
         case 0: {
@@ -245,7 +245,7 @@ void ObjectWindow::sizeChange(int _newNumOfColumns) {
         currentNumOfColumns = 1;
     }
 
-    if (objects == NULL) {
+    if (objects == nullptr) {
         return;
     }
     int rows = objects->count() / currentNumOfColumns + 1;
@@ -258,7 +258,7 @@ void ObjectWindow::sizeChange(int _newNumOfColumns) {
     int rowIndex = 0;
     int columnIndex = 0;
 
-    while (currentPackage != NULL) {
+    while (currentPackage != nullptr) {
         table->attach(*currentPackage, columnIndex, columnIndex + 1, rowIndex, rowIndex + 1);
 
         columnIndex++;
@@ -280,7 +280,7 @@ ObjectWindowObjectPackage::ObjectWindowObjectPackage(ProjectViewController* _pro
 void ObjectWindowObjectPackage::showContent() { projectView->showAttributes(ievent); }
 ObjectWindowObjectPackage::~ObjectWindowObjectPackage() {}
 int ObjectWindowObjectPackage::count() {
-    if (next == NULL) {
+    if (next == nullptr) {
         return 1;
     } else {
         return 1 + next->count();
@@ -290,7 +290,7 @@ int ObjectWindowObjectPackage::count() {
 void ObjectWindow::print() {
     cout << get_title() << ":" << endl;
     ObjectWindowObjectPackage* object = objects;
-    while (object != NULL) {
+    while (object != nullptr) {
         cout << object->ievent->getEventName() << endl;
         object = object->next;
     }
@@ -313,7 +313,7 @@ void ObjectWindow::numOfObjectsChange() {
         currentNumOfColumns = 1;
     }
 
-    if (objects == NULL) {
+    if (objects == nullptr) {
         return;
     }
     int rows = objects->count() / currentNumOfColumns + 1;
@@ -326,7 +326,7 @@ void ObjectWindow::numOfObjectsChange() {
     int rowIndex = 0;
     int columnIndex = 0;
 
-    while (currentPackage != NULL) {
+    while (currentPackage != nullptr) {
         table->attach(*currentPackage, columnIndex, columnIndex + 1, rowIndex, rowIndex + 1);
 
         columnIndex++;
@@ -341,7 +341,7 @@ void ObjectWindow::numOfObjectsChange() {
 }
 
 void ObjectWindowObjectPackage::clear() {
-    if (next != NULL) {
+    if (next != nullptr) {
         next->clear();
     }
     delete this;

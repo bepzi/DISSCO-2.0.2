@@ -82,8 +82,8 @@ IEvent::IEvent() {
     spatialization = "";
     measurement = "";
 
-    modifiers = NULL;
-    extraInfo = NULL;
+    modifiers = nullptr;
+    extraInfo = nullptr;
 
     EventLayer* newLayer = new EventLayer(this);
     layers.push_back(newLayer);
@@ -522,11 +522,11 @@ SpectrumPartial* IEvent::SoundExtraInfo::addPartial() {
     SpectrumPartial* end = spectrumPartials;
     numPartials++;
 
-    if (spectrumPartials == NULL) {
+    if (spectrumPartials == nullptr) {
         spectrumPartials = newPartial;
         return newPartial;
     } else {
-        while (end->next != NULL) {
+        while (end->next != nullptr) {
             end = end->next;
         }
         end->next = newPartial;
@@ -541,8 +541,8 @@ bool IEvent::SoundExtraInfo::deletePartial(SpectrumPartial* _partial) {
     }
     if (spectrumPartials == _partial) {
         spectrumPartials = spectrumPartials->next;
-        if (spectrumPartials != NULL) {
-            spectrumPartials->prev = NULL;
+        if (spectrumPartials != nullptr) {
+            spectrumPartials->prev = nullptr;
         }
     }
 
@@ -553,7 +553,7 @@ bool IEvent::SoundExtraInfo::deletePartial(SpectrumPartial* _partial) {
         }
 
         search->prev->next = search->next;
-        if (search->next != NULL) {
+        if (search->next != nullptr) {
             search->next->prev = search->prev;
         }
     }
@@ -581,7 +581,7 @@ IEvent::BottomEventExtraInfo::BottomEventExtraInfo() {
     loudness = "";
     spatialization = "";
     reverb = "";
-    modifiers = NULL;
+    modifiers = nullptr;
     childTypeFlag = -1;
 }
 IEvent::BottomEventExtraInfo::~BottomEventExtraInfo() {}
@@ -629,13 +629,13 @@ EventBottomModifier* IEvent::BottomEventExtraInfo::getModifiers() { return modif
 
 EventBottomModifier* IEvent::BottomEventExtraInfo::addModifier() {
     EventBottomModifier* newModifier = new EventBottomModifier();
-    if (modifiers == NULL) {
+    if (modifiers == nullptr) {
         modifiers = newModifier;
         return modifiers;
     }  // special case
 
     EventBottomModifier* tail = modifiers;
-    while (tail->next != NULL) {
+    while (tail->next != nullptr) {
         tail = tail->next;
     }
     tail->next = newModifier;
@@ -644,9 +644,9 @@ EventBottomModifier* IEvent::BottomEventExtraInfo::addModifier() {
 
 void IEvent::BottomEventExtraInfo::removeModifier(EventBottomModifier* _modifier) {
     if (modifiers == _modifier) {       // if modifier to be removed is the head of list
-        if (modifiers->next == NULL) {  // the only modifier
+        if (modifiers->next == nullptr) {  // the only modifier
             delete modifiers;
-            modifiers = NULL;
+            modifiers = nullptr;
             return;
         } else {  // somethingelse in the back
             EventBottomModifier* temp = modifiers->next;
@@ -678,7 +678,7 @@ EventBottomModifier::EventBottomModifier() {
     rateValue = "";
     width = "";
     groupName = "";
-    next = NULL;
+    next = nullptr;
 }
 
 EventBottomModifier::~EventBottomModifier() {}
@@ -932,39 +932,39 @@ IEvent::BottomEventExtraInfo::BottomEventExtraInfo(int _childTypeFlag) {
     FileValue* value;
 
     value = file_data["LASSIEBOTTOMfrequencyFlag"];
-    frequencyFlag = (value == NULL) ? 0 : value->getInt();
+    frequencyFlag = (value == nullptr) ? 0 : value->getInt();
 
     // 0 = hertz, 1 =] power of two
     value = file_data["LASSIEBOTTOMfrequencyContinuumFlag"];
-    frequencyContinuumFlag = (value == NULL) ? 0 : value->getInt();
+    frequencyContinuumFlag = (value == nullptr) ? 0 : value->getInt();
 
     value = file_data["LASSIEBOTTOMfrequencyEntry1"];
-    frequencyEntry1 = (value == NULL) ? "" : value->getString();
+    frequencyEntry1 = (value == nullptr) ? "" : value->getString();
 
     value = file_data["LASSIEBOTTOMfrequencyEntry2"];
-    frequencyEntry2 = (value == NULL) ? "" : value->getString();
+    frequencyEntry2 = (value == nullptr) ? "" : value->getString();
 
     value = file_data["LASSIEBOTTOMloudness"];
-    loudness = (value == NULL) ? "" : value->getString();
+    loudness = (value == nullptr) ? "" : value->getString();
 
     value = file_data["LASSIEBOTTOMspatialization"];
-    spatialization = (value == NULL) ? "" : value->getString();
+    spatialization = (value == nullptr) ? "" : value->getString();
 
     value = file_data["LASSIEBOTTOMreverb"];
-    reverb = (value == NULL) ? "" : value->getString();
+    reverb = (value == nullptr) ? "" : value->getString();
 
     // read modifiers
-    modifiers = NULL;
+    modifiers = nullptr;
 
     value = file_data["LASSIEBOTTOMmodifiers"];
 
-    if (value != NULL) {
+    if (value != nullptr) {
         std::list<FileValue> modifierList = value->getList();
 
         std::list<FileValue>::iterator modifierListIter = modifierList.begin();
 
-        EventBottomModifier* currentModifier = NULL;
-        EventBottomModifier* previousModifier = NULL;
+        EventBottomModifier* currentModifier = nullptr;
+        EventBottomModifier* previousModifier = nullptr;
         while (modifierListIter != modifierList.end()) {
             currentModifier = new EventBottomModifier();
             std::list<FileValue> thisModifierList = modifierListIter->getList();
@@ -993,7 +993,7 @@ IEvent::BottomEventExtraInfo::BottomEventExtraInfo(int _childTypeFlag) {
                 currentModifier->setGroupName(modifierIter->getString());
             }
 
-            if (previousModifier == NULL) {
+            if (previousModifier == nullptr) {
                 modifiers = currentModifier;
                 previousModifier = currentModifier;
 
@@ -1034,7 +1034,7 @@ EventLayer::EventLayer(FileValue* _thisLayerFileValue, IEvent* _thisEvent) {
 }
 
 EventDiscretePackage::EventDiscretePackage(FileValue* _thisPackageFileValue) {
-    event = NULL;
+    event = nullptr;
 
     std::list<FileValue> stringList = _thisPackageFileValue->getList();
     std::list<FileValue>::iterator i = stringList.begin();
@@ -1167,7 +1167,7 @@ void EventLayer::link(ProjectViewController* _projectView, IEvent* _thisEvent) {
 bool EventDiscretePackage::link(ProjectViewController* _projectView, IEvent* _thisEvent) {
     event = _projectView->getEventByTypeAndName(eventType, eventName);
 
-    if (event == NULL) {
+    if (event == nullptr) {
         cout << "Warning! event: " << eventName << " is not found, It is included in "
              << _thisEvent->getEventName() << " , but the file is not presented." << endl;
         // cout<<"_thisEvent is: "<< _thisEvent->getEventName()<<", eventName
@@ -1184,7 +1184,7 @@ void IEvent::parseNonEvent() {
     FileValue* value;
 
     value = file_data["LASSIEeventName"];
-    if (value != NULL) {
+    if (value != nullptr) {
         std::list<FileValue> nameAndOrderList = value->getList();
         if (nameAndOrderList.size() == 0) {         // old file format
             eventOrderInPalette = /* rand() */ -1;  // maintainer: why rand???
@@ -1208,13 +1208,13 @@ void IEvent::parseNonEvent() {
         // extraInfo-> setNumPartials((value == NULL)? "": value->getString());
 
         value = file_data["LASSIESOUNDdeviation"];
-        extraInfo->setDeviation((value == NULL) ? "" : value->getString());
+        extraInfo->setDeviation((value == nullptr) ? "" : value->getString());
 
         value = file_data["LASSIESOUNDspectrum"];
 
         std::list<FileValue> fileValueList = value->getList();
         std::list<FileValue>::iterator fileValueListIter = fileValueList.begin();
-        SpectrumPartial* thisPartial = NULL;
+        SpectrumPartial* thisPartial = nullptr;
         if (fileValueList.size() != 0) {
             thisPartial = extraInfo->getSpectrumPartials();
             thisPartial->envString = fileValueListIter->getString();
@@ -1230,27 +1230,27 @@ void IEvent::parseNonEvent() {
     } else if (eventType == eventEnv) {
         extraInfo = (EventExtraInfo*)new EnvelopeExtraInfo();
         value = file_data["LASSIEENV"];
-        extraInfo->setEnvelopeBuilder((value == NULL) ? "" : value->getString());
+        extraInfo->setEnvelopeBuilder((value == nullptr) ? "" : value->getString());
 
     } else if (eventType == eventSiv) {
         extraInfo = (EventExtraInfo*)new SieveExtraInfo();
         value = file_data["LASSIESIV"];
-        extraInfo->setSieveBuilder((value == NULL) ? "" : value->getString());
+        extraInfo->setSieveBuilder((value == nullptr) ? "" : value->getString());
 
     } else if (eventType == eventSpa) {
         extraInfo = (EventExtraInfo*)new SpatializationExtraInfo();
         value = file_data["LASSIESPA"];
-        extraInfo->setSpatializationBuilder((value == NULL) ? "" : value->getString());
+        extraInfo->setSpatializationBuilder((value == nullptr) ? "" : value->getString());
 
     } else if (eventType == eventPat) {
         extraInfo = (EventExtraInfo*)new PatternExtraInfo();
         value = file_data["LASSIEPAT"];
-        extraInfo->setPatternBuilder((value == NULL) ? "" : value->getString());
+        extraInfo->setPatternBuilder((value == nullptr) ? "" : value->getString());
 
     } else if (eventType == eventRev) {
         extraInfo = (EventExtraInfo*)new ReverbExtraInfo();
         value = file_data["LASSIEREV"];
-        extraInfo->setReverbBuilder((value == NULL) ? "" : value->getString());
+        extraInfo->setReverbBuilder((value == nullptr) ? "" : value->getString());
 
     } else if (eventType == eventNote) {
         extraInfo = (EventExtraInfo*)new NoteExtraInfo();
@@ -1308,7 +1308,7 @@ bool EventLayer::removeChild(EventDiscretePackage* _child) {
 }
 
 void EventLayer::deleteLayer() {
-    if (thisIEvent != NULL) {
+    if (thisIEvent != nullptr) {
         thisIEvent->deleteLayer(this);
     }
 }
@@ -1382,7 +1382,7 @@ IEvent::IEvent(IEvent* _original, string _newName) {
     if (eventType == eventBottom) {
         extraInfo =
             (EventExtraInfo*)new BottomEventExtraInfo((BottomEventExtraInfo*)_original->extraInfo);
-        modifiers = NULL;
+        modifiers = nullptr;
 
     } else if (eventType == eventRev) {
         extraInfo = (EventExtraInfo*)new ReverbExtraInfo((ReverbExtraInfo*)_original->extraInfo);
@@ -1421,17 +1421,17 @@ IEvent::IEvent(IEvent* _original, string _newName) {
     // modifiers of bottom is already handled by its extrainfo
     if (eventType == eventTop || eventType == eventHigh || eventType == eventMid ||
         eventType == eventLow) {
-        if (_original->modifiers == NULL) {
-            modifiers = NULL;
+        if (_original->modifiers == nullptr) {
+            modifiers = nullptr;
 
         } else {
             modifiers = new EventBottomModifier(_original->modifiers);
 
             EventBottomModifier* currentOriginalModifier = _original->modifiers;
-            EventBottomModifier* prevModifier = NULL;
+            EventBottomModifier* prevModifier = nullptr;
             EventBottomModifier* currentModifier = modifiers;
 
-            while (currentOriginalModifier->next != NULL) {
+            while (currentOriginalModifier->next != nullptr) {
                 currentOriginalModifier = currentOriginalModifier->next;
                 prevModifier = currentModifier;
                 currentModifier = new EventBottomModifier(currentOriginalModifier);
@@ -1460,13 +1460,13 @@ IEvent::SoundExtraInfo::SoundExtraInfo(SoundExtraInfo* _original) {
     spectrumGenBuilder = _original->spectrumGenBuilder;
 
     SpectrumPartial* currentOriginalPartial = _original->spectrumPartials;
-    SpectrumPartial* currentPartial = NULL;
-    SpectrumPartial* previousPartial = NULL;
+    SpectrumPartial* currentPartial = nullptr;
+    SpectrumPartial* previousPartial = nullptr;
     spectrumPartials = new SpectrumPartial();
     currentPartial = spectrumPartials;
     spectrumPartials->envString = currentOriginalPartial->envString;
 
-    while (currentOriginalPartial->next != NULL) {
+    while (currentOriginalPartial->next != nullptr) {
         currentOriginalPartial = currentOriginalPartial->next;
 
         previousPartial = currentPartial;
@@ -1490,17 +1490,17 @@ IEvent::BottomEventExtraInfo::BottomEventExtraInfo(BottomEventExtraInfo* _origin
     spatialization = _original->spatialization;
     reverb = _original->reverb;
 
-    if (_original->modifiers == NULL) {
-        modifiers = NULL;
+    if (_original->modifiers == nullptr) {
+        modifiers = nullptr;
 
     } else {
         modifiers = new EventBottomModifier(_original->modifiers);
 
         EventBottomModifier* currentOriginalModifier = _original->modifiers;
-        EventBottomModifier* prevModifier = NULL;
+        EventBottomModifier* prevModifier = nullptr;
         EventBottomModifier* currentModifier = modifiers;
 
-        while (currentOriginalModifier->next != NULL) {
+        while (currentOriginalModifier->next != nullptr) {
             currentOriginalModifier = currentOriginalModifier->next;
             prevModifier = currentModifier;
             currentModifier = new EventBottomModifier(currentOriginalModifier);
@@ -1510,7 +1510,7 @@ IEvent::BottomEventExtraInfo::BottomEventExtraInfo(BottomEventExtraInfo* _origin
 }
 
 EventBottomModifier::EventBottomModifier(EventBottomModifier* _original) {
-    next = NULL;
+    next = nullptr;
     type = _original->type;
     applyHowFlag = _original->applyHowFlag;
     probability = _original->probability;
@@ -1678,7 +1678,7 @@ bool IEvent::haveString(string _string) {
         return true;
     }
 
-    if (extraInfo != NULL) {
+    if (extraInfo != nullptr) {
         // return extraInfo->haveString(_string);   this line crashes the
         // program when removing bottom event, so oh well
     }
@@ -1782,13 +1782,13 @@ bool IEvent::BottomEventExtraInfo::haveString(string _string) {
     }
 
     EventBottomModifier* mod = getModifiers();
-    if (mod != NULL) {
+    if (mod != nullptr) {
         string stringbuffer = "";
 
-        while (mod != NULL) {
+        while (mod != nullptr) {
             stringbuffer = stringbuffer + mod->getSaveToDiskString();
 
-            if (mod->next != NULL) {
+            if (mod->next != nullptr) {
                 stringbuffer = stringbuffer + ",\n";
             }
             mod = mod->next;
@@ -2010,7 +2010,7 @@ string IEvent::getXMLTHMLB() {
         string modifiersbuffer = "        <Modifiers>\n";
         EventBottomModifier* mod = extraInfo->getModifiers();
 
-        while (mod != NULL) {
+        while (mod != nullptr) {
             modifiersbuffer = modifiersbuffer + mod->getXMLString();
             mod = mod->next;
         }
@@ -2053,7 +2053,7 @@ string IEvent::getXMLTHMLB() {
 
         string modifiersbuffer = "      <Modifiers>\n";
         EventBottomModifier* mod = modifiers;
-        while (mod != NULL) {
+        while (mod != nullptr) {
             modifiersbuffer = modifiersbuffer + mod->getXMLString();
             mod = mod->next;
         }
@@ -2259,7 +2259,7 @@ void IEvent::buildNonEventFromDOM(DOMElement* _element) {
 
         if (next_fun == "") {
             // 1.spectrum is present but empty
-            if (spectrumGenElement->getNextElementSibling() != NULL) {
+            if (spectrumGenElement->getNextElementSibling() != nullptr) {
                 thisPartialElement =
                     spectrumGenElement->getNextElementSibling()->getFirstElementChild();
             }
@@ -2271,7 +2271,7 @@ void IEvent::buildNonEventFromDOM(DOMElement* _element) {
                 spectrumGenElement->getNextElementSibling()->getFirstElementChild();
         }
 
-        SpectrumPartial* thisPartial = NULL;
+        SpectrumPartial* thisPartial = nullptr;
         if (thisPartialElement) {
             thisPartial = extraInfo->getSpectrumPartials();
             thisPartial->envString = getFunctionString(thisPartialElement);
@@ -2450,8 +2450,8 @@ IEvent::IEvent(DOMElement* _domElement) {
 
     // environment
 
-    if (thisElement->getNextElementSibling() != NULL &&
-        thisElement->getNextElementSibling()->getNextElementSibling() != NULL) {
+    if (thisElement->getNextElementSibling() != nullptr &&
+        thisElement->getNextElementSibling()->getNextElementSibling() != nullptr) {
         thisElement = thisElement->getNextElementSibling();
         spatialization = getFunctionString(thisElement);
         thisElement = thisElement->getNextElementSibling();
@@ -2475,14 +2475,14 @@ IEvent::IEvent(DOMElement* _domElement) {
         }
         extraInfo =
             (EventExtraInfo*)new BottomEventExtraInfo(childTypeFlag, thisElement);  // line 2789
-        modifiers = NULL;
+        modifiers = nullptr;
 
     } else {  // if not bottom, the following element is modifiers
-        if (thisElement != NULL) {
+        if (thisElement != nullptr) {
             modifiers = BottomEventExtraInfo::buildModifiersFromDOMElement(
                 thisElement->getFirstElementChild());
         } else {
-            modifiers = NULL;
+            modifiers = nullptr;
         }
     }
 }
@@ -2520,7 +2520,7 @@ IEvent::BottomEventExtraInfo::BottomEventExtraInfo(int _childTypeFlag, DOMElemen
     thisElement = thisElement->getNextElementSibling();
     DOMElement* temp = thisElement->getNextElementSibling();
 
-    if (temp != NULL) {  // in case there is no <Filter></Filter>
+    if (temp != nullptr) {  // in case there is no <Filter></Filter>
         filter = getFunctionString(thisElement);
 
         modifiers = buildModifiersFromDOMElement(
@@ -2533,8 +2533,8 @@ IEvent::BottomEventExtraInfo::BottomEventExtraInfo(int _childTypeFlag, DOMElemen
 
 EventBottomModifier* IEvent::BottomEventExtraInfo::buildModifiersFromDOMElement(
     DOMElement* _thisModifierElement) {
-    if (_thisModifierElement == NULL) {
-        return NULL;
+    if (_thisModifierElement == nullptr) {
+        return nullptr;
     }
 
     EventBottomModifier* currentModifier = new EventBottomModifier();
@@ -2654,7 +2654,7 @@ std::string IEvent::getFunctionString(DOMElement* _thisFunctionElement) {
     DOMCharacterData* textData;
     string returnString;
     DOMNode* child = _thisFunctionElement->getFirstChild();
-    if (child == NULL) {  // not containing any child, return string
+    if (child == nullptr) {  // not containing any child, return string
 
         return "";
     }
@@ -2679,7 +2679,7 @@ std::string IEvent::SoundExtraInfo::getSpectrumMetaData() {
     std::string returnString = "";
     SpectrumPartial* thisPartial = spectrumPartials;
 
-    while (thisPartial != NULL) {
+    while (thisPartial != nullptr) {
         std::string tempstring = thisPartial->envString;
         if (tempstring == "") {
             tempstring = "";
@@ -2687,7 +2687,7 @@ std::string IEvent::SoundExtraInfo::getSpectrumMetaData() {
 
         returnString = returnString + "`" + tempstring + "`";
         thisPartial = thisPartial->next;
-        if (thisPartial != NULL) {
+        if (thisPartial != nullptr) {
             returnString = returnString + ",";
         }
     }
@@ -2699,7 +2699,7 @@ std::string IEvent::SoundExtraInfo::getSpectrumXMLString() {
     std::string returnString = "";
     SpectrumPartial* thisPartial = spectrumPartials;
 
-    while (thisPartial != NULL) {
+    while (thisPartial != nullptr) {
         std::string tempstring = thisPartial->envString;
         returnString = returnString + "        <Partial>" + tempstring + "</Partial>\n";
         thisPartial = thisPartial->next;
@@ -2712,10 +2712,10 @@ std::string IEvent::SoundExtraInfo::getSoundSpectrumEnvelopesString() {
     std::string returnString = "";
     SpectrumPartial* thisPartial = spectrumPartials;
 
-    while (thisPartial != NULL) {
+    while (thisPartial != nullptr) {
         returnString = returnString + thisPartial->envString;
         thisPartial = thisPartial->next;
-        if (thisPartial != NULL) {
+        if (thisPartial != nullptr) {
             returnString = returnString + ",";
         }
     }
@@ -2728,13 +2728,13 @@ EventBottomModifier* IEvent::getModifiers() { return modifiers; }
 
 EventBottomModifier* IEvent::addModifier() {
     EventBottomModifier* newModifier = new EventBottomModifier();
-    if (modifiers == NULL) {
+    if (modifiers == nullptr) {
         modifiers = newModifier;
         return modifiers;
     }  // special case
 
     EventBottomModifier* tail = modifiers;
-    while (tail->next != NULL) {
+    while (tail->next != nullptr) {
         tail = tail->next;
     }
     tail->next = newModifier;
@@ -2743,9 +2743,9 @@ EventBottomModifier* IEvent::addModifier() {
 
 void IEvent::removeModifier(EventBottomModifier* _modifier) {
     if (modifiers == _modifier) {       // if modifier to be removed is the head of list
-        if (modifiers->next == NULL) {  // the only modifier
+        if (modifiers->next == nullptr) {  // the only modifier
             delete modifiers;
-            modifiers = NULL;
+            modifiers = nullptr;
             return;
         } else {  // somethingelse in the back
             EventBottomModifier* temp = modifiers->next;

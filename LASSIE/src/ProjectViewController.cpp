@@ -136,7 +136,7 @@ extern map<const char*, FileValue*, ltstr> file_data;
  *******************************************************************************/
 ProjectViewController::ProjectViewController(MainWindow* _mainWindow) {
     emptyProject = true;
-    xmlDocument = NULL;
+    xmlDocument = nullptr;
 
     ///////////////////////////////////////////////drag and drop//////////////
     listTargets.push_back(Gtk::TargetEntry("STRING"));
@@ -174,22 +174,22 @@ ProjectViewController::ProjectViewController(MainWindow* _mainWindow) {
     // leftTwoPlusAttributes.pack1(*paletteView,true,false);
     // leftTwoPlusAttributes.pack2(*eventAttributesView,true,false);
 
-    envelopeLibraryEntries = NULL;
+    envelopeLibraryEntries = nullptr;
 
-    topWindow = NULL;
-    highWindow = NULL;
-    midWindow = NULL;
-    lowWindow = NULL;
-    bottomWindow = NULL;
-    spectrumWindow = NULL;
-    envWindow = NULL;
-    sivWindow = NULL;
-    spaWindow = NULL;
-    patWindow = NULL;
-    revWindow = NULL;
-    noteWindow = NULL;
-    filWindow = NULL;
-    meaWindow = NULL;
+    topWindow = nullptr;
+    highWindow = nullptr;
+    midWindow = nullptr;
+    lowWindow = nullptr;
+    bottomWindow = nullptr;
+    spectrumWindow = nullptr;
+    envWindow = nullptr;
+    sivWindow = nullptr;
+    spaWindow = nullptr;
+    patWindow = nullptr;
+    revWindow = nullptr;
+    noteWindow = nullptr;
+    filWindow = nullptr;
+    meaWindow = nullptr;
 
     show_all_children();
 }
@@ -227,7 +227,7 @@ void ProjectViewController::initializeModifiers() {
  *
  *******************************************************************************/
 ProjectViewController::ProjectViewController(std::string _pathAndName, MainWindow* _mainWindow) {
-    xmlDocument = NULL;
+    xmlDocument = nullptr;
     emptyProject = false;
     modifiedButNotSaved = true;
     seed = "";
@@ -290,7 +290,7 @@ ProjectViewController::ProjectViewController(std::string _pathAndName, MainWindo
     paletteView->insertEvent(newEvent, "Top");
     events.push_back(newEvent);
 
-    envelopeLibraryEntries = NULL;
+    envelopeLibraryEntries = nullptr;
 
     topWindow = new ObjectWindow(eventTop, this);
     highWindow = new ObjectWindow(eventHigh, this);
@@ -862,7 +862,7 @@ void ProjectViewController::insertObject() {
     }
 
     delete newObjectDialog;
-    newObjectDialog = NULL;
+    newObjectDialog = nullptr;
 }
 
 //----------------------------------------------------------------------------//
@@ -1053,7 +1053,7 @@ void ProjectViewController::setProperties() {
     }
 
     delete projectPropertiesDialog;
-    projectPropertiesDialog = NULL;
+    projectPropertiesDialog = nullptr;
     // refreshProjectDotDat();
     modified();
 }
@@ -1315,7 +1315,7 @@ void ProjectViewController::save() {
 
     char charbuffer[60];
 
-    if (envelopeLibraryEntries != NULL) {  // safety check
+    if (envelopeLibraryEntries != nullptr) {  // safety check
 
         EnvelopeLibraryEntry* envLib = envelopeLibraryEntries;
         int count = envLib->count();
@@ -1327,7 +1327,7 @@ void ProjectViewController::save() {
 
         count = 1;  // use count as a index counter
 
-        while (envLib != NULL) {
+        while (envLib != nullptr) {
             sprintf(charbuffer, "Envelope %d\n", count);
             fputs(charbuffer, file);
             // envLib->print();
@@ -1338,7 +1338,7 @@ void ProjectViewController::save() {
 
             EnvLibEntryNode* currentNode;
             EnvLibEntrySeg* libSeg = envLib->head->rightSeg;
-            while (libSeg != NULL) {
+            while (libSeg != nullptr) {
                 currentNode = libSeg->leftNode;
 
                 sprintf(charbuffer, "%.3f", currentNode->x);
@@ -1422,7 +1422,7 @@ PaletteViewController* ProjectViewController::getPalette() { return paletteView;
 IEvent* ProjectViewController::getEventByTypeAndName(EventType type, std::string _name) {
     std::vector<IEvent*>::iterator i = events.begin();
     bool found = false;
-    IEvent* beReturn = NULL;
+    IEvent* beReturn = nullptr;
 
     while (i != events.end() && !found) {
         if ((*i)->getEventName() == _name && (*i)->getEventType() == type) {
@@ -1437,7 +1437,7 @@ IEvent* ProjectViewController::getEventByTypeAndName(EventType type, std::string
 //---------------------------------------------------------------------------//
 
 EnvelopeLibraryEntry* ProjectViewController::createNewEnvelope() {
-    if (envelopeLibraryEntries == NULL) {
+    if (envelopeLibraryEntries == nullptr) {
         envelopeLibraryEntries = new EnvelopeLibraryEntry(1);
         return envelopeLibraryEntries;
     } else {
@@ -1474,7 +1474,7 @@ void ProjectViewController::saveEnvelopeLibrary() {
     char charbuffer[60];
     FILE* file = fopen(libPathAndName.c_str(), "w");
 
-    if (envelopeLibraryEntries == NULL) {  // safety check
+    if (envelopeLibraryEntries == nullptr) {  // safety check
         // std::cout<<"There is no premade envelopes in the library"<<std::endl;
         fclose(file);
         return;
@@ -1492,7 +1492,7 @@ void ProjectViewController::saveEnvelopeLibrary() {
 
     count = 1;  // use count as a index counter
 
-    while (envLib != NULL) {
+    while (envLib != nullptr) {
         sprintf(charbuffer, "Envelope %d\n", count);
         fputs(charbuffer, file);
         // envLib->print();
@@ -1503,7 +1503,7 @@ void ProjectViewController::saveEnvelopeLibrary() {
 
         EnvLibEntryNode* currentNode;
         EnvLibEntrySeg* libSeg = envLib->head->rightSeg;
-        while (libSeg != NULL) {
+        while (libSeg != nullptr) {
             currentNode = libSeg->leftNode;
 
             sprintf(charbuffer, "%.3f", currentNode->x);
@@ -1722,7 +1722,7 @@ ProjectViewController::ProjectViewController(MainWindow* _mainWindow, std::strin
     element = element->getNextElementSibling();  // custom modifiers
     DOMElement* modifier = element->getFirstElementChild();
 
-    while (modifier != NULL) {
+    while (modifier != nullptr) {
         textData = (DOMCharacterData*)modifier->getFirstChild();
         charBuffer = XMLString::transcode(textData->getData());
         customNoteModifiers.push_back(string(charBuffer));
@@ -1750,14 +1750,14 @@ ProjectViewController::ProjectViewController(MainWindow* _mainWindow, std::strin
 
     // Envelope Library
 
-    envelopeLibraryEntries = NULL;
+    envelopeLibraryEntries = nullptr;
     DOMElement* envelopeLibraryElement = noteModifiers->getNextElementSibling();
     textData = (DOMCharacterData*)envelopeLibraryElement->getFirstChild();
 
     charBuffer = XMLString::transcode(textData->getData());
     string fileString = pathAndName + ".lib.temp";
     FILE* file = fopen(fileString.c_str(), "w");
-    if (file == NULL) {
+    if (file == nullptr) {
         cout << strerror(errno) << endl;
     }
     fputs(charBuffer, file);
@@ -1769,7 +1769,7 @@ ProjectViewController::ProjectViewController(MainWindow* _mainWindow, std::strin
     string deleteCommand = "rm " + fileString;
     system(deleteCommand.c_str());
 
-    EnvelopeLibraryEntry* previousEntry = NULL;
+    EnvelopeLibraryEntry* previousEntry = nullptr;
     Envelope* thisEnvelope;
 
     for (int i = 1; i <= envelopeLibrary->size(); i++) {
@@ -1777,10 +1777,10 @@ ProjectViewController::ProjectViewController(MainWindow* _mainWindow, std::strin
         EnvelopeLibraryEntry* thisEntry = convertToLASSIEEnvLibEntry(thisEnvelope, i);
         delete thisEnvelope;
 
-        if (previousEntry == NULL) {
+        if (previousEntry == nullptr) {
             envelopeLibraryEntries = thisEntry;
             previousEntry = thisEntry;
-            thisEntry->prev = NULL;
+            thisEntry->prev = nullptr;
         } else {
             previousEntry->next = thisEntry;
             thisEntry->prev = previousEntry;
@@ -1830,7 +1830,7 @@ ProjectViewController::ProjectViewController(MainWindow* _mainWindow, std::strin
     DOMElement* domEvents = currentElement->getNextElementSibling();
     DOMElement* eventElement = domEvents->getFirstElementChild();
 
-    while (eventElement != NULL) {
+    while (eventElement != nullptr) {
         IEvent* newEvent = new IEvent(eventElement);
         paletteView->insertEvent(newEvent, newEvent->getEventTypeString());
         events.push_back(newEvent);
@@ -1877,7 +1877,7 @@ EnvelopeLibraryEntry* ProjectViewController::convertToLASSIEEnvLibEntry(Envelope
 //---------------------------------------------------------------------------//
 
 IEvent* ProjectViewController::findIEvent(EventType _type, std::string _eventName) {
-    IEvent* toReturn = NULL;
+    IEvent* toReturn = nullptr;
 
     std::vector<IEvent*>::iterator eventsIter = events.begin();
 
@@ -1890,7 +1890,7 @@ IEvent* ProjectViewController::findIEvent(EventType _type, std::string _eventNam
         eventsIter++;
     }
 
-    if (toReturn == NULL) {
+    if (toReturn == nullptr) {
         std::cout << "Find event fail :-(    EventName:" << _eventName << "  type:" << (int)_type
                   << std::endl;
     }
@@ -1900,7 +1900,7 @@ IEvent* ProjectViewController::findIEvent(EventType _type, std::string _eventNam
 //---------------------------------------------------------------------------//
 
 void ProjectViewController::deleteKeyPressed(Gtk::Widget* _focus) {
-    if (_focus == NULL) {
+    if (_focus == nullptr) {
         return;
     }
 
@@ -1914,7 +1914,7 @@ void ProjectViewController::deleteKeyPressed(Gtk::Widget* _focus) {
 //---------------------------------------------------------------------------//
 
 void ProjectViewController::nKeyPressed(Gtk::Widget* _focus) {
-    if (_focus == NULL) {
+    if (_focus == nullptr) {
         return;
     }
 
@@ -1960,10 +1960,10 @@ bool ProjectViewController::getSaved() { return !modifiedButNotSaved; }
 //---------------------------------------------------------------------------//
 
 void ProjectViewController::showAttributesView(bool _show) {
-    if (_show && leftTwoPlusAttributes.get_child2() == NULL) {
+    if (_show && leftTwoPlusAttributes.get_child2() == nullptr) {
         leftTwoPlusAttributes.pack2(*eventAttributesView, true, false);
         show_all_children();
-    } else if (!_show && leftTwoPlusAttributes.get_child2() != NULL) {
+    } else if (!_show && leftTwoPlusAttributes.get_child2() != nullptr) {
         leftTwoPlusAttributes.remove(*(leftTwoPlusAttributes.get_child2()));
         show_all_children();
     }
@@ -2202,8 +2202,8 @@ void ProjectViewController::configureNoteModifiers() {
         eventAttributesView->buildNoteModifiersList();
     }
 
-    noteModifiersConfigurationDialog = NULL;
-    noteModifiersConfigurationCustomVBox = NULL;
+    noteModifiersConfigurationDialog = nullptr;
+    noteModifiersConfigurationCustomVBox = nullptr;
 
     std::vector<CustomNoteModifierHBox*>::iterator iter2 = customNotModifierHBoxes.begin();
     for (iter2; iter2 != customNotModifierHBoxes.end(); iter2++) {
@@ -2389,7 +2389,7 @@ void ProjectViewController::deleteObject(IEvent* _toDelete) {
 
     // check if the object is currently shown in the attributes view.
     if (_toDelete == eventAttributesView->getCurrentEvent()) {
-        eventAttributesView->showAttributesOfEvent(NULL);
+        eventAttributesView->showAttributesOfEvent(nullptr);
     }
 }
 
@@ -2484,7 +2484,7 @@ std::string ProjectViewController::searchPossibleParents(string _fileName) {
 // file for the line and removing it
 void ProjectViewController::removeExtraEntry(string _fileName) {
     FILE* disscofile;
-    if ((disscofile = fopen(_fileName.c_str(), "r+")) == NULL) {
+    if ((disscofile = fopen(_fileName.c_str(), "r+")) == nullptr) {
         cout << "Cannot open dissco file while trying to remove measurement" << endl;
     }
     char temp[50];

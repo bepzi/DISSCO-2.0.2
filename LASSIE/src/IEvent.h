@@ -158,8 +158,8 @@ public:
     std::string envString;
 
     SpectrumPartial() {
-        prev = NULL;
-        next = NULL;
+        prev = nullptr;
+        next = nullptr;
         envString = "";
     }
     ~SpectrumPartial(){};
@@ -457,7 +457,7 @@ public:
         virtual std::string getSpectrumGenBuilder() { return ""; }
         virtual void setSpectrumGenBuilder(std::string _string) {}
 
-        virtual SpectrumPartial* getSpectrumPartials() { return NULL; }
+        virtual SpectrumPartial* getSpectrumPartials() { return nullptr; }
         virtual SpectrumPartial* addPartial() {}
         virtual bool deletePartial(SpectrumPartial* _partial) {}
 
@@ -478,8 +478,8 @@ public:
         virtual void setReverb(std::string _string) {}
         virtual std::string getFilter() { return ""; }
         virtual void setFilter(std::string _string) {}
-        virtual EventBottomModifier* getModifiers() { return NULL; }
-        virtual EventBottomModifier* addModifier() { return NULL; }
+        virtual EventBottomModifier* getModifiers() { return nullptr; }
+        virtual EventBottomModifier* addModifier() { return nullptr; }
         virtual void removeModifier(EventBottomModifier* _modifier) {}
         virtual std::string getEnvelopeBuilder() { return ""; }
         virtual void setEnvelopeBuilder(std::string _string) {}

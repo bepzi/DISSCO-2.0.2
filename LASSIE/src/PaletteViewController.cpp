@@ -219,7 +219,7 @@ void PaletteViewController::objectActivated(const Gtk::TreeModel::Path& _path,
 }
 
 void PaletteViewController::insertEvent(IEvent* _event) {
-    ObjectWindow* windowToRefresh = NULL;
+    ObjectWindow* windowToRefresh = nullptr;
     Gtk::TreeModel::Row childrow;
 
     if (palette.get_selection()->get_selected() == 0) {  // see if some row is selected
@@ -265,7 +265,7 @@ void PaletteViewController::insertEvent(IEvent* _event) {
     childrow[columns.columnEntry] = _event;
     childrow[columns.columnObjectOrder] = _event->getEventOrderInPalette();
 
-    if (windowToRefresh != NULL) {
+    if (windowToRefresh != nullptr) {
         windowToRefresh->refresh();
     }
 }
@@ -344,7 +344,7 @@ bool PaletteViewController::onRightClick(GdkEventButton* event) {
         Gtk::TreeModel::Row row = *iter;
         currentCursorPosition = row[columns.columnEntry];
     } else {
-        currentCursorPosition = NULL;
+        currentCursorPosition = nullptr;
     }
 
     // This chunk of code change the cursor to the object rightclicked on.
@@ -526,7 +526,7 @@ void PaletteViewController::duplicateObject() {
     int response = duplicateObjectDialog->run();
     duplicateObjectDialog->hide();
 
-    switchBackToPreviousCursor(NULL);
+    switchBackToPreviousCursor(nullptr);
 
     if (response == 1 && nameEntry->get_text() == "") {
         // prompt error (no row selected in the palette)
@@ -591,8 +591,8 @@ void PaletteViewController::duplicateObject() {
 void PaletteViewController::on_selection_changed() {}
 
 void PaletteViewController::switchBackToPreviousCursor(IEvent* _ifDeleteOnCursor) {
-    if (currentCursorPosition == NULL || _ifDeleteOnCursor == currentCursorPosition) {
-        currentCursorPosition = NULL;
+    if (currentCursorPosition == nullptr || _ifDeleteOnCursor == currentCursorPosition) {
+        currentCursorPosition = nullptr;
         return;
     }
 
@@ -692,7 +692,7 @@ void PaletteViewController::refreshObjectOrder(string _folderName) {
 }
 
 ObjectWindowObjectPackage* PaletteViewController::getObjectsLinkedList(string _typeString) {
-    ObjectWindowObjectPackage* result = NULL;
+    ObjectWindowObjectPackage* result = nullptr;
 
     typedef Gtk::TreeModel::Children type_children;  // minimize code length.
     type_children children = refTreeModel->children();
@@ -712,13 +712,13 @@ ObjectWindowObjectPackage* PaletteViewController::getObjectsLinkedList(string _t
     children = row.children();
     iter = children.begin();
     if (children.size() == 0) {
-        return NULL;
+        return nullptr;
     } else if (children.size() == 1) {
         result = new ObjectWindowObjectPackage(projectView);
         row = *iter;
         result->set_label(row[columns.columnObjectName]);
         result->ievent = row[columns.columnEntry];
-        result->next = NULL;
+        result->next = nullptr;
         return result;
     } else {
         result = new ObjectWindowObjectPackage(projectView);
@@ -737,7 +737,7 @@ ObjectWindowObjectPackage* PaletteViewController::getObjectsLinkedList(string _t
             currentPackage->next = newPackage;
             currentPackage = newPackage;
         }
-        currentPackage->next = NULL;
+        currentPackage->next = nullptr;
         return result;
     }
 }

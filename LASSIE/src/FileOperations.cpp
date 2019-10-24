@@ -66,7 +66,7 @@ ProjectViewController* FileOperations::newProject(MainWindow* _mainWindow) {
         }
     }
 
-    return NULL;
+    return nullptr;
 }
 
 std::string FileOperations::saveAs(MainWindow* _mainWindow) {  // return new
@@ -342,7 +342,7 @@ ProjectViewController* FileOperations::openXMLProject(MainWindow* _mainWindow) {
 
         return new ProjectViewController(_mainWindow, filePath, name);
     }
-    return NULL;
+    return nullptr;
 }
 
 std::string FileOperations::pickDatFile(MainWindow* _mainWindow) {
@@ -380,7 +380,7 @@ std::string FileOperations::pickLibFile(MainWindow* _mainWindow, std::string _de
 
     int flagLoopToFindLib = 0;  // 0 = keep countinue, 1 = cancel
     FILE* testExist = fopen(libFile.c_str(), "r");
-    while (testExist == NULL && flagLoopToFindLib == 0) {
+    while (testExist == nullptr && flagLoopToFindLib == 0) {
         Gtk::MessageDialog dialog(*_mainWindow, "lib File Not Found");
         dialog.set_secondary_text("The lib file:\n\n" + libFile +
                                   "\n\nis not found. Do you want to manually find the lib file?");
@@ -428,7 +428,7 @@ std::string FileOperations::pickLibFile(MainWindow* _mainWindow, std::string _de
         testExist = fopen(libFile.c_str(), "r");
     }
 
-    if (testExist != NULL) {
+    if (testExist != nullptr) {
         fclose(testExist);
     }
     return libFile;

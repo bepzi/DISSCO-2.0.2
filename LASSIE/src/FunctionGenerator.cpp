@@ -132,17 +132,17 @@ FunctionGenerator::FunctionGenerator(FunctionReturnType _returnType, std::string
     set_border_width(3);
     result = "";
     returnType = _returnType;
-    selectSubAlignments = NULL;
+    selectSubAlignments = nullptr;
     selectNumOfNodes = 0;
-    stochosSubAlignments = NULL;
+    stochosSubAlignments = nullptr;
     stochosNumOfNodes = 0;
     stochosMethodFlag = 0;
-    makeEnvelopeSubAlignments = NULL;
+    makeEnvelopeSubAlignments = nullptr;
     makeEnvelopeNumOfNodes = 0;
     SPANumOfChannels = 0;
     SPANumOfPartials = 0;
     SPAApplyFlag = 0;  // junk here,
-    SPAChannelAlignments = NULL;
+    SPAChannelAlignments = nullptr;
     SPAMethodFlag = 0;  // same here
 
     attributesRefBuilder = Gtk::Builder::create();
@@ -1296,7 +1296,7 @@ FunctionGenerator::FunctionGenerator(FunctionReturnType _returnType, std::string
     DOMElement* thisElement;
 
     // emptyString
-    if (root == NULL) {
+    if (root == nullptr) {
         return;
     }
     DOMElement* functionNameElement = root->getFirstElementChild();
@@ -1352,9 +1352,9 @@ FunctionGenerator::FunctionGenerator(FunctionReturnType _returnType, std::string
         DOMElement* envelopeElement = thisElement->getFirstElementChild();  // first envelope
 
         if (functionFlag == 1) {  // functions
-            while (envelopeElement != NULL) {
+            while (envelopeElement != nullptr) {
                 StochosSubAlignment* newSubAlignment = new StochosSubAlignment(this, 1);
-                if (stochosSubAlignments == NULL) {
+                if (stochosSubAlignments == nullptr) {
                     stochosSubAlignments = newSubAlignment;
                 } else {
                     stochosSubAlignments->appendNewNode(newSubAlignment);
@@ -1368,9 +1368,9 @@ FunctionGenerator::FunctionGenerator(FunctionReturnType _returnType, std::string
                 envelopeElement = envelopeElement->getNextElementSibling();
             }
         } else {
-            while (envelopeElement != NULL) {
+            while (envelopeElement != nullptr) {
                 StochosSubAlignment* newSubAlignment = new StochosSubAlignment(this, 0);
-                if (stochosSubAlignments == NULL) {
+                if (stochosSubAlignments == nullptr) {
                     stochosSubAlignments = newSubAlignment;
                 } else {
                     stochosSubAlignments->appendNewNode(newSubAlignment);
@@ -1415,7 +1415,7 @@ FunctionGenerator::FunctionGenerator(FunctionReturnType _returnType, std::string
             for (functionString = listElements.begin(); functionString != listElements.end();
                  ++functionString) {
                 SelectSubAlignment* newSubAlignment = new SelectSubAlignment(this);
-                if (selectSubAlignments == NULL) {
+                if (selectSubAlignments == nullptr) {
                     selectSubAlignments = newSubAlignment;
                 } else {
                     selectSubAlignments->appendNewNode(newSubAlignment);
@@ -2502,16 +2502,16 @@ FunctionGenerator::FunctionGenerator(FunctionReturnType _returnType, std::string
 }
 
 FunctionGenerator::~FunctionGenerator() {
-    if (selectSubAlignments != NULL) {
+    if (selectSubAlignments != nullptr) {
         selectSubAlignments->clear();
     }
-    if (stochosSubAlignments != NULL) {
+    if (stochosSubAlignments != nullptr) {
         stochosSubAlignments->clear();
     }
-    if (makeEnvelopeSubAlignments != NULL) {
+    if (makeEnvelopeSubAlignments != nullptr) {
         makeEnvelopeSubAlignments->clear();
     }
-    if (SPAChannelAlignments != NULL) {
+    if (SPAChannelAlignments != nullptr) {
         SPAChannelAlignments->clear();
     }
 }
@@ -3415,10 +3415,10 @@ void FunctionGenerator::selectEntryChanged() {
 
     // Add first entry manually so list doesn't being with a comma
     SelectSubAlignment* current = selectSubAlignments;
-    if (current != NULL) {
+    if (current != nullptr) {
         stringbuffer = stringbuffer + current->toString();
         current = current->next;
-        while (current != NULL) {
+        while (current != nullptr) {
             stringbuffer = stringbuffer + ", " + current->toString();
             current = current->next;
         }
@@ -3432,7 +3432,7 @@ void FunctionGenerator::selectEntryChanged() {
 
 void FunctionGenerator::selectAddNodeButtonClicked() {
     SelectSubAlignment* newSubAlignment = new SelectSubAlignment(this);
-    if (selectSubAlignments == NULL) {
+    if (selectSubAlignments == nullptr) {
         selectSubAlignments = newSubAlignment;
     } else {
         selectSubAlignments->appendNewNode(newSubAlignment);
@@ -3469,14 +3469,14 @@ void FunctionGenerator::selectRemoveNode(SelectSubAlignment* _remove) {
 
     if (_remove == selectSubAlignments) {  // if removing head
         selectSubAlignments = selectSubAlignments->next;
-        if (selectSubAlignments != NULL) {
-            selectSubAlignments->prev = NULL;
+        if (selectSubAlignments != nullptr) {
+            selectSubAlignments->prev = nullptr;
         }
     }
 
     else {  // normal case
         _remove->prev->next = _remove->next;
-        if (_remove->next != NULL) {
+        if (_remove->next != nullptr) {
             _remove->next->prev = _remove->prev;
         }
     }
@@ -3488,8 +3488,8 @@ void FunctionGenerator::selectRemoveNode(SelectSubAlignment* _remove) {
 
 FunctionGenerator::SelectSubAlignment::SelectSubAlignment(FunctionGenerator* _parent) {
     parent = _parent;
-    next = NULL;
-    prev = NULL;
+    next = nullptr;
+    prev = nullptr;
     attributesRefBuilder = Gtk::Builder::create();
 #ifdef GLIBMM_EXCEPTIONS_ENABLED
     try {
@@ -3527,7 +3527,7 @@ FunctionGenerator::SelectSubAlignment::SelectSubAlignment(FunctionGenerator* _pa
 FunctionGenerator::SelectSubAlignment::~SelectSubAlignment() {}
 
 void FunctionGenerator::SelectSubAlignment::appendNewNode(SelectSubAlignment* _newNode) {
-    if (next == NULL) {
+    if (next == nullptr) {
         next = _newNode;
         _newNode->prev = this;
     }
@@ -3557,7 +3557,7 @@ void FunctionGenerator::SelectSubAlignment::removeButtonClicked() {
 void FunctionGenerator::SelectSubAlignment::textChanged() { parent->selectEntryChanged(); }
 
 void FunctionGenerator::SelectSubAlignment::clear() {
-    if (next != NULL) {
+    if (next != nullptr) {
         next->clear();
     }
     delete this;
@@ -3565,7 +3565,7 @@ void FunctionGenerator::SelectSubAlignment::clear() {
 
 void FunctionGenerator::stochosAddNodeButtonClicked() {
     StochosSubAlignment* newSubAlignment = new StochosSubAlignment(this, stochosMethodFlag);
-    if (stochosSubAlignments == NULL) {
+    if (stochosSubAlignments == nullptr) {
         stochosSubAlignments = newSubAlignment;
     } else {
         stochosSubAlignments->appendNewNode(newSubAlignment);
@@ -3592,7 +3592,7 @@ void FunctionGenerator::stochosTextChanged() {
                    ((radiobutton->get_active()) ? "RANGE_DISTRIB" : "FUNCTIONS") +
                    "</Method><Envelopes>";
     StochosSubAlignment* current = stochosSubAlignments;
-    while (current != NULL) {
+    while (current != nullptr) {
         stringbuffer = stringbuffer + current->toString(stochosMethodFlag);
         current = current->next;
     }
@@ -3622,7 +3622,7 @@ void FunctionGenerator::stochosMethodRadioButtonClicked() {
         entry->set_text("");
     }
 
-    if (stochosSubAlignments != NULL) {
+    if (stochosSubAlignments != nullptr) {
         stochosSubAlignments->switchTo(stochosMethodFlag);
         show_all_children();
     }
@@ -3638,15 +3638,15 @@ void FunctionGenerator::stochosRemoveNode(StochosSubAlignment* _remove) {
 
     if (_remove == stochosSubAlignments) {  // if removing head
         stochosSubAlignments = stochosSubAlignments->next;
-        if (stochosSubAlignments != NULL) {
-            stochosSubAlignments->prev = NULL;
+        if (stochosSubAlignments != nullptr) {
+            stochosSubAlignments->prev = nullptr;
         }
     }
 
     else {  // normal case
 
         _remove->prev->next = _remove->next;
-        if (_remove->next != NULL) {
+        if (_remove->next != nullptr) {
             _remove->next->prev = _remove->prev;
         }
     }
@@ -3677,8 +3677,8 @@ void FunctionGenerator::stochosFunButtonClicked() {
 FunctionGenerator::StochosSubAlignment::StochosSubAlignment(FunctionGenerator* _parent,
                                                             int _methodFlag) {
     parent = _parent;
-    next = NULL;
-    prev = NULL;
+    next = nullptr;
+    prev = nullptr;
     attributesRefBuilder = Gtk::Builder::create();
 #ifdef GLIBMM_EXCEPTIONS_ENABLED
     try {
@@ -3754,13 +3754,13 @@ void FunctionGenerator::StochosSubAlignment::switchTo(int _methodFlag) {
         attributesRefBuilder->get_widget("FunctionsHBox", hbox);
         add(*hbox);
     }
-    if (next != NULL) {
+    if (next != nullptr) {
         next->switchTo(_methodFlag);
     }
 }
 
 void FunctionGenerator::StochosSubAlignment::appendNewNode(StochosSubAlignment* _newNode) {
-    if (next == NULL) {
+    if (next == nullptr) {
         next = _newNode;
         _newNode->prev = this;
     }
@@ -3821,7 +3821,7 @@ void FunctionGenerator::StochosSubAlignment::removeButtonClicked() {
 void FunctionGenerator::StochosSubAlignment::textChanged() { parent->stochosTextChanged(); }
 
 void FunctionGenerator::StochosSubAlignment::clear() {
-    if (next != NULL) {
+    if (next != nullptr) {
         next->clear();
     }
     delete this;
@@ -4172,8 +4172,8 @@ void FunctionGenerator::readENVFileTextChanged() {
 
 FunctionGenerator::MakeEnvelopeSubAlignment::MakeEnvelopeSubAlignment(FunctionGenerator* _parent) {
     parent = _parent;
-    prev = NULL;
-    next = NULL;
+    prev = nullptr;
+    next = nullptr;
 
     attributesRefBuilder = Gtk::Builder::create();
 #ifdef GLIBMM_EXCEPTIONS_ENABLED
@@ -4327,7 +4327,7 @@ void FunctionGenerator::MakeEnvelopeSubAlignment::setEnvSegmentProperty(int _pro
 }
 
 void FunctionGenerator::MakeEnvelopeSubAlignment::clear() {
-    if (next != NULL) {
+    if (next != nullptr) {
         next->clear();
     }
     delete this;
@@ -4379,7 +4379,7 @@ void FunctionGenerator::makeEnvelopeTextChanged() {
     std::string stringbuffer = "<Fun><Name>MakeEnvelope</Name><Xs>";
     MakeEnvelopeSubAlignment* iter = makeEnvelopeSubAlignments;
 
-    while (iter != NULL) {
+    while (iter != nullptr) {
         stringbuffer = stringbuffer + "<X>" + iter->getXValueString() + "</X>";
         iter = iter->next;
     }
@@ -4388,7 +4388,7 @@ void FunctionGenerator::makeEnvelopeTextChanged() {
     stringbuffer = stringbuffer + "<X>" + entry->get_text() + "</X></Xs><Ys>";
 
     iter = makeEnvelopeSubAlignments;
-    while (iter != NULL) {
+    while (iter != nullptr) {
         stringbuffer = stringbuffer + "<Y>" + iter->getYValueString() + "</Y>";
         iter = iter->next;
     }
@@ -4397,7 +4397,7 @@ void FunctionGenerator::makeEnvelopeTextChanged() {
 
     stringbuffer = stringbuffer + "<Y>" + entry->get_text() + "</Y></Ys><Types>";
     iter = makeEnvelopeSubAlignments;
-    while (iter != NULL) {
+    while (iter != nullptr) {
         if (iter->getEnvSegmentType() == envSegmentTypeLinear) {
             stringbuffer = stringbuffer + "<T>LINEAR</T>";
         } else if (iter->getEnvSegmentType() == envSegmentTypeExponential) {
@@ -4410,7 +4410,7 @@ void FunctionGenerator::makeEnvelopeTextChanged() {
 
     stringbuffer = stringbuffer + "</Types><Pros>";
     iter = makeEnvelopeSubAlignments;
-    while (iter != NULL) {
+    while (iter != nullptr) {
         if (iter->getEnvSegmentProperty() == envSegmentPropertyFlexible) {
             stringbuffer = stringbuffer + "<P>FLEXIBLE</P>";
         } else {
@@ -4431,7 +4431,7 @@ void FunctionGenerator::makeEnvelopeInsertNode(MakeEnvelopeSubAlignment* _insert
     newNode->next = _insertAfter->next;
     newNode->prev = _insertAfter;
     _insertAfter->next = newNode;
-    if (newNode->next != NULL) {
+    if (newNode->next != nullptr) {
         newNode->next->prev = newNode;
     }
 
@@ -4440,13 +4440,13 @@ void FunctionGenerator::makeEnvelopeInsertNode(MakeEnvelopeSubAlignment* _insert
     // vbox->clear();
 
     MakeEnvelopeSubAlignment* temp = makeEnvelopeSubAlignments;
-    while (temp != NULL) {
+    while (temp != nullptr) {
         vbox->remove(*temp);
         temp = temp->next;
     }
 
     temp = makeEnvelopeSubAlignments;
-    while (temp != NULL) {
+    while (temp != nullptr) {
         vbox->pack_start(*temp, Gtk::PACK_SHRINK);
         temp = temp->next;
     }
@@ -4463,12 +4463,12 @@ void FunctionGenerator::makeEnvelopeRemoveNode(MakeEnvelopeSubAlignment* _remove
 
     if (makeEnvelopeSubAlignments == _remove) {  // special case
         makeEnvelopeSubAlignments = makeEnvelopeSubAlignments->next;
-        makeEnvelopeSubAlignments->prev = NULL;
+        makeEnvelopeSubAlignments->prev = nullptr;
     }
 
     else {
         _remove->prev->next = _remove->next;
-        if (_remove->next != NULL) {
+        if (_remove->next != nullptr) {
             _remove->next->prev = _remove->prev;
         }
     }
@@ -4479,7 +4479,7 @@ void FunctionGenerator::makeEnvelopeRemoveNode(MakeEnvelopeSubAlignment* _remove
     // vbox->clear();
 
     MakeEnvelopeSubAlignment* temp = makeEnvelopeSubAlignments;
-    while (temp != NULL) {
+    while (temp != nullptr) {
         vbox->pack_start(*temp, Gtk::PACK_SHRINK);
         temp = temp->next;
     }
@@ -5129,10 +5129,10 @@ FunctionGenerator::SPAPartialAlignment::SPAPartialAlignment(FunctionGenerator* _
                                                             SPAChannelAlignment* _parentChannel) {
     parent = _parent;
     parentChannel = _parentChannel;
-    prev = NULL;
-    next = NULL;
-    prevChan = NULL;
-    nextChan = NULL;
+    prev = nullptr;
+    next = nullptr;
+    prevChan = nullptr;
+    nextChan = nullptr;
     attributesRefBuilder = Gtk::Builder::create();
 #ifdef GLIBMM_EXCEPTIONS_ENABLED
     try {
@@ -5187,14 +5187,14 @@ void FunctionGenerator::SPAPartialAlignment::setNumber(int _number) {
 }
 
 void FunctionGenerator::SPAPartialAlignment::clearPartialsInSameChannel() {
-    if (next != NULL) {
+    if (next != nullptr) {
         next->clearPartialsInSameChannel();
     }
     delete this;
 }
 
 void FunctionGenerator::SPAPartialAlignment::clearPartialsWithSameNumber() {
-    if (nextChan != NULL) {
+    if (nextChan != nullptr) {
         nextChan->clearPartialsWithSameNumber();
     }
     delete this;
@@ -5253,8 +5253,8 @@ FunctionGenerator::SPAChannelAlignment::SPAChannelAlignment(FunctionGenerator* _
                                                             int _numOfPartial,
                                                             int _flagButtonsShown) {
     parent = _parent;
-    prev = NULL;
-    next = NULL;
+    prev = nullptr;
+    next = nullptr;
     flagButtonsShown = 1;
 
     attributesRefBuilder = Gtk::Builder::create();
@@ -5312,7 +5312,7 @@ FunctionGenerator::SPAChannelAlignment::SPAChannelAlignment(FunctionGenerator* _
 }
 
 FunctionGenerator::SPAChannelAlignment::~SPAChannelAlignment() {
-    if (partials != NULL) {
+    if (partials != nullptr) {
         partials->clearPartialsInSameChannel();
     }
 }
@@ -5357,7 +5357,7 @@ void FunctionGenerator::SPAChannelAlignment::showButtons() {
 }
 
 void FunctionGenerator::SPAChannelAlignment::clear() {
-    if (next != NULL) {
+    if (next != nullptr) {
         next->clear();
     }
     delete this;
@@ -5366,7 +5366,7 @@ void FunctionGenerator::SPAChannelAlignment::clear() {
 void FunctionGenerator::SPAChannelAlignment::refreshPartialNumbers() {
     int counter = 1;
     SPAPartialAlignment* current = partials;
-    while (current != NULL) {
+    while (current != nullptr) {
         current->setNumber(counter);
         counter++;
         current = current->next;
@@ -5375,14 +5375,14 @@ void FunctionGenerator::SPAChannelAlignment::refreshPartialNumbers() {
 
 void FunctionGenerator::SPAChannelAlignment::refreshLayout() {
     SPAPartialAlignment* current = partials;
-    while (current != NULL) {
+    while (current != nullptr) {
         if (current->get_parent() == mainVBox) {
             mainVBox->remove(*current);
         }
         current = current->next;
     }
     current = partials;
-    while (current != NULL) {
+    while (current != nullptr) {
         mainVBox->pack_start(*current, Gtk::PACK_SHRINK);
         current = current->next;
     }
@@ -5391,7 +5391,7 @@ void FunctionGenerator::SPAChannelAlignment::refreshLayout() {
 std::string FunctionGenerator::SPAChannelAlignment::getText() {
     std::string stringbuffer = "<Partials>";
     SPAPartialAlignment* temp = partials;
-    while (temp != NULL) {
+    while (temp != nullptr) {
         stringbuffer = stringbuffer + temp->getText();
         temp = temp->next;
     }
@@ -5418,10 +5418,10 @@ void FunctionGenerator::SPARemoveChannel(SPAChannelAlignment* _remove) {
 
     if (_remove == SPAChannelAlignments) {  // specialCase
         SPAChannelAlignments = SPAChannelAlignments->next;
-        SPAChannelAlignments->prev = NULL;
+        SPAChannelAlignments->prev = nullptr;
         SPAPartialAlignment* partial = SPAChannelAlignments->partials;
-        while (partial != NULL) {
-            partial->prevChan = NULL;
+        while (partial != nullptr) {
+            partial->prevChan = nullptr;
             partial = partial->next;
         }
     }
@@ -5430,14 +5430,14 @@ void FunctionGenerator::SPARemoveChannel(SPAChannelAlignment* _remove) {
         _remove->prev->next = _remove->next;
 
         SPAPartialAlignment* partial = _remove->partials;
-        while (partial != NULL) {
+        while (partial != nullptr) {
             partial->prevChan->nextChan = partial->nextChan;
             partial = partial->next;
         }
-        if (_remove->next != NULL) {
+        if (_remove->next != nullptr) {
             _remove->next->prev = _remove->prev;
             partial = _remove->partials;
-            while (partial != NULL) {
+            while (partial != nullptr) {
                 partial->nextChan->prevChan = partial->prevChan;
                 partial = partial->next;
             }
@@ -5448,7 +5448,7 @@ void FunctionGenerator::SPARemoveChannel(SPAChannelAlignment* _remove) {
 
     int counter = 1;
     SPAChannelAlignment* current = SPAChannelAlignments;
-    while (current != NULL) {
+    while (current != nullptr) {
         current->setChannelNumber(counter);
         current = current->next;
         counter++;
@@ -5465,7 +5465,7 @@ void FunctionGenerator::SPAInsertChannel(SPAChannelAlignment* _insertAfter) {
     Gtk::HBox* hbox;
     attributesRefBuilder->get_widget("SPAMainHBox", hbox);
     SPAChannelAlignment* temp = SPAChannelAlignments;
-    while (temp != NULL) {
+    while (temp != nullptr) {
         if (temp->get_parent() == hbox) {
             hbox->remove(*temp);
         }
@@ -5479,14 +5479,14 @@ void FunctionGenerator::SPAInsertChannel(SPAChannelAlignment* _insertAfter) {
     newChannel->prev = _insertAfter;
     newChannel->next = _insertAfter->next;
     _insertAfter->next = newChannel;
-    if (newChannel->next != NULL) {
+    if (newChannel->next != nullptr) {
         newChannel->next->prev = newChannel;
     }
 
     SPAPartialAlignment* temp1 = _insertAfter->partials;
     SPAPartialAlignment* temp2 = newChannel->partials;
 
-    while (temp1 != NULL) {
+    while (temp1 != nullptr) {
         temp2->nextChan = temp1->nextChan;
         temp1->nextChan = temp2;
         temp2->prevChan = temp1;
@@ -5495,22 +5495,22 @@ void FunctionGenerator::SPAInsertChannel(SPAChannelAlignment* _insertAfter) {
     }
 
     temp2 = newChannel->partials;
-    if (temp2->nextChan != NULL) {
-        while (temp2 != NULL) {
+    if (temp2->nextChan != nullptr) {
+        while (temp2 != nullptr) {
             temp2->nextChan->prevChan = temp2;
             temp2 = temp2->next;
         }
     }
 
     temp = SPAChannelAlignments;
-    while (temp != NULL) {
+    while (temp != nullptr) {
         hbox->pack_start(*temp, Gtk::PACK_SHRINK);
         temp = temp->next;
     }
 
     int counter = 1;
     SPAChannelAlignment* current = SPAChannelAlignments;
-    while (current != NULL) {
+    while (current != nullptr) {
         current->setChannelNumber(counter);
         current = current->next;
         counter++;
@@ -5528,23 +5528,23 @@ void FunctionGenerator::SPARemovePartial(SPAPartialAlignment* _remove) {
 
     SPANumOfPartials--;
     SPAPartialAlignment* leftmost = _remove;
-    while (leftmost->prevChan != NULL) {
+    while (leftmost->prevChan != nullptr) {
         leftmost = leftmost->prevChan;
     }
 
     SPAPartialAlignment* temp = leftmost;
 
-    if (temp->prev == NULL) {  // specialCase
-        while (temp != NULL) {
+    if (temp->prev == nullptr) {  // specialCase
+        while (temp != nullptr) {
             temp->parentChannel->partials = temp->next;
-            temp->next->prev = NULL;
+            temp->next->prev = nullptr;
             temp = temp->nextChan;
         }
 
     } else {  // normal case
-        while (temp != NULL) {
+        while (temp != nullptr) {
             temp->prev->next = temp->next;
-            if (temp->next != NULL) {
+            if (temp->next != nullptr) {
                 temp->next->prev = temp->prev;
             }
             temp = temp->nextChan;
@@ -5553,7 +5553,7 @@ void FunctionGenerator::SPARemovePartial(SPAPartialAlignment* _remove) {
 
     SPAChannelAlignment* temp1 = SPAChannelAlignments;
 
-    while (temp1 != NULL) {
+    while (temp1 != nullptr) {
         temp1->refreshPartialNumbers();
         temp1 = temp1->next;
     }
@@ -5570,25 +5570,25 @@ void FunctionGenerator::SPAInsertPartial(SPAPartialAlignment* _insertAfter) {
 
     SPANumOfPartials++;
     SPAPartialAlignment* leftmost = _insertAfter;
-    while (leftmost->prevChan != NULL) {
+    while (leftmost->prevChan != nullptr) {
         leftmost = leftmost->prevChan;
     }
 
     SPAPartialAlignment* temp1 = leftmost;
-    SPAPartialAlignment* temp2 = NULL;
+    SPAPartialAlignment* temp2 = nullptr;
     SPAPartialAlignment* newPartial;
 
-    while (temp1 != NULL) {
+    while (temp1 != nullptr) {
         newPartial = new SPAPartialAlignment(this, temp1->parentChannel);
         newPartial->next = temp1->next;
 
         temp1->next = newPartial;
         newPartial->prev = temp1;
-        if (newPartial->next != NULL) {
+        if (newPartial->next != nullptr) {
             newPartial->next->prev = newPartial;
         }
         newPartial->prevChan = temp2;
-        if (temp2 != NULL) {
+        if (temp2 != nullptr) {
             temp2->nextChan = newPartial;
         }
         temp2 = newPartial;
@@ -5597,7 +5597,7 @@ void FunctionGenerator::SPAInsertPartial(SPAPartialAlignment* _insertAfter) {
 
     SPAChannelAlignment* temp = SPAChannelAlignments;
 
-    while (temp != NULL) {
+    while (temp != nullptr) {
         temp->refreshPartialNumbers();
 
         temp->refreshLayout();
@@ -5622,17 +5622,17 @@ void FunctionGenerator::SPAMethodRadioButtonClicked() {
         }
         SPAChannelAlignment* toDelete = SPAChannelAlignments->next;
 
-        if (toDelete != NULL) {
+        if (toDelete != nullptr) {
             toDelete->clear();
 
             SPAPartialAlignment* partial = SPAChannelAlignments->partials;
 
-            while (partial != NULL) {
-                partial->nextChan = NULL;
+            while (partial != nullptr) {
+                partial->nextChan = nullptr;
                 partial = partial->next;
             }
         }
-        SPAChannelAlignments->next = NULL;
+        SPAChannelAlignments->next = nullptr;
 
         SPAChannelAlignments->setChannelTitle("");
         SPANumOfChannels = 1;
@@ -5648,7 +5648,7 @@ void FunctionGenerator::SPAMethodRadioButtonClicked() {
         SPAMethodFlag = 1;
         SPAChannelAlignments->setChannelTitle("Channel 1");
         SPAChannelAlignments->showButtons();
-        if (SPAChannelAlignments->next != NULL) {
+        if (SPAChannelAlignments->next != nullptr) {
             SPAChannelAlignments->next->setChannelTitle("Channel 2");
             SPAChannelAlignments->next->showButtons();
         }
@@ -5668,8 +5668,8 @@ void FunctionGenerator::SPAMethodRadioButtonClicked() {
 
             SPAPartialAlignment* partial = SPAChannelAlignments->next->partials;
 
-            while (partial != NULL) {
-                partial->nextChan = NULL;
+            while (partial != nullptr) {
+                partial->nextChan = nullptr;
                 partial = partial->next;
             }
         }
@@ -5680,7 +5680,7 @@ void FunctionGenerator::SPAMethodRadioButtonClicked() {
         SPAChannelAlignments->next->setChannelTitle("Radius");
         SPAChannelAlignments->hideButtons();
         SPAChannelAlignments->next->hideButtons();
-        SPAChannelAlignments->next->next = NULL;
+        SPAChannelAlignments->next->next = nullptr;
     }  // end polar
 
     SPATextChanged();
@@ -5700,14 +5700,14 @@ void FunctionGenerator::SPAApplyByRadioButtonClicked() {
         SPAApplyFlag = 0;
         SPAChannelAlignment* temp = SPAChannelAlignments;
 
-        while (temp != NULL) {  // each channel
+        while (temp != nullptr) {  // each channel
             SPAPartialAlignment* firstPartial = temp->partials;
-            if (firstPartial != NULL) {
+            if (firstPartial != nullptr) {
                 firstPartial->setLabel("Envelope");
             }
 
             SPAPartialAlignment* partial = temp->partials->next;
-            while (partial != NULL) {
+            while (partial != nullptr) {
                 partial->entryEditSwitch(0);
                 partial = partial->next;
             }
@@ -5718,14 +5718,14 @@ void FunctionGenerator::SPAApplyByRadioButtonClicked() {
         SPAApplyFlag = 1;
         SPAChannelAlignment* temp = SPAChannelAlignments;
 
-        while (temp != NULL) {
+        while (temp != nullptr) {
             SPAPartialAlignment* firstPartial = temp->partials;
-            if (firstPartial != NULL) {
+            if (firstPartial != nullptr) {
                 firstPartial->setLabel("Partial 1");
             }
 
             SPAPartialAlignment* partial = temp->partials->next;
-            while (partial != NULL) {
+            while (partial != nullptr) {
                 partial->entryEditSwitch(1);
                 partial = partial->next;
             }
@@ -5771,7 +5771,7 @@ void FunctionGenerator::SPATextChanged() {
     stringbuffer = stringbuffer + "</Apply><Channels>";
 
     SPAChannelAlignment* temp = SPAChannelAlignments;
-    while (temp != NULL) {
+    while (temp != nullptr) {
         stringbuffer = stringbuffer + temp->getText();
         temp = temp->next;
     }
@@ -5951,7 +5951,7 @@ std::string FunctionGenerator::getFunctionString(DOMElement* _thisFunctionElemen
     DOMCharacterData* textData;
     string returnString;
     DOMElement* child = _thisFunctionElement->getFirstElementChild();
-    if (child == NULL) {  // not containing any child, return string
+    if (child == nullptr) {  // not containing any child, return string
 
         textData = (DOMCharacterData*)_thisFunctionElement->getFirstChild();
         if (textData) {
