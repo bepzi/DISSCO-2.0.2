@@ -48,7 +48,7 @@ public:
      *
      ***************************************************************************/
     MainWindow();
-    ~MainWindow();
+    ~MainWindow() override;
     void showEnvelopeLibraryWindow();
     void showMarkovModelLibraryWindow();
     void setUnsavedTitle();

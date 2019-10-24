@@ -523,32 +523,32 @@ public:
         BottomEventExtraInfo(int _childTypeFlag);  // called when parsing files.
         BottomEventExtraInfo(int _childTypeFlag, DOMElement* _thisElement);
         ~BottomEventExtraInfo();
-        int getFrequencyFlag();  // 0 = Well_tempered, 1 = Fundamental, 2 =
+        int getFrequencyFlag() override;  // 0 = Well_tempered, 1 = Fundamental, 2 =
                                  // Continuum
-        void setFrequencyFlag(int _flag);
-        int getFrequencyContinuumFlag();  // 0 = hertz, 1 = power of two
-        void setFrequencyContinuumFlag(int _flag);
+        void setFrequencyFlag(int _flag) override;
+        int getFrequencyContinuumFlag() override;  // 0 = hertz, 1 = power of two
+        void setFrequencyContinuumFlag(int _flag) override;
 
-        std::string getFrequencyEntry1();
-        void setFrequencyEntry1(std::string _string);
-        std::string getFrequencyEntry2();
-        void setFrequencyEntry2(std::string _string);
-        std::string getLoudness();
-        void setLoudness(std::string _string);
-        std::string getSpatialization();
-        void setSpatialization(std::string _string);
-        std::string getReverb();
-        void setReverb(std::string _string);
-        std::string getFilter();
-        void setFilter(std::string _string);
-        EventBottomModifier* getModifiers();
-        EventBottomModifier* addModifier();
-        void removeModifier(EventBottomModifier* _modifier);
-        void setChildTypeFlag(int _type);
-        int getChildTypeFlag();
+        std::string getFrequencyEntry1() override;
+        void setFrequencyEntry1(std::string _string) override;
+        std::string getFrequencyEntry2() override;
+        void setFrequencyEntry2(std::string _string) override;
+        std::string getLoudness() override;
+        void setLoudness(std::string _string) override;
+        std::string getSpatialization() override;
+        void setSpatialization(std::string _string) override;
+        std::string getReverb() override;
+        void setReverb(std::string _string) override;
+        std::string getFilter() override;
+        void setFilter(std::string _string) override;
+        EventBottomModifier* getModifiers() override;
+        EventBottomModifier* addModifier() override;
+        void removeModifier(EventBottomModifier* _modifier) override;
+        void setChildTypeFlag(int _type) override;
+        int getChildTypeFlag() override;
 
         EventBottomModifier* modifiers;
-        bool haveString(string _string);
+        bool haveString(string _string) override;
         static EventBottomModifier* buildModifiersFromDOMElement(DOMElement* _thisModifierElement);
 
     private:
@@ -571,9 +571,9 @@ public:
         }
         EnvelopeExtraInfo() { envelopeBuilder = ""; }
         ~EnvelopeExtraInfo() {}
-        std::string getEnvelopeBuilder();
-        void setEnvelopeBuilder(std::string _string);
-        bool haveString(string _string);
+        std::string getEnvelopeBuilder() override;
+        void setEnvelopeBuilder(std::string _string) override;
+        bool haveString(string _string) override;
 
     private:
         std::string envelopeBuilder;
@@ -587,9 +587,9 @@ public:
         }
         PatternExtraInfo() { patternBuilder = ""; }
         ~PatternExtraInfo() {}
-        std::string getPatternBuilder();
-        void setPatternBuilder(std::string _string);
-        bool haveString(string _string);
+        std::string getPatternBuilder() override;
+        void setPatternBuilder(std::string _string) override;
+        bool haveString(string _string) override;
 
     private:
         std::string patternBuilder;
@@ -603,9 +603,9 @@ public:
         }
         SpatializationExtraInfo() { spatializationBuilder = ""; }
         ~SpatializationExtraInfo() {}
-        std::string getSpatializationBuilder();
-        void setSpatializationBuilder(std::string _string);
-        bool haveString(string _string);
+        std::string getSpatializationBuilder() override;
+        void setSpatializationBuilder(std::string _string) override;
+        bool haveString(string _string) override;
 
     private:
         std::string spatializationBuilder;
@@ -617,9 +617,9 @@ public:
         SieveExtraInfo(SieveExtraInfo* _original) { sieveBuilder = _original->sieveBuilder; }
         SieveExtraInfo() { sieveBuilder = ""; }
         ~SieveExtraInfo() {}
-        std::string getSieveBuilder();
-        void setSieveBuilder(std::string _string);
-        bool haveString(string _string);
+        std::string getSieveBuilder() override;
+        void setSieveBuilder(std::string _string) override;
+        bool haveString(string _string) override;
 
     private:
         std::string sieveBuilder;
@@ -631,9 +631,9 @@ public:
         ReverbExtraInfo(ReverbExtraInfo* _original);
         ReverbExtraInfo() { reverbBuilder = ""; }
         ~ReverbExtraInfo() {}
-        std::string getReverbBuilder();
-        void setReverbBuilder(std::string _string);
-        bool haveString(string _string);
+        std::string getReverbBuilder() override;
+        void setReverbBuilder(std::string _string) override;
+        bool haveString(string _string) override;
 
     private:
         std::string reverbBuilder;
@@ -645,9 +645,9 @@ public:
         FilterExtraInfo(FilterExtraInfo* _original);
         FilterExtraInfo() { filterBuilder = ""; }
         ~FilterExtraInfo() {}
-        std::string getFilterBuilder();
-        void setFilterBuilder(std::string _string);
-        bool haveString(string _string);
+        std::string getFilterBuilder() override;
+        void setFilterBuilder(std::string _string) override;
+        bool haveString(string _string) override;
 
     private:
         std::string filterBuilder;
@@ -659,9 +659,9 @@ public:
         MeasureExtraInfo(MeasureExtraInfo* _original);
         MeasureExtraInfo() { measureBuilder = ""; }
         ~MeasureExtraInfo() {}
-        std::string getMeasureBuilder();
-        void setMeasureBuilder(std::string _string);
-        bool haveString(string _string);
+        std::string getMeasureBuilder() override;
+        void setMeasureBuilder(std::string _string) override;
+        bool haveString(string _string) override;
 
     private:
         std::string measureBuilder;
@@ -675,20 +675,20 @@ public:
         ~SoundExtraInfo();
 
         // void        setNumPartials(std::string _numPartials);
-        std::string getNumPartials();
+        std::string getNumPartials() override;
 
-        void setDeviation(std::string _deviation);
-        std::string getDeviation();
-        std::string getSoundSpectrumEnvelopesString();
-        std::string getSpectrumGenBuilder();
-        void setSpectrumGenBuilder(std::string _string);
+        void setDeviation(std::string _deviation) override;
+        std::string getDeviation() override;
+        std::string getSoundSpectrumEnvelopesString() override;
+        std::string getSpectrumGenBuilder() override;
+        void setSpectrumGenBuilder(std::string _string) override;
         // void        setSpectrum(std::string _spectrum);
-        std::string getSpectrumMetaData();
-        std::string getSpectrumXMLString();
-        SpectrumPartial* getSpectrumPartials();
-        SpectrumPartial* addPartial();
-        bool deletePartial(SpectrumPartial* _partial);
-        bool haveString(string _string);
+        std::string getSpectrumMetaData() override;
+        std::string getSpectrumXMLString() override;
+        SpectrumPartial* getSpectrumPartials() override;
+        SpectrumPartial* addPartial() override;
+        bool deletePartial(SpectrumPartial* _partial) override;
+        bool haveString(string _string) override;
 
     private:
         int numPartials;
@@ -702,10 +702,10 @@ public:
         NoteExtraInfo();
         NoteExtraInfo(NoteExtraInfo* _original);
         ~NoteExtraInfo();
-        std::list<std::string> getNoteModifiers();
-        void addNoteModifiers(std::string _modifier);
-        void clearNoteModifiers();
-        bool haveString(string _string);
+        std::list<std::string> getNoteModifiers() override;
+        void addNoteModifiers(std::string _modifier) override;
+        void clearNoteModifiers() override;
+        bool haveString(string _string) override;
 
     private:
         std::list<std::string> modifiers;

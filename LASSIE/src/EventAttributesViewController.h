@@ -66,7 +66,7 @@ public:
     BottomEventModifierAlignment* next;
     BottomEventModifierAlignment(EventBottomModifier* _modifier,
                                  EventAttributesViewController* _attributesView);
-    ~BottomEventModifierAlignment();
+    ~BottomEventModifierAlignment() override;
     EventBottomModifier* modifier;
     void saveToEvent();
 
@@ -126,7 +126,7 @@ public:
     Gtk::Label label;
     SpectrumPartial* partial;
 
-    ~SoundPartialHBox();
+    ~SoundPartialHBox() override;
 
     void clear();
     void removeButtonClicked();
@@ -151,7 +151,7 @@ public:
     /*! \brief destructor of EventAttributesViewController
      *
      ****************************************************************************/
-    ~EventAttributesViewController();
+    ~EventAttributesViewController() override;
 
     /*! \brief shows the attributes of the event in LASSIE
      *
@@ -276,7 +276,7 @@ private:
                  ProjectViewController* _projectView, EventLayer* _childrenInThisLayer,
                  bool _flagShowDiscreteColumns);
 
-        ~LayerBox();
+        ~LayerBox() override;
         bool onRightClick(GdkEventButton* event);
         int refreshChildTypeIndex(int _index);
         void deleteObject();

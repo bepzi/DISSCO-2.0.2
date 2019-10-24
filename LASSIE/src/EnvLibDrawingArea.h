@@ -11,7 +11,7 @@ class EnvLibDrawingArea : public Gtk::DrawingArea {
 public:
     EnvLibDrawingArea(EnvelopeLibraryWindow* _envelopeLibraryWindow);
 
-    virtual ~EnvLibDrawingArea();
+    ~EnvLibDrawingArea() override;
     void resetFields();
     void showGraph(EnvelopeLibraryEntry* _envelope);
     void clearGraph();
@@ -21,7 +21,7 @@ public:
 
 protected:
     // Override default signal handler:
-    virtual bool on_expose_event(GdkEventExpose* event);
+    bool on_expose_event(GdkEventExpose* event) override;
 
     bool mouseButtonPressed(GdkEventButton* event);
     bool mouseButtonReleased(GdkEventButton* event);

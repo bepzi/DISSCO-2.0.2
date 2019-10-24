@@ -54,7 +54,7 @@ class CustomNoteModifierHBox : public Gtk::HBox {
 public:
     CustomNoteModifierHBox(ProjectViewController* _projectView);
     CustomNoteModifierHBox(ProjectViewController* _projectView, const std::string& _string);
-    ~CustomNoteModifierHBox();
+    ~CustomNoteModifierHBox() override;
     std::string getText();
 
 private:
@@ -85,7 +85,7 @@ public:
     /*! \brief The destructor of ProjectViewController
      *
      ***************************************************************************/
-    ~ProjectViewController();
+    ~ProjectViewController() override;
 
     // functions for modifying the envelop list
     EnvelopeLibraryEntry* createNewEnvelope();

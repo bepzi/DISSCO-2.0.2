@@ -57,7 +57,7 @@ class fileNameError : public Gtk::Window {
 public:
     // ExampleWindow();
     fileNameError();
-    ~fileNameError();
+    ~fileNameError() override;
 
 protected:
     void inappropriateProjectName();
@@ -66,7 +66,7 @@ protected:
 class fileNameExist : public Gtk::Window {
 public:
     fileNameExist();
-    ~fileNameExist();
+    ~fileNameExist() override;
 
 protected:
     void duplicateProjectName();

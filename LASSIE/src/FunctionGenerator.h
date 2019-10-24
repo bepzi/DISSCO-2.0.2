@@ -98,7 +98,7 @@ class FunctionGenerator : public Gtk::Dialog {
 public:
     FunctionGenerator(FunctionReturnType _returnType, const std::string& _originalString);
 
-    ~FunctionGenerator();
+    ~FunctionGenerator() override;
     std::string getResultString();
     std::string static getFunctionString(FileValue* _value, FunctionReturnType _returnType);
     std::string static getFunctionString(DOMElement* _thisFunctionElement);
@@ -112,7 +112,7 @@ public:
     class SPAPartialAlignment : public Gtk::Alignment {
     public:
         SPAPartialAlignment(FunctionGenerator* _parent, SPAChannelAlignment* _parentChannel);
-        ~SPAPartialAlignment();
+        ~SPAPartialAlignment() override;
         void setNumber(int _number);
         void clearPartialsInSameChannel();
         void clearPartialsWithSameNumber();
@@ -140,7 +140,7 @@ public:
     class SPAChannelAlignment : public Gtk::Alignment {
     public:
         SPAChannelAlignment(FunctionGenerator* _parent, int _numOfPartial, int _flagButtonsShown);
-        ~SPAChannelAlignment();
+        ~SPAChannelAlignment() override;
         void setChannelNumber(int _number);
         void setChannelTitle(const std::string& _title);
         void hideButtons();
@@ -185,7 +185,7 @@ public:
 
 protected:
     // signal handelers
-    void on_response(int response_id);
+    void on_response(int response_id) override;
     void function_list_combo_changed();
 
 private:
@@ -255,7 +255,7 @@ private:
     class SelectSubAlignment : public Gtk::Alignment {
     public:
         SelectSubAlignment(FunctionGenerator* _parent);
-        ~SelectSubAlignment();
+        ~SelectSubAlignment() override;
         void appendNewNode(SelectSubAlignment* _newNode);
         void clear();
         void setFunctionsEntry(const std::string& _string);
@@ -283,7 +283,7 @@ private:
     class StochosSubAlignment : public Gtk::Alignment {
     public:
         StochosSubAlignment(FunctionGenerator* _parent, int _methodFlag);
-        ~StochosSubAlignment();
+        ~StochosSubAlignment() override;
         void switchTo(int _methodFlag);
         void appendNewNode(StochosSubAlignment* _newNode);
         void clear();
@@ -339,7 +339,7 @@ private:
     public:
         Glib::RefPtr<Gtk::Builder> attributesRefBuilder;
         RawListHBox(FunctionGenerator* _parentGenerator);
-        ~RawListHBox();
+        ~RawListHBox() override;
         RawListHBox* next;
         RawListHBox* prev;
         FunctionGenerator* parentGenerator;
@@ -357,7 +357,7 @@ private:
     class MakeEnvelopeSubAlignment : public Gtk::Alignment {
     public:
         MakeEnvelopeSubAlignment(FunctionGenerator* _parent);
-        ~MakeEnvelopeSubAlignment();
+        ~MakeEnvelopeSubAlignment() override;
 
         MakeEnvelopeSubAlignment* prev;
         MakeEnvelopeSubAlignment* next;

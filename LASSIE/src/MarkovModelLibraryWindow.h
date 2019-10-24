@@ -50,7 +50,7 @@ public:
     } m_columns;
 
     MarkovModelLibraryWindow();
-    ~MarkovModelLibraryWindow();
+    ~MarkovModelLibraryWindow() override;
 
     void setActiveProject(ProjectViewController* project);
     void createNewModel();
@@ -89,7 +89,7 @@ protected:
 
     void onSetSize();
 
-    virtual void on_hide() override;
+    void on_hide() override;
 
 private:
     void onSelectionChanged();

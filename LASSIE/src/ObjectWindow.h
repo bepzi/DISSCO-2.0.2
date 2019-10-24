@@ -40,7 +40,7 @@ class IEvent;
 class ObjectWindowObjectPackage : public Gtk::Button {
 public:
     ObjectWindowObjectPackage(ProjectViewController* _projectView);
-    ~ObjectWindowObjectPackage();
+    ~ObjectWindowObjectPackage() override;
     int count();
     void clear();
     void showContent();
@@ -55,7 +55,7 @@ private:
 class ObjectWindow : public Gtk::Window {
 public:
     ObjectWindow(EventType _type, ProjectViewController* _projectView);
-    ~ObjectWindow();
+    ~ObjectWindow() override;
 
     void setActiveProject(ProjectViewController* _project);
     void print();
@@ -67,7 +67,7 @@ public:
     ObjectWindowObjectPackage* objects;
 
 protected:
-    virtual bool on_expose_event(GdkEventExpose* event);
+    bool on_expose_event(GdkEventExpose* event) override;
 
 private:
     Glib::RefPtr<Gtk::Builder> attributesRefBuilder;

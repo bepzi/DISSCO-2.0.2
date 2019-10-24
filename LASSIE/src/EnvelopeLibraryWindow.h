@@ -38,7 +38,7 @@ class EnvLibDrawingArea;
 class EnvelopeLibraryWindow : public Gtk::Window {
 public:
     EnvelopeLibraryWindow();
-    ~EnvelopeLibraryWindow();
+    ~EnvelopeLibraryWindow() override;
 
     void setActiveProject(ProjectViewController* _project);
     void createNewEnvelope();
