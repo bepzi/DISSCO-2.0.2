@@ -32,6 +32,8 @@
 
 #include "IEvent.h"
 
+#include <utility>
+
 #include "../../CMOD/src/parser/lex.yy.c"
 #include "FunctionGenerator.h"
 #include "ProjectViewController.h"
@@ -106,7 +108,7 @@ IEvent::SoundExtraInfo::SoundExtraInfo() {
 IEvent::SoundExtraInfo::~SoundExtraInfo() {}
 
 void IEvent::setEventName(std::string _eventName) {
-    eventName = _eventName;
+    eventName = std::move(_eventName);
     changedButNotSaved = true;
 }
 
@@ -202,56 +204,56 @@ std::string IEvent::getEventTypeString() {
 }
 
 void IEvent::setMaxChildDur(std::string _maxChildDur) {
-    maxChildDur = _maxChildDur;
+    maxChildDur = std::move(_maxChildDur);
     changedButNotSaved = true;
 }
 
 std::string IEvent::getMaxChildDur() { return maxChildDur; }
 
 void IEvent::setUnitsPerSecond(std::string _unitsPerSecond) {
-    unitsPerSecond = _unitsPerSecond;
+    unitsPerSecond = std::move(_unitsPerSecond);
     changedButNotSaved = true;
 }
 
 std::string IEvent::getUnitsPerSecond() { return unitsPerSecond; }
 
 void IEvent::setSpa(std::string _spa) {
-    spatialization = _spa;
+    spatialization = std::move(_spa);
     changedButNotSaved = true;
 }
 
 std::string IEvent::getSpa() { return spatialization; }
 
 void IEvent::setRev(std::string _rev) {
-    reverb = _rev;
+    reverb = std::move(_rev);
     changedButNotSaved = true;
 }
 
 std::string IEvent::getRev() { return reverb; }
 
 void IEvent::setFil(std::string _fil) {
-    filter = _fil;
+    filter = std::move(_fil);
     changedButNotSaved = true;
 }
 
 std::string IEvent::getFil() { return filter; }
 
 void IEvent::setMea(std::string _mea) {
-    measurement = _mea;
+    measurement = std::move(_mea);
     changedButNotSaved = true;
 }
 
 std::string IEvent::getMea() { return measurement; }
 
 void IEvent::setTimeSignatureEntry1(std::string _timeSignatureEntry1) {
-    timeSignatureEntry1 = _timeSignatureEntry1;
+    timeSignatureEntry1 = std::move(_timeSignatureEntry1);
     changedButNotSaved = true;
 }
 
 std::string IEvent::getTimeSignatureEntry1() { return timeSignatureEntry1; }
 
 void IEvent::setTimeSignatureEntry2(std::string _timeSignatureEntry2) {
-    timeSignatureEntry2 = _timeSignatureEntry2;
+    timeSignatureEntry2 = std::move(_timeSignatureEntry2);
     changedButNotSaved = true;
 }
 
@@ -279,18 +281,18 @@ void IEvent::setTempoNoteValue(TempoNoteValue _noteValue) {
 
 std::string IEvent::getTempoFractionEntry1() { return tempoFractionEntry1; }
 void IEvent::setTempoFractionEntry1(std::string _entry1) {
-    tempoFractionEntry1 = _entry1;
+    tempoFractionEntry1 = std::move(_entry1);
     changedButNotSaved = true;
 }
 std::string IEvent::getTempoFractionEntry2() { return tempoFractionEntry2; }
 void IEvent::setTempoFractionEntry2(std::string _entry2) {
-    tempoFractionEntry2 = _entry2;
+    tempoFractionEntry2 = std::move(_entry2);
     changedButNotSaved = true;
 }
 
 std::string IEvent::getTempoValueEntry() { return tempoValueEntry; }
 void IEvent::setTempoValueEntry(std::string _entry) {
-    tempoValueEntry = _entry;
+    tempoValueEntry = std::move(_entry);
     changedButNotSaved = true;
 }
 
@@ -302,42 +304,42 @@ void IEvent::setFlagNumChildren(int _flag) {
 int IEvent::getFlagNumChildren() { return flagNumChildren; }
 
 void IEvent::setNumChildrenEntry1(std::string _string) {
-    numChildrenEntry1 = _string;
+    numChildrenEntry1 = std::move(_string);
     changedButNotSaved = true;
 }
 
 std::string IEvent::getNumChildrenEntry1() { return numChildrenEntry1; }
 
 void IEvent::setNumChildrenEntry2(std::string _string) {
-    numChildrenEntry2 = _string;
+    numChildrenEntry2 = std::move(_string);
     changedButNotSaved = true;
 }
 
 std::string IEvent::getNumChildrenEntry2() { return numChildrenEntry2; }
 
 void IEvent::setNumChildrenEntry3(std::string _string) {
-    numChildrenEntry3 = _string;
+    numChildrenEntry3 = std::move(_string);
     changedButNotSaved = true;
 }
 
 std::string IEvent::getNumChildrenEntry3() { return numChildrenEntry3; }
 
 void IEvent::setChildEventDefEntry1(std::string _string) {
-    childEventDefEntry1 = _string;
+    childEventDefEntry1 = std::move(_string);
     changedButNotSaved = true;
 }
 
 std::string IEvent::getChildEventDefEntry1() { return childEventDefEntry1; }
 
 void IEvent::setChildEventDefEntry2(std::string _string) {
-    childEventDefEntry2 = _string;
+    childEventDefEntry2 = std::move(_string);
     changedButNotSaved = true;
 }
 
 std::string IEvent::getChildEventDefEntry2() { return childEventDefEntry2; }
 
 void IEvent::setChildEventDefEntry3(std::string _string) {
-    childEventDefEntry3 = _string;
+    childEventDefEntry3 = std::move(_string);
     changedButNotSaved = true;
 }
 
@@ -365,13 +367,13 @@ void IEvent::setFlagChildEventDefDurationType(int _flag) {
 int IEvent::getFlagChildEventDefDurationType() { return flagChildEventDefDurationType; }
 
 void IEvent::setChildEventDefAttackSieve(std::string _string) {
-    childEventDefAttackSieve = _string;
+    childEventDefAttackSieve = std::move(_string);
 }
 
 std::string IEvent::getChildEventDefAttackSieve() { return childEventDefAttackSieve; }
 
 void IEvent::setChildEventDefDurationSieve(std::string _string) {
-    childEventDefDurationSieve = _string;
+    childEventDefDurationSieve = std::move(_string);
 }
 
 std::string IEvent::getChildEventDefDurationSieve() { return childEventDefDurationSieve; }
@@ -385,7 +387,7 @@ void IEvent::removeChildOrObject(IEvent* _childToBeRemoved) {
 
 void IEvent::setModifiedButNotSaved() { changedButNotSaved = true; }
 
-void IEvent::saveToDisk(std::string _pathOfProject) {
+void IEvent::saveToDisk(const std::string& _pathOfProject) {
     // saveToDiskHelper(_pathOfProject, false);
 }
 
@@ -690,18 +692,18 @@ int EventBottomModifier::getApplyHowFlag() { return applyHowFlag; }
 void EventBottomModifier::setApplyHowFlag(int _flag) { applyHowFlag = _flag; }
 
 std::string EventBottomModifier::getProbability() { return probability; }
-void EventBottomModifier::setProbability(std::string _string) { probability = _string; }
+void EventBottomModifier::setProbability(std::string _string) { probability = std::move(_string); }
 std::string EventBottomModifier::getAmpValue() { return ampValue; }
-void EventBottomModifier::setAmpValue(std::string _string) { ampValue = _string; }
+void EventBottomModifier::setAmpValue(std::string _string) { ampValue = std::move(_string); }
 
 std::string EventBottomModifier::getRateValue() { return rateValue; }
-void EventBottomModifier::setRateValue(std::string _string) { rateValue = _string; }
+void EventBottomModifier::setRateValue(std::string _string) { rateValue = std::move(_string); }
 
 std::string EventBottomModifier::getWidth() { return width; }
-void EventBottomModifier::setWidth(std::string _string) { width = _string; }
+void EventBottomModifier::setWidth(std::string _string) { width = std::move(_string); }
 
 std::string EventBottomModifier::getGroupName() { return groupName; }
-void EventBottomModifier::setGroupName(std::string _string) { groupName = _string; }
+void EventBottomModifier::setGroupName(std::string _string) { groupName = std::move(_string); }
 
 int EventBottomModifier::getModifierTypeInt() {
     if (type == modifierTremolo) {
@@ -1338,7 +1340,7 @@ void IEvent::NoteExtraInfo::addNoteModifiers(std::string _modifier) {
 void IEvent::NoteExtraInfo::clearNoteModifiers() { modifiers.clear(); }
 
 IEvent::IEvent(IEvent* _original, string _newName) {
-    eventName = _newName;
+    eventName = std::move(_newName);
     oldEventName = "";
     eventOrderInPalette = -1;
     eventType = _original->eventType;
@@ -1588,7 +1590,7 @@ string IEvent::getEventFolderName() {
     }
 }
 
-bool IEvent::haveString(string _string) {
+bool IEvent::haveString(const string& _string) {
     size_t position = maxChildDur.find(_string, 0);
     if (position != -1) {
         return true;

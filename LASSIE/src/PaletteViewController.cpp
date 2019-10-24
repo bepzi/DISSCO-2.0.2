@@ -270,7 +270,7 @@ void PaletteViewController::insertEvent(IEvent* _event) {
     }
 }
 
-void PaletteViewController::insertEvent(IEvent* _event, std::string _parentName) {
+void PaletteViewController::insertEvent(IEvent* _event, const std::string& _parentName) {
     Gtk::TreeModel::Row insertTo;
     // find the row of the given name
     Gtk::TreeModel::Children children = refTreeModel->children();
@@ -647,7 +647,7 @@ void PaletteViewController::switchBackToPreviousCursor(IEvent* _ifDeleteOnCursor
     refTreeSelection->select(iter);
 }
 
-int PaletteViewController::getCurrentMaxObjectNumber(string _folderName) {
+int PaletteViewController::getCurrentMaxObjectNumber(const string& _folderName) {
     typedef Gtk::TreeModel::Children type_children;  // minimize code length.
     type_children children = refTreeModel->children();
     type_children::iterator iter = children.begin();
@@ -667,7 +667,7 @@ int PaletteViewController::getCurrentMaxObjectNumber(string _folderName) {
     return (children.size() - 1) * 10;
 }
 
-void PaletteViewController::refreshObjectOrder(string _folderName) {
+void PaletteViewController::refreshObjectOrder(const string& _folderName) {
     typedef Gtk::TreeModel::Children type_children;  // minimise code length.
     type_children children = refTreeModel->children();
     type_children::iterator iter = children.begin();
@@ -691,7 +691,7 @@ void PaletteViewController::refreshObjectOrder(string _folderName) {
     }
 }
 
-ObjectWindowObjectPackage* PaletteViewController::getObjectsLinkedList(string _typeString) {
+ObjectWindowObjectPackage* PaletteViewController::getObjectsLinkedList(const string& _typeString) {
     ObjectWindowObjectPackage* result = nullptr;
 
     typedef Gtk::TreeModel::Children type_children;  // minimize code length.

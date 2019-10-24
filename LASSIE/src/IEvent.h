@@ -311,7 +311,7 @@ public:
     bool removeParent(IEvent* _event);
     void deleteLayer(EventLayer* _deleteLayer);
 
-    bool haveString(string _string);
+    bool haveString(const string& _string);
 
     void makeSuperColliderCode();
     string getXMLString();
@@ -431,7 +431,7 @@ public:
      *  @param _pathOfProject the string of the path so the file can be
      *   written according to the path
      ****************************************************************************/
-    void saveToDisk(std::string _pathOfProject);
+    void saveToDisk(const std::string& _pathOfProject);
     void saveAsToDisk(std::string _pathOfProject);  // save everything
     void saveToDiskHelper(std::string _pathOfProject, bool _forced);
 

@@ -29,6 +29,8 @@
 
 #include "FileOperations.h"
 
+#include <utility>
+
 #include "MainWindow.h"
 
 ProjectViewController* FileOperations::newProject(MainWindow* _mainWindow) {
@@ -109,7 +111,7 @@ std::string FileOperations::saveAs(MainWindow* _mainWindow) {  // return new
         return "";
 }
 
-void FileOperations::createDirectories(std::string _pathAndName) {
+void FileOperations::createDirectories(const std::string& _pathAndName) {
     std::string command;
     command = "mkdir " + _pathAndName + "/T";
     system(command.c_str());
@@ -139,7 +141,7 @@ void FileOperations::createDirectories(std::string _pathAndName) {
 
 void FileOperations::close(MainWindow* _mainWindow) {}
 
-std::string FileOperations::stringToFileName(std::string _filePath) {
+std::string FileOperations::stringToFileName(const std::string& _filePath) {
     int j = 0;
     int stringLength = _filePath.length() - 1;
     std::string aWord;
@@ -168,7 +170,7 @@ std::string FileOperations::stringToPath(std::string _filePath) {
 }
 
 bool FileOperations::checkFilePathValidity(std::string _filePath) {
-    std::string fileName = stringToFileName(_filePath);
+    std::string fileName = stringToFileName(std::move(_filePath));
     int fileNameLength = fileName.length();
 
     std::string allowableSymbol(".-_");  // set the allowable symbol.
@@ -374,7 +376,7 @@ std::string FileOperations::pickDatFile(MainWindow* _mainWindow) {
     }
 }
 
-std::string FileOperations::pickLibFile(MainWindow* _mainWindow, std::string _defaultPath) {
+std::string FileOperations::pickLibFile(MainWindow* _mainWindow, const std::string& _defaultPath) {
     std::string libFile =
         _defaultPath + "/" + FileOperations::stringToFileName(_defaultPath) + ".lib";
 

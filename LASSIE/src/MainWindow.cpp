@@ -534,7 +534,7 @@ void MainWindow::menuPathAndName() {}  // TODO
 
 //-----------------------------------------------------------------------------
 
-void MainWindow::includeUi_info(Glib::ustring pathAndName, Glib::ustring ctrl) {
+void MainWindow::includeUi_info(const Glib::ustring& pathAndName, const Glib::ustring& ctrl) {
     if (ctrl == "add") {
         mainBox.remove(*pointerToMenubarWidget);
         mainBox.remove(*pointerToToolbarWidget);

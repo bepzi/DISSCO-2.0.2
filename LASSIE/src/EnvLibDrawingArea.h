@@ -16,7 +16,7 @@ public:
     void showGraph(EnvelopeLibraryEntry* _envelope);
     void clearGraph();
     bool mouseMoving(GdkEventMotion* event);
-    void setActiveNodeCoordinate(string _x, string _y);
+    void setActiveNodeCoordinate(const string& _x, const string& _y);
     void adjustBoundary(EnvelopeLibraryEntry* _envelope);
 
 protected:

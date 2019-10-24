@@ -37,6 +37,7 @@
 #include <dirent.h>
 
 #include <sstream>
+#include <utility>
 
 #include "../../CMOD/src/muParser/muParser.h"
 #include "EnvelopeLibraryEntry.h"
@@ -226,7 +227,7 @@ void ProjectViewController::initializeModifiers() {
 /*! \brief The constructor of ProjectViewController
  *
  *******************************************************************************/
-ProjectViewController::ProjectViewController(std::string _pathAndName, MainWindow* _mainWindow) {
+ProjectViewController::ProjectViewController(const std::string& _pathAndName, MainWindow* _mainWindow) {
     xmlDocument = nullptr;
     emptyProject = false;
     modifiedButNotSaved = true;
@@ -1419,7 +1420,7 @@ PaletteViewController* ProjectViewController::getPalette() { return paletteView;
 
 //---------------------------------------------------------------------------//
 
-IEvent* ProjectViewController::getEventByTypeAndName(EventType type, std::string _name) {
+IEvent* ProjectViewController::getEventByTypeAndName(EventType type, const std::string& _name) {
     auto i = events.begin();
     bool found = false;
     IEvent* beReturn = nullptr;
@@ -1560,7 +1561,7 @@ void ProjectViewController::saveEnvelopeLibrary() {
  */
 
 ProjectViewController::ProjectViewController(MainWindow* _mainWindow, std::string _pathAndName,
-                                             std::string _projectTitle) {
+                                             const std::string& _projectTitle) {
     seed = "";
     modifiedButNotSaved = false;
     ///////////////////////////////////////////////drag and drop//////////////
@@ -1569,7 +1570,7 @@ ProjectViewController::ProjectViewController(MainWindow* _mainWindow, std::strin
     //////////////////////////////////////////////////////////////////////////
     // datPathAndName = _datPathAndName;
     // libPathAndName = _libPathAndName;
-    pathAndName = _pathAndName;
+    pathAndName = std::move(_pathAndName);
 
     sharedPointers = new SharedPointers();
     sharedPointers->mainWindow = _mainWindow;
@@ -1876,7 +1877,7 @@ EnvelopeLibraryEntry* ProjectViewController::convertToLASSIEEnvLibEntry(Envelope
 
 //---------------------------------------------------------------------------//
 
-IEvent* ProjectViewController::findIEvent(EventType _type, std::string _eventName) {
+IEvent* ProjectViewController::findIEvent(EventType _type, const std::string& _eventName) {
     IEvent* toReturn = nullptr;
 
     auto eventsIter = events.begin();
@@ -2238,7 +2239,7 @@ CustomNoteModifierHBox::CustomNoteModifierHBox(ProjectViewController* _projectVi
 //---------------------------------------------------------------------------//
 
 CustomNoteModifierHBox::CustomNoteModifierHBox(ProjectViewController* _projectView,
-                                               string _string) {
+                                               const string& _string) {
     entry.set_text(_string);
 
     projectView = _projectView;
@@ -2336,7 +2337,7 @@ std::vector<std::string> ProjectViewController::getCustomNoteModifiers() {
 
 //--------------------------------------------------------------------------//
 
-void ProjectViewController::saveAs(std::string _newPathAndName) {
+void ProjectViewController::saveAs(const std::string& _newPathAndName) {
     cout << "'save as' is deprecated." << endl;
     /*
           pathAndName = _newPathAndName;
@@ -2359,7 +2360,7 @@ void ProjectViewController::saveAs(std::string _newPathAndName) {
 
 //--------------------------------------------------------------------------//
 
-bool ProjectViewController::checkNameExists(string _name, EventType _type) {
+bool ProjectViewController::checkNameExists(const string& _name, EventType _type) {
     auto iter = events.begin();
     bool returnValue = false;
     while (!returnValue && iter != events.end()) {
@@ -2466,7 +2467,7 @@ void ProjectViewController::clearDeletedEvents() {
 
 //----------------------------------------------------------------------------//
 
-std::string ProjectViewController::searchPossibleParents(string _fileName) {
+std::string ProjectViewController::searchPossibleParents(const string& _fileName) {
     // cout<<"_fileName is :"<<_fileName<<endl;
     string result = "";
     auto iter = events.begin();
@@ -2482,7 +2483,7 @@ std::string ProjectViewController::searchPossibleParents(string _fileName) {
 
 // remove abandoned entry measurement in project dialog by searching .dissco
 // file for the line and removing it
-void ProjectViewController::removeExtraEntry(string _fileName) {
+void ProjectViewController::removeExtraEntry(const string& _fileName) {
     FILE* disscofile;
     if ((disscofile = fopen(_fileName.c_str(), "r+")) == nullptr) {
         cout << "Cannot open dissco file while trying to remove measurement" << endl;

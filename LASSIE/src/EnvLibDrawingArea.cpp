@@ -691,7 +691,7 @@ void EnvLibDrawingArea::resetFields() {
     lowerY = 0;
 }
 
-void EnvLibDrawingArea::setActiveNodeCoordinate(string _x, string _y) {
+void EnvLibDrawingArea::setActiveNodeCoordinate(const string& _x, const string& _y) {
     EnvelopeLibraryEntry* activeEnvelope = envelopeLibraryWindow->getActiveEnvelope();
     if (activeEnvelope == nullptr) {
         return;

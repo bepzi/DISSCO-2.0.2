@@ -31,6 +31,8 @@
 
 #include "FunctionGenerator.h"
 
+#include <utility>
+
 #include "IEvent.h"
 
 // these definitions are for calling yyparse(). They are copied from lex.yy.c
@@ -115,7 +117,7 @@ extern YY_BUFFER_STATE yy_scan_string(const char*);
 extern int yyparse();
 extern map<const char*, FileValue*, ltstr> file_data;
 
-FunctionGenerator::FunctionGenerator(FunctionReturnType _returnType, std::string _originalString) {
+FunctionGenerator::FunctionGenerator(FunctionReturnType _returnType, const std::string& _originalString) {
     // check new  format
     /*
     if (_originalString.size()!=0&&_originalString.at(0)=='<'){
@@ -3544,7 +3546,7 @@ std::string FunctionGenerator::SelectSubAlignment::toString() {
     return entry->get_text();
 }
 
-void FunctionGenerator::SelectSubAlignment::setFunctionsEntry(std::string _string) {
+void FunctionGenerator::SelectSubAlignment::setFunctionsEntry(const std::string& _string) {
     Gtk::Entry* entry;
     attributesRefBuilder->get_widget("FunctionsEntry", entry);
     entry->set_text(_string);
@@ -3790,25 +3792,25 @@ std::string FunctionGenerator::StochosSubAlignment::toString(int _methodFlag) {
     }
 }
 
-void FunctionGenerator::StochosSubAlignment::setFunctionsEntry(std::string _string) {
+void FunctionGenerator::StochosSubAlignment::setFunctionsEntry(const std::string& _string) {
     Gtk::Entry* entry;
     attributesRefBuilder->get_widget("FunctionsEntry", entry);
     entry->set_text(_string);
 }
 
-void FunctionGenerator::StochosSubAlignment::setMinEntry(std::string _string) {
+void FunctionGenerator::StochosSubAlignment::setMinEntry(const std::string& _string) {
     Gtk::Entry* entry;
     attributesRefBuilder->get_widget("MinEntry", entry);
     entry->set_text(_string);
 }
 
-void FunctionGenerator::StochosSubAlignment::setMaxEntry(std::string _string) {
+void FunctionGenerator::StochosSubAlignment::setMaxEntry(const std::string& _string) {
     Gtk::Entry* entry;
     attributesRefBuilder->get_widget("MaxEntry", entry);
     entry->set_text(_string);
 }
 
-void FunctionGenerator::StochosSubAlignment::setDistEntry(std::string _string) {
+void FunctionGenerator::StochosSubAlignment::setDistEntry(const std::string& _string) {
     Gtk::Entry* entry;
     attributesRefBuilder->get_widget("DistEntry", entry);
     entry->set_text(_string);
@@ -4280,7 +4282,7 @@ std::string FunctionGenerator::MakeEnvelopeSubAlignment::getXValueString() {
     return entry->get_text();
 }
 
-void FunctionGenerator::MakeEnvelopeSubAlignment::setXValueString(std::string _string) {
+void FunctionGenerator::MakeEnvelopeSubAlignment::setXValueString(const std::string& _string) {
     Gtk::Entry* entry;
     attributesRefBuilder->get_widget("XValueEntry", entry);
     return entry->set_text(_string);
@@ -4292,7 +4294,7 @@ std::string FunctionGenerator::MakeEnvelopeSubAlignment::getYValueString() {
     return entry->get_text();
 }
 
-void FunctionGenerator::MakeEnvelopeSubAlignment::setYValueString(std::string _string) {
+void FunctionGenerator::MakeEnvelopeSubAlignment::setYValueString(const std::string& _string) {
     Gtk::Entry* entry;
     attributesRefBuilder->get_widget("YValueEntry", entry);
     return entry->set_text(_string);
@@ -5207,7 +5209,7 @@ std::string FunctionGenerator::SPAPartialAlignment::getText() {
     return stringbuffer;
 }
 
-void FunctionGenerator::SPAPartialAlignment::setText(std::string _string) {
+void FunctionGenerator::SPAPartialAlignment::setText(const std::string& _string) {
     Gtk::Entry* entry;
     attributesRefBuilder->get_widget("entry", entry);
     entry->set_text(_string);
@@ -5317,7 +5319,7 @@ FunctionGenerator::SPAChannelAlignment::~SPAChannelAlignment() {
     }
 }
 
-void FunctionGenerator::SPAChannelAlignment::setChannelTitle(std::string _title) {
+void FunctionGenerator::SPAChannelAlignment::setChannelTitle(const std::string& _title) {
     Gtk::Label* label;
     attributesRefBuilder->get_widget("TitleLabel", label);
     label->set_text(_title);
@@ -5687,7 +5689,7 @@ void FunctionGenerator::SPAMethodRadioButtonClicked() {
     show_all_children();
 }
 
-void FunctionGenerator::SPAPartialAlignment::setLabel(string _label) {
+void FunctionGenerator::SPAPartialAlignment::setLabel(const string& _label) {
     Gtk::Label* label;
     attributesRefBuilder->get_widget("TitleLabel", label);
     label->set_text(_label);
@@ -5943,7 +5945,7 @@ std::string FunctionGenerator::stringListToString(list<std::string> _list) {
 
 std::string FunctionGenerator::fileValueListToString(list<FileValue> _valueList,
                                                      FunctionReturnType _returnType) {
-    return stringListToString(fileValueListToStringList(_valueList, _returnType));
+    return stringListToString(fileValueListToStringList(std::move(_valueList), _returnType));
 }
 
 std::string FunctionGenerator::getFunctionString(DOMElement* _thisFunctionElement) {

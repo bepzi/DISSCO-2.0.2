@@ -143,7 +143,7 @@ private:
     void menuProjectGenerateSCFile();
     void menuProjectConfigureNoteModifiers();
 
-    void includeUi_info(Glib::ustring pathAndName, Glib::ustring ctrl);
+    void includeUi_info(const Glib::ustring& pathAndName, const Glib::ustring& ctrl);
     void menuPathAndName();
 
     int captureKeyStroke(Gtk::Widget*, GdkEventKey*);

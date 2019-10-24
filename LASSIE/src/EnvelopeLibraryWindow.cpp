@@ -301,7 +301,7 @@ void EnvelopeLibraryWindow::valueEntriesChanged() {
     drawingArea->setActiveNodeCoordinate(x->get_text(), y->get_text());
 }
 
-void EnvelopeLibraryWindow::setEntries(string _x, string _y) {
+void EnvelopeLibraryWindow::setEntries(const string& _x, const string& _y) {
     Gtk::Entry* x;
     Gtk::Entry* y;
     attributesRefBuilder->get_widget("XValueEntry", x);

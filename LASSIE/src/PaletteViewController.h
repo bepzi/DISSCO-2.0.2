@@ -45,14 +45,14 @@ public:
     ~PaletteViewController();
 
     void insertEvent(IEvent* _event);
-    void insertEvent(IEvent* _event, std::string _parentName);
+    void insertEvent(IEvent* _event, const std::string& _parentName);
     void refreshObjectName(IEvent* _event);
     Glib::ustring folderSelected();  // check if any row is selected;
     IEvent* getCurrentSelectedEvent();
     void deleteKeyPressed();
-    int getCurrentMaxObjectNumber(string _folderName);
-    void refreshObjectOrder(string _folderName);
-    ObjectWindowObjectPackage* getObjectsLinkedList(string _typeString);
+    int getCurrentMaxObjectNumber(const string& _folderName);
+    void refreshObjectOrder(const string& _folderName);
+    ObjectWindowObjectPackage* getObjectsLinkedList(const string& _typeString);
 
 protected:
     // Signal handlers:

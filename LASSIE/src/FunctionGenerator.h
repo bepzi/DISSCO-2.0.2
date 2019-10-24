@@ -96,7 +96,7 @@ class FileValue;
 
 class FunctionGenerator : public Gtk::Dialog {
 public:
-    FunctionGenerator(FunctionReturnType _returnType, std::string _originalString);
+    FunctionGenerator(FunctionReturnType _returnType, const std::string& _originalString);
 
     ~FunctionGenerator();
     std::string getResultString();
@@ -118,9 +118,9 @@ public:
         void clearPartialsWithSameNumber();
         void entryEditSwitch(int _flag);  // 0 = disable, 1 = enable
         std::string getText();
-        void setText(std::string _text);
+        void setText(const std::string& _text);
         void insertPartialButtonClicked();
-        void setLabel(string _label);
+        void setLabel(const string& _label);
         SPAPartialAlignment* next;
         SPAPartialAlignment* prev;
         SPAPartialAlignment* prevChan;
@@ -142,7 +142,7 @@ public:
         SPAChannelAlignment(FunctionGenerator* _parent, int _numOfPartial, int _flagButtonsShown);
         ~SPAChannelAlignment();
         void setChannelNumber(int _number);
-        void setChannelTitle(std::string _title);
+        void setChannelTitle(const std::string& _title);
         void hideButtons();
         void showButtons();
         void refreshPartialNumbers();  //////////////////////////////implement this
@@ -258,7 +258,7 @@ private:
         ~SelectSubAlignment();
         void appendNewNode(SelectSubAlignment* _newNode);
         void clear();
-        void setFunctionsEntry(std::string _string);
+        void setFunctionsEntry(const std::string& _string);
         std::string toString();
         SelectSubAlignment* prev;
         SelectSubAlignment* next;
@@ -287,10 +287,10 @@ private:
         void switchTo(int _methodFlag);
         void appendNewNode(StochosSubAlignment* _newNode);
         void clear();
-        void setFunctionsEntry(std::string _string);
-        void setMinEntry(std::string _string);
-        void setMaxEntry(std::string _string);
-        void setDistEntry(std::string _string);
+        void setFunctionsEntry(const std::string& _string);
+        void setMinEntry(const std::string& _string);
+        void setMaxEntry(const std::string& _string);
+        void setDistEntry(const std::string& _string);
         std::string toString(int _methodFlag);  // 0 = rang_distrib, 1 = Functions
         StochosSubAlignment* prev;
         StochosSubAlignment* next;
@@ -362,9 +362,9 @@ private:
         MakeEnvelopeSubAlignment* prev;
         MakeEnvelopeSubAlignment* next;
         std::string getXValueString();
-        void setXValueString(std::string _string);
+        void setXValueString(const std::string& _string);
         std::string getYValueString();
-        void setYValueString(std::string _string);
+        void setYValueString(const std::string& _string);
         envSegmentType getEnvSegmentType();
         void setEnvSegmentType(int _type);
         envSegmentProperty getEnvSegmentProperty();

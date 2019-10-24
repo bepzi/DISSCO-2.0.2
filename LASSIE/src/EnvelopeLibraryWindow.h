@@ -43,7 +43,7 @@ public:
     void setActiveProject(ProjectViewController* _project);
     void createNewEnvelope();
     void duplicateEnvelope();
-    void setEntries(string _x, string _y);
+    void setEntries(const string& _x, const string& _y);
     EnvelopeLibraryEntry* getActiveEnvelope();
 
     Glib::ustring folderSelected();  // check if any row is selected;

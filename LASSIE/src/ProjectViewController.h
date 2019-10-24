@@ -32,6 +32,9 @@
 #ifndef PROJECT_VIEW_CONTROLLER_H
 #define PROJECT_VIEW_CONTROLLER_H
 
+#include <utility>
+
+
 #include "IEvent.h"
 #include "LASSIE.h"
 
@@ -50,7 +53,7 @@ class ProjectViewController;
 class CustomNoteModifierHBox : public Gtk::HBox {
 public:
     CustomNoteModifierHBox(ProjectViewController* _projectView);
-    CustomNoteModifierHBox(ProjectViewController* _projectView, std::string _string);
+    CustomNoteModifierHBox(ProjectViewController* _projectView, const std::string& _string);
     ~CustomNoteModifierHBox();
     std::string getText();
 
@@ -72,9 +75,9 @@ public:
      *
      ***************************************************************************/
     ProjectViewController(MainWindow* _mainWindow);
-    ProjectViewController(std::string _pathAndName, MainWindow* _mainWindow);
+    ProjectViewController(const std::string& _pathAndName, MainWindow* _mainWindow);
     ProjectViewController(MainWindow* _mainWindow, std::string _pathAndName,
-                          std::string _projectTitle);
+                          const std::string& _projectTitle);
     // this one is for the old format
     // ProjectViewController(std::string _pathAndName, MainWindow* _mainWindow,
     // std::string _datPathAndName, std::string _libPathAndName);
@@ -103,7 +106,7 @@ public:
     void refreshObjectNameInPalette(IEvent* _event);
     void setProperties();
     void save();
-    void saveAs(std::string _newPathAndName);
+    void saveAs(const std::string& _newPathAndName);
     bool getSaved();
     void modified();
     void deleteKeyPressed(Gtk::Widget* _focus);
@@ -113,23 +116,23 @@ public:
 
     void configureNoteModifiers();
     void removeCustomNoteModifier(CustomNoteModifierHBox* _hbox);
-    bool checkNameExists(string _name, EventType _type);
+    bool checkNameExists(const string& _name, EventType _type);
     void deleteObject(IEvent* _toDelete);
-    void setSeed(string _seed) { seed = _seed; }
-    void removeExtraEntry(string _fileName);
+    void setSeed(string _seed) { seed = std::move(_seed); }
+    void removeExtraEntry(const string& _fileName);
 
     std::map<std::string, bool> getDefaultNoteModifiers();
     std::vector<std::string> getCustomNoteModifiers();
 
-    IEvent* findIEvent(EventType _type, std::string _eventName);
+    IEvent* findIEvent(EventType _type, const std::string& _eventName);
     IEvent* getTop() { return top; }
 
     PaletteViewController* getPalette();
     EnvelopeLibraryEntry* getEnvelopeLibraryEntries();
     vector<MarkovModel<float>>& getMarkovModels();
 
-    IEvent* getEventByTypeAndName(EventType type, std::string _name);
-    std::string searchPossibleParents(string _fileName);
+    IEvent* getEventByTypeAndName(EventType type, const std::string& _name);
+    std::string searchPossibleParents(const string& _fileName);
 
     ///////////////////////////////////drag and drop targets
     std::list<Gtk::TargetEntry> listTargets;
