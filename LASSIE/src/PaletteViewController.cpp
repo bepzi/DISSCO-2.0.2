@@ -126,7 +126,7 @@ PaletteViewController::PaletteViewController(SharedPointers* _sharedPointers)
 
     /////////////////////set up popup menu ///////////////////////////////
 
-    m_pMenuPopup = 0;
+    m_pMenuPopup = nullptr;
 
     //    the signal handler i wished to put was overriden by the object default
     // signal handler, so to avoid this, we have to add a paramater to the
