@@ -160,7 +160,9 @@ ProjectViewController::ProjectViewController(MainWindow* _mainWindow) {
     numOfThreads = "1";
     topEvent = "0";
     //	measure       = "0.6";
+    modifiedButNotSaved = true;
     synthesis = true;
+    outputParticel = false;
 
     sharedPointers = new SharedPointers();
     sharedPointers->mainWindow = _mainWindow;
