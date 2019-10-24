@@ -49,7 +49,7 @@ void createDirectories(const std::string& _pathAndName);
 std::string stringToFileName(const std::string& _filePath);
 std::string stringToPath(std::string _filePath);
 
-bool checkFilePathValidity(std::string _filePath);
+bool checkFilePathValidity(const std::string& _filePath);
 // void Inappropriate_Project_Name();
 };  // namespace FileOperations
 

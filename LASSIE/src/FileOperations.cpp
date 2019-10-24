@@ -169,8 +169,8 @@ std::string FileOperations::stringToPath(std::string _filePath) {
     return _filePath;
 }
 
-bool FileOperations::checkFilePathValidity(std::string _filePath) {
-    std::string fileName = stringToFileName(std::move(_filePath));
+bool FileOperations::checkFilePathValidity(const std::string& _filePath) {
+    std::string fileName = stringToFileName(_filePath);
     int fileNameLength = fileName.length();
 
     std::string allowableSymbol(".-_");  // set the allowable symbol.
