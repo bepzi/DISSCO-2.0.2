@@ -225,7 +225,7 @@ private:
 
     bool synthesis;
     bool outputParticel;
-    bool emptyProject;
+    bool emptyProject = false;
     std::vector<std::string> customNoteModifiers;
     std::map<std::string, bool> defaultNoteModifiers;
     std::vector<CustomNoteModifierHBox*> customNotModifierHBoxes;

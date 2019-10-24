@@ -60,7 +60,7 @@ public:
 
 protected:
     /* The project */
-    ProjectViewController* activeProject;
+    ProjectViewController* activeProject = nullptr;
 
     Gtk::HPaned m_Paned;
     Gtk::VBox m_ListBox;

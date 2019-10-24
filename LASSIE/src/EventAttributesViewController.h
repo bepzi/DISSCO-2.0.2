@@ -235,7 +235,7 @@ public:
     void buildNoteModifiersList();
 
 private:
-    SharedPointers* sharedPointers;
+    SharedPointers* sharedPointers = nullptr;
 
     /*! \brief Called by ShowAttributesOfEvent. It shows the data of the current
      *         event on screen.
@@ -245,9 +245,9 @@ private:
 
     void addNewLayerButtonClicked();
     void addModifierButtonClicked();
-    void on_label_drop_drag_data_received(const Glib::RefPtr<Gdk::DragContext>& context, int x,
-                                          int y, const Gtk::SelectionData& selection_data,
-                                          guint info, guint time);
+//    void on_label_drop_drag_data_received(const Glib::RefPtr<Gdk::DragContext>& context, int x,
+//                                          int y, const Gtk::SelectionData& selection_data,
+//                                          guint info, guint time);
 
     void switchToSoundAttributes();
     void switchToEnvAttributes();
@@ -263,12 +263,12 @@ private:
     Glib::RefPtr<Gtk::Builder> attributesRefBuilderSound;
     Gtk::ScrolledWindow scrolledWindow;  // store the view in this in case oversize
 
-    Gtk::Frame* frame;  // another container
-    IEvent* currentlyShownEvent;
-    ProjectViewController* projectView;
-    Gtk::VBox* layerBox;
-    Gtk::Button* button;
-    SoundPartialHBox* soundPartialHboxes;
+    Gtk::Frame* frame = nullptr;  // another container
+    IEvent* currentlyShownEvent = nullptr;
+    ProjectViewController* projectView = nullptr;
+    Gtk::VBox* layerBox = nullptr;
+    Gtk::Button* button = nullptr;
+    SoundPartialHBox* soundPartialHboxes = nullptr;
 
     class LayerBox : public Gtk::VBox {
     public:
@@ -427,8 +427,8 @@ private:
     string generateTempoStringByNoteValue();
     void tempoAsNoteValueEntryChanged();
 
-    TempoPrefix tempoPrefix;
-    TempoNoteValue tempoNoteValue;
+    TempoPrefix tempoPrefix{};
+    TempoNoteValue tempoNoteValue{};
     Tempo* tempo;
     string originalTempoValueForFraction;
     string originalTempoValueForNoteValue;

@@ -87,10 +87,10 @@ private:
 class IEvent;  // forward declaration
 class EventDiscretePackage {
 public:
-    IEvent* event;
+    IEvent* event = nullptr;
 
     // this one and eventName is used to store info to in order to link
-    EventType eventType;
+    EventType eventType = eventTop;
     std::string eventName;
     std::string weight;
     std::string attackEnv;

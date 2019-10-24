@@ -158,12 +158,12 @@ public:
 
     private:
         Glib::RefPtr<Gtk::Builder> attributesRefBuilder;
-        FunctionGenerator* parent;
-        Gtk::Button* insertButton;
-        Gtk::Button* removeButton;
-        Gtk::VBox* mainVBox;
-        Gtk::VBox* outerVBox;
-        int flagButtonsShown;  // 0 = hiden, 1 = shown
+        FunctionGenerator* parent = nullptr;
+        Gtk::Button* insertButton = nullptr;
+        Gtk::Button* removeButton = nullptr;
+        Gtk::VBox* mainVBox = nullptr;
+        Gtk::VBox* outerVBox = nullptr;
+        int flagButtonsShown = 1;  // 0 = hiden, 1 = shown
 
         void removeChannelButtonClicked();
     };

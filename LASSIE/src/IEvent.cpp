@@ -2297,6 +2297,8 @@ void IEvent::buildNonEventFromDOM(DOMElement* _element) {
 }
 
 IEvent::IEvent(DOMElement* _domElement) {
+    changedButNotSaved = false;
+
     XMLCh* orderInPaletteXMLCh = XMLString::transcode("orderInPalette");
     string orderInPalette = XMLString::transcode(_domElement->getAttribute(orderInPaletteXMLCh));
     eventOrderInPalette = atoi(orderInPalette.c_str());

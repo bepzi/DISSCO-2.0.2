@@ -27,8 +27,8 @@ protected:
     bool mouseButtonReleased(GdkEventButton* event);
     bool mouseLeftButtonPressedDown;
 
-    double mouseY;  // temp variables for exchanging values among methods;
-    double mouseX;
+    double mouseY = 0.0;  // temp variables for exchanging values among methods;
+    double mouseX = 0.0;
 
     void moveNode();
     void insertEnvelopeSegment();
@@ -41,22 +41,22 @@ protected:
     double getAdjustedY(double y);  // scale coordinates in a larger window to a range of 0-1
     double mouseAdjustY(double y);  // scale mouse coordinates from 0-1 to the true height
 private:
-    EnvelopeLibraryWindow* envelopeLibraryWindow;
+    EnvelopeLibraryWindow* envelopeLibraryWindow = nullptr;
 
     // these three are for setting up pop up menu
     Glib::RefPtr<Gtk::UIManager> m_refUIManager;
     Glib::RefPtr<Gtk::ActionGroup> m_refActionGroup;
-    Gtk::Menu* m_pMenuPopup;
+    Gtk::Menu* m_pMenuPopup = nullptr;
 
-    EnvLibEntrySeg* activeSegment;
-    EnvLibEntryNode* activeNode;
+    EnvLibEntrySeg* activeSegment = nullptr;
+    EnvLibEntryNode* activeNode = nullptr;
 
-    double moveLeftBound;
-    double moveRightBound;
-    double upperY;  // the max and min y values for envolope above 1 and below 0
-    double lowerY;
-    EnvLibEntrySeg* head;
-    EnvLibEntryNode* tail;
+    double moveLeftBound = 0.0;
+    double moveRightBound = 0.0;
+    double upperY = 0.0;  // the max and min y values for envolope above 1 and below 0
+    double lowerY = 0.0;
+    EnvLibEntrySeg* head = nullptr;
+    EnvLibEntryNode* tail = nullptr;
 };
 
 #endif

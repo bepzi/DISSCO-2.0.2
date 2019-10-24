@@ -406,7 +406,7 @@ void MarkovModelLibraryWindow::setActiveProject(ProjectViewController* project) 
 
     m_refListStore = Gtk::ListStore::create(m_columns);
     m_TreeView.set_model(m_refListStore);
-    for (int i = 0; i < activeProject->getMarkovModels().size(); i++) {
+    for (auto i = 0; i < activeProject->getMarkovModels().size(); i++) {
         row = *(m_refListStore->append());
         row[m_columns.m_col_number] = i;
     }

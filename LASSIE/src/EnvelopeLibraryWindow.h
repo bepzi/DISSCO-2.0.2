@@ -46,17 +46,17 @@ public:
     void setEntries(const string& _x, const string& _y);
     EnvelopeLibraryEntry* getActiveEnvelope();
 
-    Glib::ustring folderSelected();  // check if any row is selected;
-    Gtk::Label* mouseCoordinate;
-    Gtk::Label* ScaleBoundary;
-    ProjectViewController* activeProject;
+    // Glib::ustring folderSelected();  // check if any row is selected;
+    Gtk::Label* mouseCoordinate = nullptr;
+    Gtk::Label* ScaleBoundary = nullptr;
+    ProjectViewController* activeProject = nullptr;
 
 protected:
     // Signal handlers:
     void objectActivated(const Gtk::TreeModel::Path& _path, Gtk::TreeViewColumn* _column);
     bool onRightClick(GdkEventButton* event);
     Glib::RefPtr<Gtk::ActionGroup> menuRefActionGroup;
-    void showEnvelopeLibrary();
+    // void showEnvelopeLibrary();
 
     // drag and drop to projectTreeView
     // void on_button_drag_data_get(
@@ -94,12 +94,12 @@ private:
     // these three are for setting up pop up menu
     Glib::RefPtr<Gtk::UIManager> m_refUIManager;
     Glib::RefPtr<Gtk::ActionGroup> m_refActionGroup;
-    Gtk::Menu* m_pMenuPopup;
+    Gtk::Menu* m_pMenuPopup = nullptr;
 
     Glib::RefPtr<Gtk::Builder> attributesRefBuilder;
-    EnvLibDrawingArea* drawingArea;
-    EnvelopeLibraryEntry* activeEnvelope;
-    void fileSave();
+    EnvLibDrawingArea* drawingArea = nullptr;
+    EnvelopeLibraryEntry* activeEnvelope = nullptr;
+    // void fileSave();
     int captureKeyStroke(Gtk::Widget* _widget, GdkEventKey* _gdkEventKey);
 };
 

@@ -44,9 +44,9 @@ public:
     int count();
     void clear();
     void showContent();
-    ObjectWindowObjectPackage* prev;
-    ObjectWindowObjectPackage* next;
-    IEvent* ievent;
+    ObjectWindowObjectPackage* prev = nullptr;
+    ObjectWindowObjectPackage* next = nullptr;
+    IEvent* ievent = nullptr;
 
 private:
     ProjectViewController* projectView;

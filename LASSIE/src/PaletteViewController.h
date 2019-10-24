@@ -89,7 +89,7 @@ protected:
     Gtk::TreeSortable::SlotCompare slot_comp;
 
     Columns columns;
-    ProjectViewController* projectView;
+    ProjectViewController* projectView = nullptr;
 
     // Child widgets:
     Gtk::ScrolledWindow scrolledWindow;
@@ -110,10 +110,10 @@ private:
     // these three are for setting up pop up menu
     Glib::RefPtr<Gtk::UIManager> m_refUIManager;
     Glib::RefPtr<Gtk::ActionGroup> m_refActionGroup;
-    Gtk::Menu* m_pMenuPopup;
-    SharedPointers* sharedPointers;
+    Gtk::Menu* m_pMenuPopup = nullptr;
+    SharedPointers* sharedPointers = nullptr;
 
-    IEvent* currentCursorPosition;  // this thing record the original activated
+    IEvent* currentCursorPosition = nullptr;  // this thing record the original activated
                                     // row. after right click is done, it switch
                                     // back to this row
 };
