@@ -3103,7 +3103,7 @@ void FunctionGenerator::randomLowBoundFunButtonClicked() {
     auto* generator = new FunctionGenerator(functionReturnFloat, entry->get_text());
     generator->run();
 
-    if (generator->getResultString() != "") {
+    if (!generator->getResultString().empty()) {
         entry->set_text(generator->getResultString());
     }
     delete generator;
@@ -3115,7 +3115,7 @@ void FunctionGenerator::randomHighBoundFunButtonClicked() {
     auto* generator = new FunctionGenerator(functionReturnFloat, entry->get_text());
     generator->run();
 
-    if (generator->getResultString() != "") {
+    if (!generator->getResultString().empty()) {
         entry->set_text(generator->getResultString());
     }
     delete generator;
@@ -3141,7 +3141,7 @@ void FunctionGenerator::randomIntLowBoundFunButtonClicked() {
     auto* generator = new FunctionGenerator(functionReturnInt, entry->get_text());
     generator->run();
 
-    if (generator->getResultString() != "") {
+    if (!generator->getResultString().empty()) {
         entry->set_text(generator->getResultString());
     }
     delete generator;
@@ -3153,7 +3153,7 @@ void FunctionGenerator::randomIntHighBoundFunButtonClicked() {
     auto* generator = new FunctionGenerator(functionReturnInt, entry->get_text());
     generator->run();
 
-    if (generator->getResultString() != "") {
+    if (!generator->getResultString().empty()) {
         entry->set_text(generator->getResultString());
     }
     delete generator;
@@ -3180,7 +3180,7 @@ void FunctionGenerator::randomizerBaseFunButtonClicked() {
     auto* generator = new FunctionGenerator(functionReturnFloat, entry->get_text());
     generator->run();
 
-    if (generator->getResultString() != "") {
+    if (!generator->getResultString().empty()) {
         entry->set_text(generator->getResultString());
     }
     delete generator;
@@ -3192,7 +3192,7 @@ void FunctionGenerator::randomizerDeviationFunButtonClicked() {
     auto* generator = new FunctionGenerator(functionReturnFloat, entry->get_text());
     generator->run();
 
-    if (generator->getResultString() != "") {
+    if (!generator->getResultString().empty()) {
         entry->set_text(generator->getResultString());
     }
     delete generator;
@@ -3234,7 +3234,7 @@ void FunctionGenerator::decayBaseFunButtonClicked() {
     auto* generator = new FunctionGenerator(functionReturnFloat, entry->get_text());
     generator->run();
 
-    if (generator->getResultString() != "") {
+    if (!generator->getResultString().empty()) {
         entry->set_text(generator->getResultString());
     }
     delete generator;
@@ -3246,7 +3246,7 @@ void FunctionGenerator::decayRateFunButtonClicked() {
     auto* generator = new FunctionGenerator(functionReturnFloat, entry->get_text());
     generator->run();
 
-    if (generator->getResultString() != "") {
+    if (!generator->getResultString().empty()) {
         entry->set_text(generator->getResultString());
     }
     delete generator;
@@ -3259,7 +3259,7 @@ void FunctionGenerator::decayIndexFunButtonClicked() {
     auto* generator = new FunctionGenerator(functionReturnInt, entry->get_text());
     generator->run();
 
-    if (generator->getResultString() != "") {
+    if (!generator->getResultString().empty()) {
         entry->set_text(generator->getResultString());
     }
     delete generator;
@@ -3302,7 +3302,7 @@ void FunctionGenerator::inverseFunButtonClicked() {
     auto* generator = new FunctionGenerator(functionReturnFloat, entry->get_text());
     generator->run();
 
-    if (generator->getResultString() != "") {
+    if (!generator->getResultString().empty()) {
         entry->set_text(generator->getResultString());
     }
     delete generator;
@@ -3334,7 +3334,7 @@ void FunctionGenerator::LNFunButtonClicked() {
     auto* generator = new FunctionGenerator(functionReturnFloat, entry->get_text());
     generator->run();
 
-    if (generator->getResultString() != "") {
+    if (!generator->getResultString().empty()) {
         entry->set_text(generator->getResultString());
     }
     delete generator;
@@ -3356,7 +3356,7 @@ void FunctionGenerator::FibonacciFunButtonClicked() {
     auto* generator = new FunctionGenerator(functionReturnInt, entry->get_text());
     generator->run();
 
-    if (generator->getResultString() != "") {
+    if (!generator->getResultString().empty()) {
         entry->set_text(generator->getResultString());
     }
     delete generator;
@@ -3400,7 +3400,7 @@ void FunctionGenerator::selectIndexFunButtonClicked() {
     auto* generator = new FunctionGenerator(functionReturnInt, entry->get_text());
     generator->run();
 
-    if (generator->getResultString() != "") {
+    if (!generator->getResultString().empty()) {
         entry->set_text(generator->getResultString());
     }
     delete generator;
@@ -3452,7 +3452,7 @@ void FunctionGenerator::selectFunButtonClicked() {
         auto* generator =
             new FunctionGenerator(functionReturnMakeListFun, entry->get_text());
         int result = generator->run();
-        if (generator->getResultString() != "" && result == 0) {
+        if (!generator->getResultString().empty() && result == 0) {
             entry->set_text(generator->getResultString());
         }
         delete generator;
@@ -3665,7 +3665,7 @@ void FunctionGenerator::stochosFunButtonClicked() {
         auto* generator = new FunctionGenerator(
             (entry == offset) ? functionReturnInt : functionReturnENV, entry->get_text());
         int result = generator->run();
-        if (generator->getResultString() != "" && result == 0) {
+        if (!generator->getResultString().empty() && result == 0) {
             entry->set_text(generator->getResultString());
         }
         delete generator;
@@ -3834,7 +3834,7 @@ void FunctionGenerator::valuePickAbsRangeFunButtonClicked() {
     auto* generator = new FunctionGenerator(functionReturnFloat, entry->get_text());
     generator->run();
 
-    if (generator->getResultString() != "") {
+    if (!generator->getResultString().empty()) {
         entry->set_text(generator->getResultString());
     }
     delete generator;
@@ -3847,7 +3847,7 @@ void FunctionGenerator::valuePickLowFunButtonClicked() {
     auto* generator = new FunctionGenerator(functionReturnENV, entry->get_text());
     generator->run();
 
-    if (generator->getResultString() != "") {
+    if (!generator->getResultString().empty()) {
         entry->set_text(generator->getResultString());
     }
     delete generator;
@@ -3860,7 +3860,7 @@ void FunctionGenerator::valuePickHighFunButtonClicked() {
     auto* generator = new FunctionGenerator(functionReturnENV, entry->get_text());
     generator->run();
 
-    if (generator->getResultString() != "") {
+    if (!generator->getResultString().empty()) {
         entry->set_text(generator->getResultString());
     }
     delete generator;
@@ -3873,7 +3873,7 @@ void FunctionGenerator::valuePickDistFunButtonClicked() {
     auto* generator = new FunctionGenerator(functionReturnENV, entry->get_text());
     generator->run();
 
-    if (generator->getResultString() != "") {
+    if (!generator->getResultString().empty()) {
         entry->set_text(generator->getResultString());
     }
     delete generator;
@@ -3968,7 +3968,7 @@ void FunctionGenerator::chooseLFunButtonClicked() {
     auto* generator = new FunctionGenerator(functionReturnSIV, entry->get_text());
     generator->run();
 
-    if (generator->getResultString() != "") {
+    if (!generator->getResultString().empty()) {
         entry->set_text(generator->getResultString());
     }
     delete generator;
@@ -3991,7 +3991,7 @@ void FunctionGenerator::getPatternOffsetFunButtonClicked() {
     auto* generator = new FunctionGenerator(functionReturnInt, entry->get_text());
     generator->run();
 
-    if (generator->getResultString() != "") {
+    if (!generator->getResultString().empty()) {
         entry->set_text(generator->getResultString());
     }
     delete generator;
@@ -4004,7 +4004,7 @@ void FunctionGenerator::getPatternFunButtonClicked() {
     auto* generator = new FunctionGenerator(functionReturnPAT, entry->get_text());
     generator->run();
 
-    if (generator->getResultString() != "") {
+    if (!generator->getResultString().empty()) {
         entry->set_text(generator->getResultString());
     }
     delete generator;
@@ -4057,7 +4057,7 @@ void FunctionGenerator::makeListFunctionFunButtonClicked() {
         new FunctionGenerator(functionReturnMakeListFun, entry->get_text());
     generator->run();
 
-    if (generator->getResultString() != "") {
+    if (!generator->getResultString().empty()) {
         entry->set_text(generator->getResultString());
     }
     delete generator;
@@ -4070,7 +4070,7 @@ void FunctionGenerator::makeListSizeFunButtonClicked() {
     auto* generator = new FunctionGenerator(functionReturnInt, entry->get_text());
     generator->run();
 
-    if (generator->getResultString() != "") {
+    if (!generator->getResultString().empty()) {
         entry->set_text(generator->getResultString());
     }
     delete generator;
@@ -4124,7 +4124,7 @@ void FunctionGenerator::envLibEnvelopeFunButtonClicked() {
     auto* generator = new FunctionGenerator(functionReturnInt, entry->get_text());
     generator->run();
 
-    if (generator->getResultString() != "") {
+    if (!generator->getResultString().empty()) {
         entry->set_text(generator->getResultString());
     }
     delete generator;
@@ -4137,7 +4137,7 @@ void FunctionGenerator::envLibScalingFactorFunButtonClicked() {
     auto* generator = new FunctionGenerator(functionReturnFloat, entry->get_text());
     generator->run();
 
-    if (generator->getResultString() != "") {
+    if (!generator->getResultString().empty()) {
         entry->set_text(generator->getResultString());
     }
     delete generator;
@@ -4340,7 +4340,7 @@ void FunctionGenerator::MakeEnvelopeSubAlignment::xValueFunButtonClicked() {
     auto* generator = new FunctionGenerator(functionReturnFloat, entry->get_text());
     generator->run();
 
-    if (generator->getResultString() != "") {
+    if (!generator->getResultString().empty()) {
         entry->set_text(generator->getResultString());
     }
     delete generator;
@@ -4353,7 +4353,7 @@ void FunctionGenerator::MakeEnvelopeSubAlignment::yValueFunButtonClicked() {
     auto* generator = new FunctionGenerator(functionReturnFloat, entry->get_text());
     generator->run();
 
-    if (generator->getResultString() != "") {
+    if (!generator->getResultString().empty()) {
         entry->set_text(generator->getResultString());
     }
     delete generator;
@@ -4495,7 +4495,7 @@ void FunctionGenerator::makeEnvelopeScalingFactorFunButtonClicked() {
     auto* generator = new FunctionGenerator(functionReturnFloat, entry->get_text());
     generator->run();
 
-    if (generator->getResultString() != "") {
+    if (!generator->getResultString().empty()) {
         entry->set_text(generator->getResultString());
     }
     delete generator;
@@ -4508,7 +4508,7 @@ void FunctionGenerator::makeEnvelopeXValueFunButtonClicked() {
     auto* generator = new FunctionGenerator(functionReturnFloat, entry->get_text());
     generator->run();
 
-    if (generator->getResultString() != "") {
+    if (!generator->getResultString().empty()) {
         entry->set_text(generator->getResultString());
     }
     delete generator;
@@ -4521,7 +4521,7 @@ void FunctionGenerator::makeEnvelopeYValueFunButtonClicked() {
     auto* generator = new FunctionGenerator(functionReturnFloat, entry->get_text());
     generator->run();
 
-    if (generator->getResultString() != "") {
+    if (!generator->getResultString().empty()) {
         entry->set_text(generator->getResultString());
     }
     delete generator;
@@ -4534,7 +4534,7 @@ void FunctionGenerator::makePatternIntervalsFunButtonClicked() {
     auto* generator = new FunctionGenerator(functionReturnList, entry->get_text());
     generator->run();
 
-    if (generator->getResultString() != "") {
+    if (!generator->getResultString().empty()) {
         entry->set_text(generator->getResultString());
     }
     delete generator;
@@ -4559,7 +4559,7 @@ void FunctionGenerator::expandPatternModuloFunButtonClicked() {
     auto* generator = new FunctionGenerator(functionReturnInt, entry->get_text());
     generator->run();
 
-    if (generator->getResultString() != "") {
+    if (!generator->getResultString().empty()) {
         entry->set_text(generator->getResultString());
     }
     delete generator;
@@ -4572,7 +4572,7 @@ void FunctionGenerator::expandPatternLowFunButtonClicked() {
     auto* generator = new FunctionGenerator(functionReturnInt, entry->get_text());
     generator->run();
 
-    if (generator->getResultString() != "") {
+    if (!generator->getResultString().empty()) {
         entry->set_text(generator->getResultString());
     }
     delete generator;
@@ -4585,7 +4585,7 @@ void FunctionGenerator::expandPatternHighFunButtonClicked() {
     auto* generator = new FunctionGenerator(functionReturnInt, entry->get_text());
     generator->run();
 
-    if (generator->getResultString() != "") {
+    if (!generator->getResultString().empty()) {
         entry->set_text(generator->getResultString());
     }
     delete generator;
@@ -4598,7 +4598,7 @@ void FunctionGenerator::expandPatternPatternFunButtonClicked() {
     auto* generator = new FunctionGenerator(functionReturnPAT, entry->get_text());
     generator->run();
 
-    if (generator->getResultString() != "") {
+    if (!generator->getResultString().empty()) {
         entry->set_text(generator->getResultString());
     }
     delete generator;
@@ -4744,7 +4744,7 @@ void FunctionGenerator::makeFilterFrequencyFunButtonClicked() {
     auto* generator = new FunctionGenerator(functionReturnFloat, entry->get_text());
     generator->run();
 
-    if (generator->getResultString() != "") {
+    if (!generator->getResultString().empty()) {
         entry->set_text(generator->getResultString());
     }
     delete generator;
@@ -4757,7 +4757,7 @@ void FunctionGenerator::makeFilterBandWidthFunButtonClicked() {
     auto* generator = new FunctionGenerator(functionReturnFloat, entry->get_text());
     generator->run();
 
-    if (generator->getResultString() != "") {
+    if (!generator->getResultString().empty()) {
         entry->set_text(generator->getResultString());
     }
     delete generator;
@@ -4772,7 +4772,7 @@ void FunctionGenerator::makeFilterDBGainFunButtonClicked() {
     auto* generator = new FunctionGenerator(functionReturnFloat, entry->get_text());
     generator->run();
 
-    if (generator->getResultString() != "") {
+    if (!generator->getResultString().empty()) {
         entry->set_text(generator->getResultString());
     }
     delete generator;
@@ -4797,7 +4797,7 @@ void FunctionGenerator::REV_SimpleEntryFunButtonClicked() {
     auto* generator = new FunctionGenerator(functionReturnFloat, entry->get_text());
     generator->run();
 
-    if (generator->getResultString() != "") {
+    if (!generator->getResultString().empty()) {
         entry->set_text(generator->getResultString());
     }
     delete generator;
@@ -4822,7 +4822,7 @@ void FunctionGenerator::REV_MediumReverbPercentFunButtonClicked() {
     auto* generator = new FunctionGenerator(functionReturnENV, entry->get_text());
     generator->run();
 
-    if (generator->getResultString() != "") {
+    if (!generator->getResultString().empty()) {
         entry->set_text(generator->getResultString());
     }
     delete generator;
@@ -4835,7 +4835,7 @@ void FunctionGenerator::REV_MediumHilowSpreadFunButtonClicked() {
     auto* generator = new FunctionGenerator(functionReturnFloat, entry->get_text());
     generator->run();
 
-    if (generator->getResultString() != "") {
+    if (!generator->getResultString().empty()) {
         entry->set_text(generator->getResultString());
     }
     delete generator;
@@ -4848,7 +4848,7 @@ void FunctionGenerator::REV_MediumGainAllPassFunButtonClicked() {
     auto* generator = new FunctionGenerator(functionReturnFloat, entry->get_text());
     generator->run();
 
-    if (generator->getResultString() != "") {
+    if (!generator->getResultString().empty()) {
         entry->set_text(generator->getResultString());
     }
     delete generator;
@@ -4861,7 +4861,7 @@ void FunctionGenerator::REV_MediumDelayFunButtonClicked() {
     auto* generator = new FunctionGenerator(functionReturnFloat, entry->get_text());
     generator->run();
 
-    if (generator->getResultString() != "") {
+    if (!generator->getResultString().empty()) {
         entry->set_text(generator->getResultString());
     }
     delete generator;
@@ -4894,7 +4894,7 @@ void FunctionGenerator::REV_AdvancedReverbPercentFunButtonClicked() {
     auto* generator = new FunctionGenerator(functionReturnENV, entry->get_text());
     generator->run();
 
-    if (generator->getResultString() != "") {
+    if (!generator->getResultString().empty()) {
         entry->set_text(generator->getResultString());
     }
     delete generator;
@@ -4907,7 +4907,7 @@ void FunctionGenerator::REV_AdvancedCombGainListFunButtonClicked() {
     auto* generator = new FunctionGenerator(functionReturnList, entry->get_text());
     generator->run();
 
-    if (generator->getResultString() != "") {
+    if (!generator->getResultString().empty()) {
         entry->set_text(generator->getResultString());
     }
     delete generator;
@@ -4920,7 +4920,7 @@ void FunctionGenerator::REV_AdvancedLPGainListFunButtonClicked() {
     auto* generator = new FunctionGenerator(functionReturnList, entry->get_text());
     generator->run();
 
-    if (generator->getResultString() != "") {
+    if (!generator->getResultString().empty()) {
         entry->set_text(generator->getResultString());
     }
     delete generator;
@@ -4933,7 +4933,7 @@ void FunctionGenerator::REV_AdvancedGainAllPassFunButtonClicked() {
     auto* generator = new FunctionGenerator(functionReturnFloat, entry->get_text());
     generator->run();
 
-    if (generator->getResultString() != "") {
+    if (!generator->getResultString().empty()) {
         entry->set_text(generator->getResultString());
     }
     delete generator;
@@ -4946,7 +4946,7 @@ void FunctionGenerator::REV_AdvancedDelayFunButtonClicked() {
     auto* generator = new FunctionGenerator(functionReturnFloat, entry->get_text());
     generator->run();
 
-    if (generator->getResultString() != "") {
+    if (!generator->getResultString().empty()) {
         entry->set_text(generator->getResultString());
     }
     delete generator;
@@ -4994,7 +4994,7 @@ void FunctionGenerator::makeSieveLowFunButtonClicked() {
     auto* generator = new FunctionGenerator(functionReturnInt, entry->get_text());
     generator->run();
 
-    if (generator->getResultString() != "") {
+    if (!generator->getResultString().empty()) {
         entry->set_text(generator->getResultString());
     }
     delete generator;
@@ -5007,7 +5007,7 @@ void FunctionGenerator::makeSieveHighFunButtonClicked() {
     auto* generator = new FunctionGenerator(functionReturnInt, entry->get_text());
     generator->run();
 
-    if (generator->getResultString() != "") {
+    if (!generator->getResultString().empty()) {
         entry->set_text(generator->getResultString());
     }
     delete generator;
@@ -5091,7 +5091,7 @@ void FunctionGenerator::Spectrum_GenEnvelopeFunButtonClicked() {
     auto* generator = new FunctionGenerator(functionReturnENV, entry->get_text());
     generator->run();
 
-    if (generator->getResultString() != "") {
+    if (!generator->getResultString().empty()) {
         entry->set_text(generator->getResultString());
     }
     delete generator;
@@ -5104,7 +5104,7 @@ void FunctionGenerator::Spectrum_GenDistanceFunButtonClicked() {
     auto* generator = new FunctionGenerator(functionReturnFloat, entry->get_text());
     generator->run();
 
-    if (generator->getResultString() != "") {
+    if (!generator->getResultString().empty()) {
         entry->set_text(generator->getResultString());
     }
     delete generator;
@@ -5225,7 +5225,7 @@ void FunctionGenerator::SPAPartialAlignment::funButtonClicked() {
     auto* generator = new FunctionGenerator(functionReturnENV, entry->get_text());
     generator->run();
 
-    if (generator->getResultString() != "") {
+    if (!generator->getResultString().empty()) {
         entry->set_text(generator->getResultString());
     }
     delete generator;

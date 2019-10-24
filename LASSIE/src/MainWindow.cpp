@@ -472,7 +472,7 @@ void MainWindow::setSavedTitle() {
 void MainWindow::menuFileSaveAs() {
     string newPathAndName = FileOperations::saveAs(this);
 
-    if (newPathAndName == "") {
+    if (newPathAndName.empty()) {
         return;
     }
     std::string title = " - LASSIE";

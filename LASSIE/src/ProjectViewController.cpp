@@ -564,7 +564,7 @@ void ProjectViewController::insertObject() {
         std::string name = nameEntry->get_text();
         std::string first = name.substr(0, 1);
 
-        if (name == "") {
+        if (name.empty()) {
             // prompt error (lack of name) and then loop
             // std::cout<<"User didn't name the object!"<<std::endl;
             Gtk::MessageDialog dialog("Please Name the Object", false /* use_markup */,
@@ -821,7 +821,7 @@ void ProjectViewController::insertObject() {
             for (it = events.begin(); it != events.end(); it++) {
                 if ((*it)->getEventName() == nameEntry->get_text() &&
                         (*it)->getEventType() == type ||
-                    nameEntry->get_text() == "" && renameDialogFlag == 1) {
+                    nameEntry->get_text().empty() && renameDialogFlag == 1) {
                     Glib::RefPtr<Gtk::Builder> refBuilder2 = Gtk::Builder::create();
                     Gtk::Dialog* renameDialog;
                     Gtk::Entry* newNameEntry;
@@ -843,7 +843,7 @@ void ProjectViewController::insertObject() {
                 }
             }
 
-            if (nameEntry->get_text() != "" && renameDialogFlag != 0) {
+            if (!nameEntry->get_text().empty() && renameDialogFlag != 0) {
                 modified();
                 auto* newEvent = new IEvent();
                 newEvent->setEventName(nameEntry->get_text());
@@ -1152,15 +1152,15 @@ void ProjectViewController::refreshProjectDotDat() {
     /* metadata */
 
     std::string buffer2;
-    buffer2 = (projectTitle == "") ? "" : projectTitle;
+    buffer2 = (projectTitle.empty()) ? "" : projectTitle;
     stringbuffer = "LASSIETITLE = `" + buffer2 + "`;\n";
     fputs(stringbuffer.c_str(), dat);
 
-    buffer2 = (fileFlag == "") ? "" : fileFlag;
+    buffer2 = (fileFlag.empty()) ? "" : fileFlag;
     stringbuffer = "LASSIEFILEFLAGS = `" + buffer2 + "`;\n";
     fputs(stringbuffer.c_str(), dat);
 
-    buffer2 = (topEvent == "") ? "" : topEvent;
+    buffer2 = (topEvent.empty()) ? "" : topEvent;
     stringbuffer = "LASSIEFILELIST = `" + buffer2 + "`;\n";
     fputs(stringbuffer.c_str(), dat);
 
@@ -1171,7 +1171,7 @@ void ProjectViewController::refreshProjectDotDat() {
     stringbuffer = "LASSIEPIECESTARTTIME = `0`;\n";
     fputs(stringbuffer.c_str(), dat);
 
-    buffer2 = (duration == "") ? "" : duration;
+    buffer2 = (duration.empty()) ? "" : duration;
     stringbuffer = "LASSIEPIECEDURATION = `" + buffer2 + "`;\n\n";
     fputs(stringbuffer.c_str(), dat);
 
@@ -1183,19 +1183,19 @@ void ProjectViewController::refreshProjectDotDat() {
 
     fputs(stringbuffer.c_str(), dat);
 
-    buffer2 = (numOfChannels == "") ? "" : numOfChannels;
+    buffer2 = (numOfChannels.empty()) ? "" : numOfChannels;
     stringbuffer = "LASSIENUMCHANNELS = `" + buffer2 + "`;\n";
     fputs(stringbuffer.c_str(), dat);
 
-    buffer2 = (sampleRate == "") ? "" : sampleRate;
+    buffer2 = (sampleRate.empty()) ? "" : sampleRate;
     stringbuffer = "LASSIESAMPLERITE = `" + buffer2 + "`;\n";
     fputs(stringbuffer.c_str(), dat);
 
-    buffer2 = (sampleSize == "") ? "" : sampleSize;
+    buffer2 = (sampleSize.empty()) ? "" : sampleSize;
     stringbuffer = "LASSIESAMPLESIZE = `" + buffer2 + "`;\n";
     fputs(stringbuffer.c_str(), dat);
 
-    buffer2 = (numOfThreads == "") ? "" : numOfThreads;
+    buffer2 = (numOfThreads.empty()) ? "" : numOfThreads;
     stringbuffer = "LASSIENUMTHREADS = `" + buffer2 + "`;\n";
     fputs(stringbuffer.c_str(), dat);
 
@@ -1296,7 +1296,7 @@ void ProjectViewController::save() {
     fputs("</DefaultModifiers>\n", file);
 
     fputs("    <CustomModifiers>\n", file);
-    if (customNoteModifiers.size() != 0) {
+    if (!customNoteModifiers.empty()) {
         auto iter2 = customNoteModifiers.begin();
 
         while (iter2 != customNoteModifiers.end()) {
@@ -1933,7 +1933,7 @@ void ProjectViewController::projectPropertiesDialogFunctionButtonClicked() {
     auto* generator = new FunctionGenerator(functionReturnFloat, duration);
     generator->run();
 
-    if (generator->getResultString() != "") {
+    if (!generator->getResultString().empty()) {
         duration = generator->getResultString();
     }
 
@@ -2193,7 +2193,7 @@ void ProjectViewController::configureNoteModifiers() {
         string modifierText;
         for (iter; iter != customNotModifierHBoxes.end(); iter++) {
             modifierText = (*iter)->getText();
-            if (modifierText != "") {
+            if (!modifierText.empty()) {
                 customNoteModifiers.push_back((*iter)->getText());
             }
         }
@@ -2303,7 +2303,7 @@ void ProjectViewController::saveNoteModifierConfiguration() {
     stringbuffer = stringbuffer + ">;\n";
     fputs(stringbuffer.c_str(), file);
 
-    if (customNoteModifiers.size() != 0) {
+    if (!customNoteModifiers.empty()) {
         stringbuffer = "LASSIENOTECUSTOMMODIFIER = <";
 
         auto iter2 = customNoteModifiers.begin();

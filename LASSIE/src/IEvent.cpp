@@ -449,7 +449,7 @@ void EventLayer::showContents() {
 int EventLayer::size() { return children.size(); }
 
 std::string EventLayer::outputChildrenNameString() {
-    if (children.size() == 0) return "";
+    if (children.empty()) return "";
 
     std::string temp = "                 <\n                    ";
     auto i = children.begin();
@@ -849,7 +849,7 @@ std::string EventBottomModifier::getSaveLASSIEMetaDataString() {
     std::string stringbuffer = "<" + string(temp1) + "," + string(temp2) + ",`" + probability +
                                "`,`" + ampValue + "`,`" + rateValue + "`,`" + width;
 
-    if (groupName != "") {
+    if (!groupName.empty()) {
         stringbuffer = stringbuffer + "`,`" + groupName + "`>";
     } else {
         stringbuffer = stringbuffer + "`>";
@@ -1068,7 +1068,7 @@ std::string EventLayer::getLASSIEMetaDataString() {
         }
     }
 
-    if (children.size() == 0) {
+    if (children.empty()) {
         a = a + "666";  // dummy
     }
     a = a + ">>";
@@ -1186,7 +1186,7 @@ void IEvent::parseNonEvent() {
     value = file_data["LASSIEeventName"];
     if (value != nullptr) {
         std::list<FileValue> nameAndOrderList = value->getList();
-        if (nameAndOrderList.size() == 0) {         // old file format
+        if (nameAndOrderList.empty()) {         // old file format
             eventOrderInPalette = /* rand() */ -1;  // maintainer: why rand???
         }
 
@@ -1215,7 +1215,7 @@ void IEvent::parseNonEvent() {
         std::list<FileValue> fileValueList = value->getList();
         auto fileValueListIter = fileValueList.begin();
         SpectrumPartial* thisPartial = nullptr;
-        if (fileValueList.size() != 0) {
+        if (!fileValueList.empty()) {
             thisPartial = extraInfo->getSpectrumPartials();
             thisPartial->envString = fileValueListIter->getString();
             fileValueListIter++;
@@ -2257,7 +2257,7 @@ void IEvent::buildNonEventFromDOM(DOMElement* _element) {
         // default is spectrum is not present
         DOMElement* thisPartialElement = spectrumGenElement->getFirstElementChild();
 
-        if (next_fun == "") {
+        if (next_fun.empty()) {
             // 1.spectrum is present but empty
             if (spectrumGenElement->getNextElementSibling() != nullptr) {
                 thisPartialElement =
@@ -2681,7 +2681,7 @@ std::string IEvent::SoundExtraInfo::getSpectrumMetaData() {
 
     while (thisPartial != nullptr) {
         std::string tempstring = thisPartial->envString;
-        if (tempstring == "") {
+        if (tempstring.empty()) {
             tempstring = "";
         }
 

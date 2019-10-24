@@ -462,7 +462,7 @@ void PaletteViewController::deleteObject() {
     }
     string result = projectView->searchPossibleParents(fileName);
 
-    if (result != "") {
+    if (!result.empty()) {
         string prompt = "The object you are deleting is used by: " + result +
                         ". Do you really want to delete it? "
                         "CMOD might not run properly if you delete this object.";
@@ -528,7 +528,7 @@ void PaletteViewController::duplicateObject() {
 
     switchBackToPreviousCursor(nullptr);
 
-    if (response == 1 && nameEntry->get_text() == "") {
+    if (response == 1 && nameEntry->get_text().empty()) {
         // prompt error (no row selected in the palette)
 
         Gtk::MessageDialog dialog("Please name your new object", false /* use_markup */,
@@ -711,7 +711,7 @@ ObjectWindowObjectPackage* PaletteViewController::getObjectsLinkedList(string _t
 
     children = row.children();
     iter = children.begin();
-    if (children.size() == 0) {
+    if (children.empty()) {
         return nullptr;
     } else if (children.size() == 1) {
         result = new ObjectWindowObjectPackage(projectView);

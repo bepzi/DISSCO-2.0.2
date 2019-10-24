@@ -3433,14 +3433,14 @@ void EventAttributesViewController::insertFunctionString(FunctionButton _button)
 
         generator = new FunctionGenerator(functionReturnFloat, entry->get_text());
         int result = generator->run();
-        if (generator->getResultString() != "" && result == 0) {
+        if (!generator->getResultString().empty() && result == 0) {
             entry->set_text(generator->getResultString());
         }
     } else if (_button == unitsPerSecondFunButton) {
         attributesRefBuilder->get_widget("attributesStandardUnitsPerSecondEntry", entry);
         generator = new FunctionGenerator(functionReturnInt, entry->get_text());
         int result = generator->run();
-        if (generator->getResultString() != "" && result == 0) {
+        if (!generator->getResultString().empty() && result == 0) {
             entry->set_text(generator->getResultString());
         }
     }
@@ -3456,14 +3456,14 @@ void EventAttributesViewController::insertFunctionString(FunctionButton _button)
             attributesRefBuilder->get_widget("attributesStandardNumChildrenEntry1", entry);
             generator = new FunctionGenerator(functionReturnInt, entry->get_text());
             int result = generator->run();
-            if (generator->getResultString() != "" && result == 0) {
+            if (!generator->getResultString().empty() && result == 0) {
                 entry->set_text(generator->getResultString());
             }
         } else if (radioButton2->get_active()) {
             attributesRefBuilder->get_widget("attributesStandardNumChildrenEntry1", entry);
             generator = new FunctionGenerator(functionReturnFloat, entry->get_text());
             int result = generator->run();
-            if (generator->getResultString() != "" && result == 0) {
+            if (!generator->getResultString().empty() && result == 0) {
                 entry->set_text(generator->getResultString());
             }
         } else {  // by layer.
@@ -3477,7 +3477,7 @@ void EventAttributesViewController::insertFunctionString(FunctionButton _button)
             attributesRefBuilder->get_widget("attributesStandardNumChildrenEntry2", entry);
             generator = new FunctionGenerator(functionReturnInt, entry->get_text());
             int result = generator->run();
-            if (generator->getResultString() != "" && result == 0) {
+            if (!generator->getResultString().empty() && result == 0) {
                 entry->set_text(generator->getResultString());
             }
         }
@@ -3489,7 +3489,7 @@ void EventAttributesViewController::insertFunctionString(FunctionButton _button)
             attributesRefBuilder->get_widget("attributesStandardNumChildrenEntry3", entry);
             generator = new FunctionGenerator(functionReturnInt, entry->get_text());
             int result = generator->run();
-            if (generator->getResultString() != "" && result == 0) {
+            if (!generator->getResultString().empty() && result == 0) {
                 entry->set_text(generator->getResultString());
             }
         }
@@ -3500,7 +3500,7 @@ void EventAttributesViewController::insertFunctionString(FunctionButton _button)
             attributesRefBuilder->get_widget("attributesChildEventDefEntry1", entry);
             generator = new FunctionGenerator(functionReturnFloat, entry->get_text());
             int result = generator->run();
-            if (generator->getResultString() != "" && result == 0) {
+            if (!generator->getResultString().empty() && result == 0) {
                 entry->set_text(generator->getResultString());
             }
         }
@@ -3511,7 +3511,7 @@ void EventAttributesViewController::insertFunctionString(FunctionButton _button)
             attributesRefBuilder->get_widget("attributesChildEventDefEntry2", entry);
             generator = new FunctionGenerator(functionReturnInt, entry->get_text());
             int result = generator->run();
-            if (generator->getResultString() != "" && result == 0) {
+            if (!generator->getResultString().empty() && result == 0) {
                 entry->set_text(generator->getResultString());
             }
         }
@@ -3522,7 +3522,7 @@ void EventAttributesViewController::insertFunctionString(FunctionButton _button)
             attributesRefBuilder->get_widget("attributesChildEventDefEntry3", entry);
             generator = new FunctionGenerator(functionReturnFloat, entry->get_text());
             int result = generator->run();
-            if (generator->getResultString() != "" && result == 0) {
+            if (!generator->getResultString().empty() && result == 0) {
                 entry->set_text(generator->getResultString());
             }
         }
@@ -3530,21 +3530,21 @@ void EventAttributesViewController::insertFunctionString(FunctionButton _button)
         attributesRefBuilder->get_widget("attributesChildEventDefAttackSieveEntry", entry);
         generator = new FunctionGenerator(functionReturnSIV, entry->get_text());
         int result = generator->run();
-        if (generator->getResultString() != "" && result == 0) {
+        if (!generator->getResultString().empty() && result == 0) {
             entry->set_text(generator->getResultString());
         }
     } else if (_button == childEventDefDurationSieveFunButton) {
         attributesRefBuilder->get_widget("attributesChildEventDefDurationSieveEntry", entry);
         generator = new FunctionGenerator(functionReturnSIV, entry->get_text());
         int result = generator->run();
-        if (generator->getResultString() != "" && result == 0) {
+        if (!generator->getResultString().empty() && result == 0) {
             entry->set_text(generator->getResultString());
         }
     } else if (_button == spectrumDeviationFunButton) {
         attributesRefBuilderSound->get_widget("SoundAttributesDeviationEntry", entry);
         generator = new FunctionGenerator(functionReturnFloat, entry->get_text());
         int result = generator->run();
-        if (generator->getResultString() != "" && result == 0) {
+        if (!generator->getResultString().empty() && result == 0) {
             entry->set_text(generator->getResultString());
         }
 
@@ -3554,7 +3554,7 @@ void EventAttributesViewController::insertFunctionString(FunctionButton _button)
         attributesRefBuilderSound->get_widget("SoundAttributesGenerateSpectrumEntry", entry);
         generator = new FunctionGenerator(functionReturnSPE, entry->get_text());
         int result = generator->run();
-        if (generator->getResultString() != "" && result == 0) {
+        if (!generator->getResultString().empty() && result == 0) {
             entry->set_text(generator->getResultString());
         }
     }
@@ -3570,7 +3570,7 @@ void EventAttributesViewController::LayerBox::byLayerWeightButtonClicked() {
             new FunctionGenerator(functionReturnFloat, weightEntry.get_text());
         std::cout << "NOT sure if byLayer is int or float. ask sever" << std::endl;
         int result = generator->run();
-        if (generator->getResultString() != "" && result == 0) {
+        if (!generator->getResultString().empty() && result == 0) {
             weightEntry.set_text(generator->getResultString());
         }
         delete generator;
@@ -3592,7 +3592,7 @@ void EventAttributesViewController::attributesStandardRevButtonClicked() {
     attributesRefBuilder->get_widget("attributesStandardRevEntry", entry);
     auto* generator = new FunctionGenerator(functionReturnREV, entry->get_text());
     int result = generator->run();
-    if (generator->getResultString() != "" && result == 0) {
+    if (!generator->getResultString().empty() && result == 0) {
         entry->set_text(generator->getResultString());
     }
     delete generator;
@@ -3603,7 +3603,7 @@ void EventAttributesViewController::attributesStandardFilButtonClicked() {
     attributesRefBuilder->get_widget("attributesStandardFilEntry", entry);
     auto* generator = new FunctionGenerator(functionReturnFIL, entry->get_text());
     int result = generator->run();
-    if (generator->getResultString() != "" && result == 0) {
+    if (!generator->getResultString().empty() && result == 0) {
         entry->set_text(generator->getResultString());
     }
     delete generator;
@@ -3614,7 +3614,7 @@ void EventAttributesViewController::attributesStandardSpaButtonClicked() {
     attributesRefBuilder->get_widget("attributesStandardSpaEntry", entry);
     auto* generator = new FunctionGenerator(functionReturnSPA, entry->get_text());
     int result = generator->run();
-    if (generator->getResultString() != "" && result == 0) {
+    if (!generator->getResultString().empty() && result == 0) {
         entry->set_text(generator->getResultString());
     }
     delete generator;
@@ -3626,7 +3626,7 @@ void EventAttributesViewController::BSLoudnessButtonClicked() {
     attributesRefBuilder->get_widget("BottomSubAttributesLoudnessEntry", entry);
     auto* generator = new FunctionGenerator(functionReturnInt, entry->get_text());
     int result = generator->run();
-    if (generator->getResultString() != "" && result == 0) {
+    if (!generator->getResultString().empty() && result == 0) {
         entry->set_text(generator->getResultString());
     }
     delete generator;
@@ -3641,7 +3641,7 @@ void EventAttributesViewController::BSSpatializationButtonClicked() {
     attributesRefBuilder->get_widget("BottomSubAttributesSpatializationEntry", entry);
     auto* generator = new FunctionGenerator(functionReturnSPA, entry->get_text());
     int result = generator->run();
-    if (generator->getResultString() != "" && result == 0) {
+    if (!generator->getResultString().empty() && result == 0) {
         entry->set_text(generator->getResultString());
     }
     delete generator;
@@ -3654,7 +3654,7 @@ void EventAttributesViewController::BSReverbButtonClicked() {
     attributesRefBuilder->get_widget("BottomSubAttributesReverbEntry", entry);
     auto* generator = new FunctionGenerator(functionReturnREV, entry->get_text());
     int result = generator->run();
-    if (generator->getResultString() != "" && result == 0) {
+    if (!generator->getResultString().empty() && result == 0) {
         entry->set_text(generator->getResultString());
     }
     delete generator;
@@ -3668,7 +3668,7 @@ void EventAttributesViewController::BSFilterButtonClicked() {
     attributesRefBuilder->get_widget("BottomSubAttributesFilterEntry", entry);
     auto* generator = new FunctionGenerator(functionReturnFIL, entry->get_text());
     int result = generator->run();
-    if (generator->getResultString() != "" && result == 0) {
+    if (!generator->getResultString().empty() && result == 0) {
         entry->set_text(generator->getResultString());
     }
     delete generator;
@@ -3679,7 +3679,7 @@ void EventAttributesViewController::BSWellTemperedButtonClicked() {
     attributesRefBuilder->get_widget("BottomSubAttributesWellTemperedEntry", entry);
     auto* generator = new FunctionGenerator(functionReturnInt, entry->get_text());
     int result = generator->run();
-    if (generator->getResultString() != "" && result == 0) {
+    if (!generator->getResultString().empty() && result == 0) {
         entry->set_text(generator->getResultString());
     }
     delete generator;
@@ -3689,7 +3689,7 @@ void EventAttributesViewController::BSFunFreqButton1Clicked() {
     attributesRefBuilder->get_widget("BottomSubAttributesFunFreqEntry1", entry);
     auto* generator = new FunctionGenerator(functionReturnFloat, entry->get_text());
     int result = generator->run();
-    if (generator->getResultString() != "" && result == 0) {
+    if (!generator->getResultString().empty() && result == 0) {
         entry->set_text(generator->getResultString());
     }
     delete generator;
@@ -3699,7 +3699,7 @@ void EventAttributesViewController::BSFunFreqButton2Clicked() {
     attributesRefBuilder->get_widget("BottomSubAttributesFunFreqEntry2", entry);
     auto* generator = new FunctionGenerator(functionReturnInt, entry->get_text());
     int result = generator->run();
-    if (generator->getResultString() != "" && result == 0) {
+    if (!generator->getResultString().empty() && result == 0) {
         entry->set_text(generator->getResultString());
     }
     delete generator;
@@ -3709,7 +3709,7 @@ void EventAttributesViewController::BSContinuumButtonClicked() {
     attributesRefBuilder->get_widget("BottomSubAttributesContinuumEntry", entry);
     auto* generator = new FunctionGenerator(functionReturnFloat, entry->get_text());
     int result = generator->run();
-    if (generator->getResultString() != "" && result == 0) {
+    if (!generator->getResultString().empty() && result == 0) {
         entry->set_text(generator->getResultString());
     }
     delete generator;
@@ -3720,7 +3720,7 @@ void BottomEventModifierAlignment::probablityEnvelopeButtonClicked() {
     attributesRefBuilder->get_widget("probablityEnvelopeEntry", entry);
     auto* generator = new FunctionGenerator(functionReturnENV, entry->get_text());
     int result = generator->run();
-    if (generator->getResultString() != "" && result == 0) {
+    if (!generator->getResultString().empty() && result == 0) {
         entry->set_text(generator->getResultString());
     }
     delete generator;
@@ -3730,7 +3730,7 @@ void BottomEventModifierAlignment::ampValueEnvelopeButtonClicked() {
     attributesRefBuilder->get_widget("ampValueEnvelopeEntry", entry);
     auto* generator = new FunctionGenerator(functionReturnENV, entry->get_text());
     int result = generator->run();
-    if (generator->getResultString() != "" && result == 0) {
+    if (!generator->getResultString().empty() && result == 0) {
         entry->set_text(generator->getResultString());
     }
     delete generator;
@@ -3743,7 +3743,7 @@ void BottomEventModifierAlignment::rateValueEnvelopeButtonClicked() {
     if (entry->get_sensitive()) {
         auto* generator = new FunctionGenerator(functionReturnENV, entry->get_text());
         int result = generator->run();
-        if (generator->getResultString() != "" && result == 0) {
+        if (!generator->getResultString().empty() && result == 0) {
             entry->set_text(generator->getResultString());
         }
         delete generator;
@@ -3756,7 +3756,7 @@ void BottomEventModifierAlignment::widthEnvelopeButtonClicked() {
     if (entry->get_sensitive()) {
         auto* generator = new FunctionGenerator(functionReturnENV, entry->get_text());
         int result = generator->run();
-        if (generator->getResultString() != "" && result == 0) {
+        if (!generator->getResultString().empty() && result == 0) {
             entry->set_text(generator->getResultString());
         }
         delete generator;
@@ -3769,7 +3769,7 @@ void EventAttributesViewController::envelopeFunButtonClicked() {
 
     auto* generator = new FunctionGenerator(functionReturnENV, entry->get_text());
     int result = generator->run();
-    if (generator->getResultString() != "" && result == 0) {
+    if (!generator->getResultString().empty() && result == 0) {
         entry->set_text(generator->getResultString());
     }
     delete generator;
@@ -3781,7 +3781,7 @@ void EventAttributesViewController::sieveFunButtonClicked() {
 
     auto* generator = new FunctionGenerator(functionReturnSIV, entry->get_text());
     int result = generator->run();
-    if (generator->getResultString() != "" && result == 0) {
+    if (!generator->getResultString().empty() && result == 0) {
         entry->set_text(generator->getResultString());
     }
     delete generator;
@@ -3793,7 +3793,7 @@ void EventAttributesViewController::patternFunButtonClicked() {
 
     auto* generator = new FunctionGenerator(functionReturnPAT, entry->get_text());
     int result = generator->run();
-    if (generator->getResultString() != "" && result == 0) {
+    if (!generator->getResultString().empty() && result == 0) {
         entry->set_text(generator->getResultString());
     }
     delete generator;
@@ -3805,7 +3805,7 @@ void EventAttributesViewController::reverbFunButtonClicked() {
 
     auto* generator = new FunctionGenerator(functionReturnREV, entry->get_text());
     int result = generator->run();
-    if (generator->getResultString() != "" && result == 0) {
+    if (!generator->getResultString().empty() && result == 0) {
         entry->set_text(generator->getResultString());
     }
     delete generator;
@@ -3817,7 +3817,7 @@ void EventAttributesViewController::filterFunButtonClicked() {
 
     auto* generator = new FunctionGenerator(functionReturnFIL, entry->get_text());
     int result = generator->run();
-    if (generator->getResultString() != "" && result == 0) {
+    if (!generator->getResultString().empty() && result == 0) {
         entry->set_text(generator->getResultString());
     }
     delete generator;
@@ -3829,7 +3829,7 @@ void EventAttributesViewController::measureFunButtonClicked() {
 
     auto* generator = new FunctionGenerator(functionReturnFIL, entry->get_text());
     int result = generator->run();
-    if (generator->getResultString() != "" && result == 0) {
+    if (!generator->getResultString().empty() && result == 0) {
         entry->set_text(generator->getResultString());
     }
     delete generator;
@@ -3841,7 +3841,7 @@ void EventAttributesViewController::spatializationFunButtonClicked() {
 
     auto* generator = new FunctionGenerator(functionReturnSPA, entry->get_text());
     int result = generator->run();
-    if (generator->getResultString() != "" && result == 0) {
+    if (!generator->getResultString().empty() && result == 0) {
         entry->set_text(generator->getResultString());
     }
     delete generator;
@@ -3964,7 +3964,7 @@ void EventAttributesViewController::tempoAsFractionButtonClicked() {
 }
 
 void EventAttributesViewController::deleteKeyPressed(Gtk::Widget* _focus) {
-    if (currentlyShownEvent == nullptr || layerBoxesStorage.size() == 0) return;
+    if (currentlyShownEvent == nullptr || layerBoxesStorage.empty()) return;
     cout << "not returned!" << endl;
     auto layerBoxesIter = layerBoxesStorage.begin();
 
@@ -4121,7 +4121,7 @@ void SoundPartialHBox::functionButtonClicked() {
     auto* generator =
         new FunctionGenerator(functionReturnENV, envelopeEntry.get_text());
     int result = generator->run();
-    if (generator->getResultString() != "" && result == 0) {
+    if (!generator->getResultString().empty() && result == 0) {
         envelopeEntry.set_text(generator->getResultString());
         partial->envString = envelopeEntry.get_text();
     }

@@ -301,7 +301,7 @@ void MarkovModelLibraryWindow::buildTable() {
 
 void MarkovModelLibraryWindow::update(int selection) {
     if (!activeProject) return;
-    if (!activeProject->getMarkovModels().size()) return;
+    if (activeProject->getMarkovModels().empty()) return;
 
     if (currentSelection >= 0) {
         activeProject->getMarkovModels()[currentSelection].from_str(to_string());
@@ -400,7 +400,7 @@ void MarkovModelLibraryWindow::setActiveProject(ProjectViewController* project) 
     activeProject = project;
 
     if (!activeProject) return;
-    if (!activeProject->getMarkovModels().size()) return;
+    if (activeProject->getMarkovModels().empty()) return;
 
     Gtk::TreeModel::Row row;
 
