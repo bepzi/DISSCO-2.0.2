@@ -131,7 +131,7 @@ public:
     void deleteLayer();
 
     double getChildrenWeightSum();
-    int size();
+    size_t size();
     std::string outputChildrenNameString();
     std::string getLASSIEMetaDataString();
     std::string getXMLString();
@@ -432,10 +432,13 @@ public:
      *   written according to the path
      ****************************************************************************/
     void saveToDisk(const std::string& _pathOfProject);
+
+    /*
     void saveAsToDisk(std::string _pathOfProject);  // save everything
     void saveToDiskHelper(std::string _pathOfProject, bool _forced);
+    */
 
-    int getNumberOfLayers();
+    size_t getNumberOfLayers();
 
     void showAllChildren();
 

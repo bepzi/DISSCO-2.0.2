@@ -390,7 +390,7 @@ void IEvent::saveToDisk(const std::string& _pathOfProject) {
     // saveToDiskHelper(_pathOfProject, false);
 }
 
-int IEvent::getNumberOfLayers() { return layers.size(); }
+size_t IEvent::getNumberOfLayers() { return layers.size(); }
 
 EventLayer* IEvent::addLayer() {
     auto* newLayer = new EventLayer(this);
@@ -447,7 +447,7 @@ void EventLayer::showContents() {
     std::cout << "EventLayer stop showing Contents" << std::endl;
 }
 
-int EventLayer::size() { return children.size(); }
+size_t EventLayer::size() { return children.size(); }
 
 std::string EventLayer::outputChildrenNameString() {
     if (children.empty()) return "";
@@ -1688,55 +1688,34 @@ bool IEvent::haveString(const string& _string) {
 
 bool IEvent::EnvelopeExtraInfo::haveString(string _string) {
     size_t position = envelopeBuilder.find(_string, 0);
-    if (position != basic_string<char>::npos) {
-        return true;
-    }
-    return false;
+    return position != basic_string<char>::npos;
 }
 
 bool IEvent::PatternExtraInfo::haveString(string _string) {
     size_t position = patternBuilder.find(_string, 0);
-    if (position != basic_string<char>::npos) {
-        return true;
-    }
-    return false;
+    return position != basic_string<char>::npos;
 }
 bool IEvent::SpatializationExtraInfo::haveString(string _string) {
     size_t position = spatializationBuilder.find(_string, 0);
-    if (position != basic_string<char>::npos) {
-        return true;
-    }
-    return false;
+    return position != basic_string<char>::npos;
 }
 bool IEvent::SieveExtraInfo::haveString(string _string) {
     size_t position = sieveBuilder.find(_string, 0);
-    if (position != basic_string<char>::npos) {
-        return true;
-    }
-    return false;
+    return position != basic_string<char>::npos;
 }
 bool IEvent::ReverbExtraInfo::haveString(string _string) {
     size_t position = reverbBuilder.find(_string, 0);
-    if (position != basic_string<char>::npos) {
-        return true;
-    }
-    return false;
+    return position != basic_string<char>::npos;
 }
 
 bool IEvent::FilterExtraInfo::haveString(string _string) {
     size_t position = filterBuilder.find(_string, 0);
-    if (position != basic_string<char>::npos) {
-        return true;
-    }
-    return false;
+    return position != basic_string<char>::npos;
 }
 
 bool IEvent::MeasureExtraInfo::haveString(string _string) {
     size_t position = measureBuilder.find(_string, 0);
-    if (position != basic_string<char>::npos) {
-        return true;
-    }
-    return false;
+    return position != basic_string<char>::npos;
 }
 
 bool IEvent::NoteExtraInfo::haveString(string _string) { return false; }
@@ -1753,11 +1732,7 @@ bool IEvent::SoundExtraInfo::haveString(string _string) {
     }
 
     position = getSoundSpectrumEnvelopesString().find(_string, 0);
-    if (position != basic_string<char>::npos) {
-        return true;
-    }
-
-    return false;
+    return position != basic_string<char>::npos;
 }
 
 bool IEvent::BottomEventExtraInfo::haveString(string _string) {
@@ -2669,7 +2644,7 @@ std::string IEvent::getFunctionString(DOMElement* _thisFunctionElement) {
     XMLString::release(&toTranscode);
     XMLString::release(&bla);
 
-    int tagLength = (int)XMLString::stringLen(_thisFunctionElement->getTagName());
+    size_t tagLength = XMLString::stringLen(_thisFunctionElement->getTagName());
 
     delete theSerializer;
     returnString = returnString.substr(tagLength + 2, returnString.size() - tagLength * 2 - 5);
