@@ -338,21 +338,21 @@ std::string MarkovModelLibraryWindow::to_string() const {
     stringstream ss;
     ss << size << endl;
     for (auto& entry : m_valueEntries) {
-        float n = read_entry_as<float>(*entry);
+        auto n = read_entry_as<float>(*entry);
         if (isnan(n)) n = 0;
         ss << n << " ";
     }
     ss << "\n";
 
     for (auto& entry : m_distEntries) {
-        float n = read_entry_as<float>(*entry);
+        auto n = read_entry_as<float>(*entry);
         if (isnan(n)) n = 0;
         ss << n << " ";
     }
     ss << "\n";
 
     for (auto& entry : m_matrixEntries) {
-        float n = read_entry_as<float>(*entry);
+        auto n = read_entry_as<float>(*entry);
         if (isnan(n)) n = 0;
         ss << n << " ";
     }

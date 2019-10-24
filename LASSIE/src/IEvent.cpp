@@ -85,7 +85,7 @@ IEvent::IEvent() {
     modifiers = nullptr;
     extraInfo = nullptr;
 
-    EventLayer* newLayer = new EventLayer(this);
+    auto* newLayer = new EventLayer(this);
     layers.push_back(newLayer);
 }
 
@@ -392,13 +392,13 @@ void IEvent::saveToDisk(std::string _pathOfProject) {
 int IEvent::getNumberOfLayers() { return layers.size(); }
 
 EventLayer* IEvent::addLayer() {
-    EventLayer* newLayer = new EventLayer(this);
+    auto* newLayer = new EventLayer(this);
     layers.push_back(newLayer);
     return newLayer;
 }
 
 void IEvent::showAllChildren() {
-    std::list<EventLayer*>::iterator i = layers.begin();
+    auto i = layers.begin();
 
     for (i; i != layers.end(); ++i) {
         std::cout << "===========================================";
@@ -415,7 +415,7 @@ EventLayer::EventLayer(IEvent* _thisEvent) {
 }
 
 EventLayer::~EventLayer() {
-    std::list<EventDiscretePackage*>::iterator childIter = children.begin();
+    auto childIter = children.begin();
     for (childIter; childIter != children.end(); childIter++) {
         (*childIter)->event->removeParent(thisIEvent);
         delete (*childIter);
@@ -427,7 +427,7 @@ void IEvent::setChangedButNotSaved(bool value) { changedButNotSaved = value; }
 
 EventDiscretePackage* EventLayer::addChild(IEvent* _child) {
     thisIEvent->setChangedButNotSaved(true);
-    EventDiscretePackage* newdyad = new EventDiscretePackage(_child);
+    auto* newdyad = new EventDiscretePackage(_child);
     children.push_back(newdyad);
 
     _child->addParent(thisIEvent);
@@ -437,7 +437,7 @@ EventDiscretePackage* EventLayer::addChild(IEvent* _child) {
 
 void EventLayer::showContents() {
     std::cout << "EventLayer begins showing contents" << std::endl;
-    std::list<EventDiscretePackage*>::iterator i = children.begin();
+    auto i = children.begin();
 
     for (i; i != children.end(); ++i) {
         std::cout << "!" << (*i)->event->getEventName() << std::endl;
@@ -452,7 +452,7 @@ std::string EventLayer::outputChildrenNameString() {
     if (children.size() == 0) return "";
 
     std::string temp = "                 <\n                    ";
-    std::list<EventDiscretePackage*>::iterator i = children.begin();
+    auto i = children.begin();
 
     while (i != children.end()) {
         IEvent* thisEvent = (*i)->event;
@@ -518,7 +518,7 @@ std::string IEvent::SoundExtraInfo::getNumPartials() {
 SpectrumPartial* IEvent::SoundExtraInfo::getSpectrumPartials() { return spectrumPartials; }
 
 SpectrumPartial* IEvent::SoundExtraInfo::addPartial() {
-    SpectrumPartial* newPartial = new SpectrumPartial();
+    auto* newPartial = new SpectrumPartial();
     SpectrumPartial* end = spectrumPartials;
     numPartials++;
 
@@ -565,7 +565,7 @@ bool IEvent::SoundExtraInfo::deletePartial(SpectrumPartial* _partial) {
 double EventLayer::getChildrenWeightSum() {
     double sum = 0;
 
-    std::list<EventDiscretePackage*>::iterator i = children.begin();
+    auto i = children.begin();
     for (i; i != children.end(); i++) {
         sum += atof((*i)->weight.c_str());
     }
@@ -628,7 +628,7 @@ int IEvent::BottomEventExtraInfo::getChildTypeFlag() { return childTypeFlag; }
 EventBottomModifier* IEvent::BottomEventExtraInfo::getModifiers() { return modifiers; }
 
 EventBottomModifier* IEvent::BottomEventExtraInfo::addModifier() {
-    EventBottomModifier* newModifier = new EventBottomModifier();
+    auto* newModifier = new EventBottomModifier();
     if (modifiers == nullptr) {
         modifiers = newModifier;
         return modifiers;
@@ -961,14 +961,14 @@ IEvent::BottomEventExtraInfo::BottomEventExtraInfo(int _childTypeFlag) {
     if (value != nullptr) {
         std::list<FileValue> modifierList = value->getList();
 
-        std::list<FileValue>::iterator modifierListIter = modifierList.begin();
+        auto modifierListIter = modifierList.begin();
 
         EventBottomModifier* currentModifier = nullptr;
         EventBottomModifier* previousModifier = nullptr;
         while (modifierListIter != modifierList.end()) {
             currentModifier = new EventBottomModifier();
             std::list<FileValue> thisModifierList = modifierListIter->getList();
-            std::list<FileValue>::iterator modifierIter = thisModifierList.begin();
+            auto modifierIter = thisModifierList.begin();
 
             currentModifier->setModifierType((ModifierType)modifierIter->getInt());
 
@@ -1014,7 +1014,7 @@ EventLayer::EventLayer(FileValue* _thisLayerFileValue, IEvent* _thisEvent) {
 
     std::list<FileValue> fileValueList = _thisLayerFileValue->getList();
 
-    std::list<FileValue>::iterator fileValueListIter = fileValueList.begin();
+    auto fileValueListIter = fileValueList.begin();
 
     // the first value in the list is teh name
     byLayer = fileValueListIter->getString();
@@ -1022,7 +1022,7 @@ EventLayer::EventLayer(FileValue* _thisLayerFileValue, IEvent* _thisEvent) {
     fileValueListIter++;
     std::list<FileValue> discretePackages = fileValueListIter->getList();
 
-    std::list<FileValue>::iterator discretePackagesIter = discretePackages.begin();
+    auto discretePackagesIter = discretePackages.begin();
     if (discretePackagesIter->getInt() == 666) {  // see dummy
         return;
     }
@@ -1037,7 +1037,7 @@ EventDiscretePackage::EventDiscretePackage(FileValue* _thisPackageFileValue) {
     event = nullptr;
 
     std::list<FileValue> stringList = _thisPackageFileValue->getList();
-    std::list<FileValue>::iterator i = stringList.begin();
+    auto i = stringList.begin();
 
     eventName = i->getString();
     i++;
@@ -1057,7 +1057,7 @@ EventDiscretePackage::EventDiscretePackage(FileValue* _thisPackageFileValue) {
 std::string EventLayer::getLASSIEMetaDataString() {
     std::string a = "<`" + byLayer + "`,<";
 
-    std::list<EventDiscretePackage*>::iterator discretePackagesIter = children.begin();
+    auto discretePackagesIter = children.begin();
 
     while (discretePackagesIter != children.end()) {
         a = a + (*discretePackagesIter)->getLASSIEMetadataString();
@@ -1077,7 +1077,7 @@ std::string EventLayer::getLASSIEMetaDataString() {
 }
 
 std::string EventLayer::getXMLString() {
-    std::list<EventDiscretePackage*>::iterator discretePackagesIter = children.begin();
+    auto discretePackagesIter = children.begin();
 
     string packageBuffer = "";
 
@@ -1144,14 +1144,14 @@ std::string EventDiscretePackage::getXMLString() {
 }
 
 void IEvent::link(ProjectViewController* _projectView) {
-    std::list<EventLayer*>::iterator i = layers.begin();
+    auto i = layers.begin();
     for (i; i != layers.end(); i++) {
         (*i)->link(_projectView, this);  // link each layer
     }
 }
 
 void EventLayer::link(ProjectViewController* _projectView, IEvent* _thisEvent) {
-    std::list<EventDiscretePackage*>::iterator i = children.begin();
+    auto i = children.begin();
     for (i; i != children.end(); i++) {
         if (!(*i)->link(_projectView, _thisEvent)) {  // link each layer
             cout << "Linking with parent failed, removing " << (*i)->eventName
@@ -1191,7 +1191,7 @@ void IEvent::parseNonEvent() {
         }
 
         else {
-            std::list<FileValue>::iterator iter = nameAndOrderList.begin();
+            auto iter = nameAndOrderList.begin();
 
             iter++;
             value = &(*iter);
@@ -1213,7 +1213,7 @@ void IEvent::parseNonEvent() {
         value = file_data["LASSIESOUNDspectrum"];
 
         std::list<FileValue> fileValueList = value->getList();
-        std::list<FileValue>::iterator fileValueListIter = fileValueList.begin();
+        auto fileValueListIter = fileValueList.begin();
         SpectrumPartial* thisPartial = nullptr;
         if (fileValueList.size() != 0) {
             thisPartial = extraInfo->getSpectrumPartials();
@@ -1257,7 +1257,7 @@ void IEvent::parseNonEvent() {
         value = file_data["noteModifiers"];
         if (value) {
             std::list<FileValue> fileValueList = value->getList();
-            std::list<FileValue>::iterator fileValueListIter = fileValueList.begin();
+            auto fileValueListIter = fileValueList.begin();
 
             for (fileValueListIter; fileValueListIter != fileValueList.end(); fileValueListIter++) {
                 extraInfo->addNoteModifiers(fileValueListIter->getString());
@@ -1270,7 +1270,7 @@ void IEvent::addParent(IEvent* _event) { parents.push_back(_event); }
 
 bool IEvent::removeParent(IEvent* _event) {
     bool success = false;
-    std::list<IEvent*>::iterator iter = parents.begin();
+    auto iter = parents.begin();
 
     while (iter != parents.end()) {
         if (*iter == _event) {
@@ -1289,7 +1289,7 @@ bool IEvent::removeParent(IEvent* _event) {
 
 bool EventLayer::removeChild(EventDiscretePackage* _child) {
     bool success = false;
-    std::list<EventDiscretePackage*>::iterator iter = children.begin();
+    auto iter = children.begin();
 
     while (iter != children.end()) {
         if (*iter == _child) {
@@ -1314,7 +1314,7 @@ void EventLayer::deleteLayer() {
 }
 
 void IEvent::deleteLayer(EventLayer* _deleteLayer) {
-    std::list<EventLayer*>::iterator i = layers.begin();
+    auto i = layers.begin();
 
     while (*i != _deleteLayer) {
         i++;
@@ -1408,10 +1408,10 @@ IEvent::IEvent(IEvent* _original, string _newName) {
 
     // layers go here
 
-    list<EventLayer*>::iterator iter = _original->layers.begin();
+    auto iter = _original->layers.begin();
 
     while (iter != _original->layers.end()) {
-        EventLayer* newLayer = new EventLayer(this, *iter);
+        auto* newLayer = new EventLayer(this, *iter);
 
         layers.push_back(newLayer);
         iter++;
@@ -1524,9 +1524,9 @@ EventLayer::EventLayer(IEvent* _thisEvent, EventLayer* _originalLayer) {
     byLayer = _originalLayer->byLayer;
     thisIEvent = _thisEvent;
 
-    list<EventDiscretePackage*>::iterator iter = _originalLayer->children.begin();
+    auto iter = _originalLayer->children.begin();
     while (iter != _originalLayer->children.end()) {
-        EventDiscretePackage* newPackage = new EventDiscretePackage(*iter);
+        auto* newPackage = new EventDiscretePackage(*iter);
         children.push_back(newPackage);
 
         iter++;
@@ -1632,7 +1632,7 @@ bool IEvent::haveString(string _string) {
     }
 
     std::string thisLayer;
-    std::list<EventLayer*>::iterator i = layers.begin();
+    auto i = layers.begin();
     bool firstNumberExisted = false;
     while (i != layers.end()) {
         thisLayer = (*i)->outputChildrenNameString();
@@ -1900,7 +1900,7 @@ string IEvent::getXMLTHMLB() {
 
     string layerbuffer = "";
 
-    std::list<EventLayer*>::iterator layersIter = layers.begin();
+    auto layersIter = layers.begin();
 
     while (layersIter != layers.end()) {
         layerbuffer = layerbuffer + (*layersIter)->getXMLString();
@@ -2223,7 +2223,7 @@ string IEvent::getXMLNote() {
 
     std::list<std::string> modifiers = extraInfo->getNoteModifiers();
 
-    std::list<std::string>::iterator iter = modifiers.begin();
+    auto iter = modifiers.begin();
 
     while (iter != modifiers.end()) {
         modifiersBuffer = modifiersBuffer + "        <Modifier>" + *iter + "</Modifier>\n";
@@ -2336,7 +2336,7 @@ IEvent::IEvent(DOMElement* _domElement) {
     eventOrderInPalette = atoi(orderInPalette.c_str());
 
     DOMElement* eventTypeElement = _domElement->getFirstElementChild();
-    DOMCharacterData* textData = (DOMCharacterData*)eventTypeElement->getFirstChild();
+    auto* textData = (DOMCharacterData*)eventTypeElement->getFirstChild();
     char* charBuffer = XMLString::transcode(textData->getData());
     eventType = (EventType)atoi(charBuffer);
     XMLString::release(&charBuffer);
@@ -2537,7 +2537,7 @@ EventBottomModifier* IEvent::BottomEventExtraInfo::buildModifiersFromDOMElement(
         return nullptr;
     }
 
-    EventBottomModifier* currentModifier = new EventBottomModifier();
+    auto* currentModifier = new EventBottomModifier();
 
     DOMElement* thisElement = _thisModifierElement->getFirstElementChild();
     char* charBuffer;
@@ -2571,7 +2571,7 @@ EventBottomModifier* IEvent::BottomEventExtraInfo::buildModifiersFromDOMElement(
 EventDiscretePackage::EventDiscretePackage(DOMElement* _thisPackageElement) {
     DOMElement* thisElement = _thisPackageElement->getFirstElementChild();
     char* charBuffer;
-    DOMCharacterData* textData = (DOMCharacterData*)thisElement->getFirstChild();
+    auto* textData = (DOMCharacterData*)thisElement->getFirstChild();
     if (textData) {
         charBuffer = XMLString::transcode(textData->getData());
         eventName = charBuffer;
@@ -2727,7 +2727,7 @@ std::string IEvent::SoundExtraInfo::getSoundSpectrumEnvelopesString() {
 EventBottomModifier* IEvent::getModifiers() { return modifiers; }
 
 EventBottomModifier* IEvent::addModifier() {
-    EventBottomModifier* newModifier = new EventBottomModifier();
+    auto* newModifier = new EventBottomModifier();
     if (modifiers == nullptr) {
         modifiers = newModifier;
         return modifiers;

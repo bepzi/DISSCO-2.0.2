@@ -57,14 +57,14 @@ EnvelopeLibraryEntry::EnvelopeLibraryEntry(EnvelopeLibraryEntry* _originalEnvelo
     duplicationCurrentNode = head;
 
     while (originalEnvelopeCurrentNode->rightSeg != nullptr) {
-        EnvLibEntrySeg* newSegment = new EnvLibEntrySeg();
+        auto* newSegment = new EnvLibEntrySeg();
         newSegment->segmentType = originalEnvelopeCurrentNode->rightSeg->segmentType;
         newSegment->segmentProperty = originalEnvelopeCurrentNode->rightSeg->segmentProperty;
 
         duplicationCurrentNode->rightSeg = newSegment;
         newSegment->leftNode = duplicationCurrentNode;
 
-        EnvLibEntryNode* newNode =
+        auto* newNode =
             new EnvLibEntryNode(originalEnvelopeCurrentNode->rightSeg->rightNode->x,
                                 originalEnvelopeCurrentNode->rightSeg->rightNode->y);
 

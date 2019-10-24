@@ -638,7 +638,7 @@ void EventAttributesViewController::showAttributesOfEvent(IEvent* _event) {
         }
         // scrolledWindow.remove(); //remove the child from the main scrolled
         // window
-        Gtk::Viewport* temp = (Gtk::Viewport*)scrolledWindow.get_child();
+        auto* temp = (Gtk::Viewport*)scrolledWindow.get_child();
         if (temp) {
             temp->remove();
         }
@@ -777,7 +777,7 @@ void EventAttributesViewController::saveCurrentShownEventData() {
         // save bylayer data  and probability of types for decrete childEventDef
         // use
 
-        std::vector<LayerBox*>::iterator i = layerBoxesStorage.begin();
+        auto i = layerBoxesStorage.begin();
         for (i; i != layerBoxesStorage.end(); i++) {
             (*i)->layerInEvent->byLayer = (*i)->weightEntry.get_text();
         }
@@ -1014,7 +1014,7 @@ void EventAttributesViewController::saveCurrentShownEventData() {
         currentlyShownEvent->setChangedButNotSaved(true);
         IEvent::EventExtraInfo* extraInfo = currentlyShownEvent->getEventExtraInfo();
         extraInfo->clearNoteModifiers();
-        std::vector<Gtk::CheckButton*>::iterator iter2 = noteModifierCheckButtons.begin();
+        auto iter2 = noteModifierCheckButtons.begin();
         for (iter2; iter2 != noteModifierCheckButtons.end(); iter2++) {
             if ((*iter2)->get_active()) {
                 extraInfo->addNoteModifiers((*iter2)->get_label());
@@ -1079,7 +1079,7 @@ void EventAttributesViewController::showCurrentEventData() {
         soundPartialHboxes = nullptr;
     }
 
-    Gtk::Viewport* temp = (Gtk::Viewport*)scrolledWindow.get_child();
+    auto* temp = (Gtk::Viewport*)scrolledWindow.get_child();
     if (temp) {
         temp->remove();
     }
@@ -1614,7 +1614,7 @@ void EventAttributesViewController::showCurrentEventData() {
 
             j = currentlyShownEvent->layers.begin();
             for (j; j != currentlyShownEvent->layers.end(); ++j) {
-                LayerBox* newbox =
+                auto* newbox =
                     new LayerBox(this, projectView, *j,
                                                 currentlyShownEvent->getFlagChildEventDef() == 2);
 
@@ -1630,7 +1630,7 @@ void EventAttributesViewController::showCurrentEventData() {
             }
 
             if (currentlyShownEvent->getFlagChildEventDef() != 2) {
-                std::vector<LayerBox*>::iterator i = layerBoxesStorage.begin();
+                auto i = layerBoxesStorage.begin();
                 for (i; i != layerBoxesStorage.end(); i++) {
                     if ((*i)->weightColumn.get_tree_view() != nullptr) {
                         (*i)->m_TreeView.remove_column((*i)->weightColumn);
@@ -1642,7 +1642,7 @@ void EventAttributesViewController::showCurrentEventData() {
                     }
                 }
             } else {
-                std::vector<LayerBox*>::iterator i = layerBoxesStorage.begin();
+                auto i = layerBoxesStorage.begin();
                 for (i; i != layerBoxesStorage.end(); i++) {
                     if ((*i)->weightColumn.get_tree_view() == nullptr) {
                         (*i)->m_TreeView.append_column((*i)->weightColumn);
@@ -2167,13 +2167,13 @@ void EventAttributesViewController::switchToNoteAttributes() {
 
     // clear all checkbutton
 
-    std::vector<Gtk::CheckButton*>::iterator iter = noteModifierCheckButtons.begin();
+    auto iter = noteModifierCheckButtons.begin();
     for (iter; iter != noteModifierCheckButtons.end(); iter++) {
         (*iter)->set_active(false);
     }
 
     std::list<std::string> modifierList = extraInfo->getNoteModifiers();
-    std::list<std::string>::iterator iter2 = modifierList.begin();
+    auto iter2 = modifierList.begin();
     for (iter2; iter2 != modifierList.end(); iter2++) {
         iter = noteModifierCheckButtons.begin();
         while (iter != noteModifierCheckButtons.end()) {
@@ -2235,7 +2235,7 @@ void EventAttributesViewController::continuumButtonClicked() {
     attributesRefBuilder->get_widget("attributesChildEventDefDiscreteButton", radioButton);
 
     if (radioButton->get_active()) {
-        std::vector<LayerBox*>::iterator i = layerBoxesStorage.begin();
+        auto i = layerBoxesStorage.begin();
         for (i; i != layerBoxesStorage.end(); i++) {
             (*i)->m_TreeView.remove_column((*i)->weightColumn);
             (*i)->m_TreeView.remove_column((*i)->attackEnvColumn);
@@ -2303,7 +2303,7 @@ void EventAttributesViewController::sweepButtonClicked() {
     attributesRefBuilder->get_widget("attributesChildEventDefDiscreteButton", radioButton);
 
     if (radioButton->get_active()) {
-        std::vector<LayerBox*>::iterator i = layerBoxesStorage.begin();
+        auto i = layerBoxesStorage.begin();
         for (i; i != layerBoxesStorage.end(); i++) {
             (*i)->m_TreeView.remove_column((*i)->weightColumn);
             (*i)->m_TreeView.remove_column((*i)->attackEnvColumn);
@@ -2372,7 +2372,7 @@ void EventAttributesViewController::discreteButtonClicked() {
     attributesRefBuilder->get_widget("attributesChildEventDefDiscreteButton", radioButton);
 
     if (!radioButton->get_active()) {
-        std::vector<LayerBox*>::iterator i = layerBoxesStorage.begin();
+        auto i = layerBoxesStorage.begin();
         for (i; i != layerBoxesStorage.end(); i++) {
             (*i)->m_TreeView.append_column((*i)->weightColumn);
             (*i)->m_TreeView.append_column((*i)->attackEnvColumn);
@@ -2469,7 +2469,7 @@ void EventAttributesViewController::densityButtonClicked() {
     entry->set_text("4");
 
     // disable "bylayer entry in all layers
-    std::vector<LayerBox*>::iterator i = layerBoxesStorage.begin();
+    auto i = layerBoxesStorage.begin();
     for (i; i != layerBoxesStorage.end(); i++) {
         (*i)->weightEntry.set_sensitive(false);
         (*i)->weightEntry.set_text("");
@@ -2508,7 +2508,7 @@ void EventAttributesViewController::fixedButtonClicked() {
     // entry->set_text("");
 
     // disable "bylayer entry in all layers
-    std::vector<LayerBox*>::iterator i = layerBoxesStorage.begin();
+    auto i = layerBoxesStorage.begin();
 
     for (i; i != layerBoxesStorage.end(); i++) {
         (*i)->weightEntry.set_sensitive(false);
@@ -2546,7 +2546,7 @@ void EventAttributesViewController::byLayerButtonClicked() {
     // entry->set_text("");
 
     // enable and shows "bylayer entry in all layers
-    std::vector<LayerBox*>::iterator i = layerBoxesStorage.begin();
+    auto i = layerBoxesStorage.begin();
     for (i; i != layerBoxesStorage.end(); i++) {
         (*i)->weightEntry.set_sensitive(true);
         (*i)->weightEntry.set_text((*i)->layerInEvent->getByLayer());
@@ -2607,7 +2607,7 @@ EventAttributesViewController::LayerBox::LayerBox(EventAttributesViewController*
     m_refTreeModel = Gtk::ListStore::create(m_Columns);
     m_TreeView.set_model(m_refTreeModel);
 
-    std::list<EventDiscretePackage*>::iterator i = _childrenInThisLayer->children.begin();
+    auto i = _childrenInThisLayer->children.begin();
 
     int index = 1;
     for (i; i != _childrenInThisLayer->children.end(); i++) {
@@ -2804,7 +2804,7 @@ void EventAttributesViewController::addNewLayerButtonClicked() {
     attributesRefBuilder->get_widget("attributesChildEventDefDiscreteButton", radioButton);
     bool showDiscretePackage = radioButton->get_active();
 
-    LayerBox* newbox =
+    auto* newbox =
         new LayerBox(this, projectView, currentlyShownEvent->addLayer(), showDiscretePackage);
 
     layerBoxes->pack_start((Gtk::Widget&)*newbox, Gtk::PACK_SHRINK);
@@ -3283,7 +3283,7 @@ void EventAttributesViewController::addModifierButtonClicked() {
         newModifier = currentlyShownEvent->addModifier();
     }
 
-    BottomEventModifierAlignment* newModifierAlignment =
+    auto* newModifierAlignment =
         new BottomEventModifierAlignment(newModifier, this);
     if (modifiers == nullptr) {
         newModifierAlignment->prev = nullptr;
@@ -3566,7 +3566,7 @@ void EventAttributesViewController::insertFunctionString(FunctionButton _button)
 
 void EventAttributesViewController::LayerBox::byLayerWeightButtonClicked() {
     if (weightEntry.get_sensitive()) {
-        FunctionGenerator* generator =
+        auto* generator =
             new FunctionGenerator(functionReturnFloat, weightEntry.get_text());
         std::cout << "NOT sure if byLayer is int or float. ask sever" << std::endl;
         int result = generator->run();
@@ -3590,7 +3590,7 @@ void EventAttributesViewController::LayerBox::deleteLayerButtonClicked() {
 void EventAttributesViewController::attributesStandardRevButtonClicked() {
     Gtk::Entry* entry;
     attributesRefBuilder->get_widget("attributesStandardRevEntry", entry);
-    FunctionGenerator* generator = new FunctionGenerator(functionReturnREV, entry->get_text());
+    auto* generator = new FunctionGenerator(functionReturnREV, entry->get_text());
     int result = generator->run();
     if (generator->getResultString() != "" && result == 0) {
         entry->set_text(generator->getResultString());
@@ -3601,7 +3601,7 @@ void EventAttributesViewController::attributesStandardRevButtonClicked() {
 void EventAttributesViewController::attributesStandardFilButtonClicked() {
     Gtk::Entry* entry;
     attributesRefBuilder->get_widget("attributesStandardFilEntry", entry);
-    FunctionGenerator* generator = new FunctionGenerator(functionReturnFIL, entry->get_text());
+    auto* generator = new FunctionGenerator(functionReturnFIL, entry->get_text());
     int result = generator->run();
     if (generator->getResultString() != "" && result == 0) {
         entry->set_text(generator->getResultString());
@@ -3612,7 +3612,7 @@ void EventAttributesViewController::attributesStandardFilButtonClicked() {
 void EventAttributesViewController::attributesStandardSpaButtonClicked() {
     Gtk::Entry* entry;
     attributesRefBuilder->get_widget("attributesStandardSpaEntry", entry);
-    FunctionGenerator* generator = new FunctionGenerator(functionReturnSPA, entry->get_text());
+    auto* generator = new FunctionGenerator(functionReturnSPA, entry->get_text());
     int result = generator->run();
     if (generator->getResultString() != "" && result == 0) {
         entry->set_text(generator->getResultString());
@@ -3624,7 +3624,7 @@ void EventAttributesViewController::BSLoudnessButtonClicked() {
     Gtk::Entry* entry;
 
     attributesRefBuilder->get_widget("BottomSubAttributesLoudnessEntry", entry);
-    FunctionGenerator* generator = new FunctionGenerator(functionReturnInt, entry->get_text());
+    auto* generator = new FunctionGenerator(functionReturnInt, entry->get_text());
     int result = generator->run();
     if (generator->getResultString() != "" && result == 0) {
         entry->set_text(generator->getResultString());
@@ -3639,7 +3639,7 @@ void EventAttributesViewController::BSSpatializationButtonClicked() {
 
     Gtk::Entry* entry;
     attributesRefBuilder->get_widget("BottomSubAttributesSpatializationEntry", entry);
-    FunctionGenerator* generator = new FunctionGenerator(functionReturnSPA, entry->get_text());
+    auto* generator = new FunctionGenerator(functionReturnSPA, entry->get_text());
     int result = generator->run();
     if (generator->getResultString() != "" && result == 0) {
         entry->set_text(generator->getResultString());
@@ -3652,7 +3652,7 @@ void EventAttributesViewController::BSReverbButtonClicked() {
     }
     Gtk::Entry* entry;
     attributesRefBuilder->get_widget("BottomSubAttributesReverbEntry", entry);
-    FunctionGenerator* generator = new FunctionGenerator(functionReturnREV, entry->get_text());
+    auto* generator = new FunctionGenerator(functionReturnREV, entry->get_text());
     int result = generator->run();
     if (generator->getResultString() != "" && result == 0) {
         entry->set_text(generator->getResultString());
@@ -3666,7 +3666,7 @@ void EventAttributesViewController::BSFilterButtonClicked() {
     }
     Gtk::Entry* entry;
     attributesRefBuilder->get_widget("BottomSubAttributesFilterEntry", entry);
-    FunctionGenerator* generator = new FunctionGenerator(functionReturnFIL, entry->get_text());
+    auto* generator = new FunctionGenerator(functionReturnFIL, entry->get_text());
     int result = generator->run();
     if (generator->getResultString() != "" && result == 0) {
         entry->set_text(generator->getResultString());
@@ -3677,7 +3677,7 @@ void EventAttributesViewController::BSFilterButtonClicked() {
 void EventAttributesViewController::BSWellTemperedButtonClicked() {
     Gtk::Entry* entry;
     attributesRefBuilder->get_widget("BottomSubAttributesWellTemperedEntry", entry);
-    FunctionGenerator* generator = new FunctionGenerator(functionReturnInt, entry->get_text());
+    auto* generator = new FunctionGenerator(functionReturnInt, entry->get_text());
     int result = generator->run();
     if (generator->getResultString() != "" && result == 0) {
         entry->set_text(generator->getResultString());
@@ -3687,7 +3687,7 @@ void EventAttributesViewController::BSWellTemperedButtonClicked() {
 void EventAttributesViewController::BSFunFreqButton1Clicked() {
     Gtk::Entry* entry;
     attributesRefBuilder->get_widget("BottomSubAttributesFunFreqEntry1", entry);
-    FunctionGenerator* generator = new FunctionGenerator(functionReturnFloat, entry->get_text());
+    auto* generator = new FunctionGenerator(functionReturnFloat, entry->get_text());
     int result = generator->run();
     if (generator->getResultString() != "" && result == 0) {
         entry->set_text(generator->getResultString());
@@ -3697,7 +3697,7 @@ void EventAttributesViewController::BSFunFreqButton1Clicked() {
 void EventAttributesViewController::BSFunFreqButton2Clicked() {
     Gtk::Entry* entry;
     attributesRefBuilder->get_widget("BottomSubAttributesFunFreqEntry2", entry);
-    FunctionGenerator* generator = new FunctionGenerator(functionReturnInt, entry->get_text());
+    auto* generator = new FunctionGenerator(functionReturnInt, entry->get_text());
     int result = generator->run();
     if (generator->getResultString() != "" && result == 0) {
         entry->set_text(generator->getResultString());
@@ -3707,7 +3707,7 @@ void EventAttributesViewController::BSFunFreqButton2Clicked() {
 void EventAttributesViewController::BSContinuumButtonClicked() {
     Gtk::Entry* entry;
     attributesRefBuilder->get_widget("BottomSubAttributesContinuumEntry", entry);
-    FunctionGenerator* generator = new FunctionGenerator(functionReturnFloat, entry->get_text());
+    auto* generator = new FunctionGenerator(functionReturnFloat, entry->get_text());
     int result = generator->run();
     if (generator->getResultString() != "" && result == 0) {
         entry->set_text(generator->getResultString());
@@ -3718,7 +3718,7 @@ void EventAttributesViewController::BSContinuumButtonClicked() {
 void BottomEventModifierAlignment::probablityEnvelopeButtonClicked() {
     Gtk::Entry* entry;
     attributesRefBuilder->get_widget("probablityEnvelopeEntry", entry);
-    FunctionGenerator* generator = new FunctionGenerator(functionReturnENV, entry->get_text());
+    auto* generator = new FunctionGenerator(functionReturnENV, entry->get_text());
     int result = generator->run();
     if (generator->getResultString() != "" && result == 0) {
         entry->set_text(generator->getResultString());
@@ -3728,7 +3728,7 @@ void BottomEventModifierAlignment::probablityEnvelopeButtonClicked() {
 void BottomEventModifierAlignment::ampValueEnvelopeButtonClicked() {
     Gtk::Entry* entry;
     attributesRefBuilder->get_widget("ampValueEnvelopeEntry", entry);
-    FunctionGenerator* generator = new FunctionGenerator(functionReturnENV, entry->get_text());
+    auto* generator = new FunctionGenerator(functionReturnENV, entry->get_text());
     int result = generator->run();
     if (generator->getResultString() != "" && result == 0) {
         entry->set_text(generator->getResultString());
@@ -3741,7 +3741,7 @@ void BottomEventModifierAlignment::rateValueEnvelopeButtonClicked() {
     attributesRefBuilder->get_widget("rateValueEnvelopeEntry", entry);
 
     if (entry->get_sensitive()) {
-        FunctionGenerator* generator = new FunctionGenerator(functionReturnENV, entry->get_text());
+        auto* generator = new FunctionGenerator(functionReturnENV, entry->get_text());
         int result = generator->run();
         if (generator->getResultString() != "" && result == 0) {
             entry->set_text(generator->getResultString());
@@ -3754,7 +3754,7 @@ void BottomEventModifierAlignment::widthEnvelopeButtonClicked() {
     attributesRefBuilder->get_widget("widthEnvelopeEntry", entry);
 
     if (entry->get_sensitive()) {
-        FunctionGenerator* generator = new FunctionGenerator(functionReturnENV, entry->get_text());
+        auto* generator = new FunctionGenerator(functionReturnENV, entry->get_text());
         int result = generator->run();
         if (generator->getResultString() != "" && result == 0) {
             entry->set_text(generator->getResultString());
@@ -3767,7 +3767,7 @@ void EventAttributesViewController::envelopeFunButtonClicked() {
     Gtk::Entry* entry;
     attributesRefBuilder->get_widget("envelopeAttributesBuilderEntry", entry);
 
-    FunctionGenerator* generator = new FunctionGenerator(functionReturnENV, entry->get_text());
+    auto* generator = new FunctionGenerator(functionReturnENV, entry->get_text());
     int result = generator->run();
     if (generator->getResultString() != "" && result == 0) {
         entry->set_text(generator->getResultString());
@@ -3779,7 +3779,7 @@ void EventAttributesViewController::sieveFunButtonClicked() {
     Gtk::Entry* entry;
     attributesRefBuilder->get_widget("SieveAttributesBuilderEntry", entry);
 
-    FunctionGenerator* generator = new FunctionGenerator(functionReturnSIV, entry->get_text());
+    auto* generator = new FunctionGenerator(functionReturnSIV, entry->get_text());
     int result = generator->run();
     if (generator->getResultString() != "" && result == 0) {
         entry->set_text(generator->getResultString());
@@ -3791,7 +3791,7 @@ void EventAttributesViewController::patternFunButtonClicked() {
     Gtk::Entry* entry;
     attributesRefBuilder->get_widget("PatternAttributesBuilderEntry", entry);
 
-    FunctionGenerator* generator = new FunctionGenerator(functionReturnPAT, entry->get_text());
+    auto* generator = new FunctionGenerator(functionReturnPAT, entry->get_text());
     int result = generator->run();
     if (generator->getResultString() != "" && result == 0) {
         entry->set_text(generator->getResultString());
@@ -3803,7 +3803,7 @@ void EventAttributesViewController::reverbFunButtonClicked() {
     Gtk::Entry* entry;
     attributesRefBuilder->get_widget("ReverbAttributesBuilderEntry", entry);
 
-    FunctionGenerator* generator = new FunctionGenerator(functionReturnREV, entry->get_text());
+    auto* generator = new FunctionGenerator(functionReturnREV, entry->get_text());
     int result = generator->run();
     if (generator->getResultString() != "" && result == 0) {
         entry->set_text(generator->getResultString());
@@ -3815,7 +3815,7 @@ void EventAttributesViewController::filterFunButtonClicked() {
     Gtk::Entry* entry;
     attributesRefBuilder->get_widget("FilterAttributesBuilderEntry", entry);
 
-    FunctionGenerator* generator = new FunctionGenerator(functionReturnFIL, entry->get_text());
+    auto* generator = new FunctionGenerator(functionReturnFIL, entry->get_text());
     int result = generator->run();
     if (generator->getResultString() != "" && result == 0) {
         entry->set_text(generator->getResultString());
@@ -3827,7 +3827,7 @@ void EventAttributesViewController::measureFunButtonClicked() {
     Gtk::Entry* entry;
     attributesRefBuilder->get_widget("MeasureAttributesBuilderEntry", entry);
 
-    FunctionGenerator* generator = new FunctionGenerator(functionReturnFIL, entry->get_text());
+    auto* generator = new FunctionGenerator(functionReturnFIL, entry->get_text());
     int result = generator->run();
     if (generator->getResultString() != "" && result == 0) {
         entry->set_text(generator->getResultString());
@@ -3839,7 +3839,7 @@ void EventAttributesViewController::spatializationFunButtonClicked() {
     Gtk::Entry* entry;
     attributesRefBuilder->get_widget("SpatializationAttributesBuilderEntry", entry);
 
-    FunctionGenerator* generator = new FunctionGenerator(functionReturnSPA, entry->get_text());
+    auto* generator = new FunctionGenerator(functionReturnSPA, entry->get_text());
     int result = generator->run();
     if (generator->getResultString() != "" && result == 0) {
         entry->set_text(generator->getResultString());
@@ -3966,7 +3966,7 @@ void EventAttributesViewController::tempoAsFractionButtonClicked() {
 void EventAttributesViewController::deleteKeyPressed(Gtk::Widget* _focus) {
     if (currentlyShownEvent == nullptr || layerBoxesStorage.size() == 0) return;
     cout << "not returned!" << endl;
-    vector<LayerBox*>::iterator layerBoxesIter = layerBoxesStorage.begin();
+    auto layerBoxesIter = layerBoxesStorage.begin();
 
     while (layerBoxesIter != layerBoxesStorage.end()) {
         if (_focus->is_ancestor((Gtk::Widget&)**layerBoxesIter)) {
@@ -4034,7 +4034,7 @@ bool EventAttributesViewController::deleteLayer(LayerBox* _deleteBox) {
     Gtk::VBox* layerBoxes;
     attributesRefBuilder->get_widget("layerBoxes", layerBoxes);
 
-    std::vector<LayerBox*>::iterator layerBoxesIter = layerBoxesStorage.begin();
+    auto layerBoxesIter = layerBoxesStorage.begin();
 
     for (layerBoxesIter; layerBoxesIter != layerBoxesStorage.end(); layerBoxesIter++) {
         layerBoxes->remove(**layerBoxesIter);
@@ -4059,7 +4059,7 @@ bool EventAttributesViewController::deleteLayer(LayerBox* _deleteBox) {
 void EventAttributesViewController::addPartialButtonClicked() {
     currentlyShownEvent->setChangedButNotSaved(true);
 
-    SoundPartialHBox* newBox =
+    auto* newBox =
         new SoundPartialHBox(currentlyShownEvent->getEventExtraInfo()->addPartial(), this);
     SoundPartialHBox* end = soundPartialHboxes;
 
@@ -4118,7 +4118,7 @@ void SoundPartialHBox::modified() { attributes->modified(); }
 SoundPartialHBox::~SoundPartialHBox() {}
 
 void SoundPartialHBox::functionButtonClicked() {
-    FunctionGenerator* generator =
+    auto* generator =
         new FunctionGenerator(functionReturnENV, envelopeEntry.get_text());
     int result = generator->run();
     if (generator->getResultString() != "" && result == 0) {
@@ -4200,7 +4200,7 @@ void SoundPartialHBox::saveString() {
 
 void EventAttributesViewController::refreshChildTypeInLayer() {
     int index = 0;
-    std::vector<LayerBox*>::iterator layerBoxesIter = layerBoxesStorage.begin();
+    auto layerBoxesIter = layerBoxesStorage.begin();
     for (layerBoxesIter; layerBoxesIter != layerBoxesStorage.end(); layerBoxesIter++) {
         index = (*layerBoxesIter)->refreshChildTypeIndex(index);
     }
@@ -4229,7 +4229,7 @@ void EventAttributesViewController::buildNoteModifiersList() {
     attributesRefBuilder->get_widget("NoteAttributesModifiersTable", table);
 
     // clean current noteModifierCheckButtons
-    std::vector<Gtk::CheckButton*>::iterator iter = noteModifierCheckButtons.begin();
+    auto iter = noteModifierCheckButtons.begin();
     for (iter; iter != noteModifierCheckButtons.end(); iter++) {
         table->remove(**iter);
         delete (*iter);
@@ -4242,7 +4242,7 @@ void EventAttributesViewController::buildNoteModifiersList() {
 
     Gtk::CheckButton* button;
     std::map<std::string, bool> defaultModifiers = projectView->getDefaultNoteModifiers();
-    std::map<std::string, bool>::iterator modifierIter = defaultModifiers.begin();
+    auto modifierIter = defaultModifiers.begin();
     for (modifierIter; modifierIter != defaultModifiers.end(); modifierIter++) {
         if ((*modifierIter).second) {
             button = new Gtk::CheckButton((*modifierIter).first, false);
@@ -4260,7 +4260,7 @@ void EventAttributesViewController::buildNoteModifiersList() {
     }
 
     std::vector<std::string> customNoteModifiers = projectView->getCustomNoteModifiers();
-    std::vector<std::string>::iterator modifierIter2 = customNoteModifiers.begin();
+    auto modifierIter2 = customNoteModifiers.begin();
     for (modifierIter2; modifierIter2 != customNoteModifiers.end(); modifierIter2++) {
         button = new Gtk::CheckButton(*modifierIter2, false);  // ubuntu 11.04
         button->signal_pressed().connect(

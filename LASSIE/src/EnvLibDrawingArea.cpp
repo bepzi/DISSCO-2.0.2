@@ -480,8 +480,8 @@ void EnvLibDrawingArea::insertEnvelopeSegment() {
         rightNode = rightNode->rightSeg->rightNode;
     }
 
-    EnvLibEntryNode* newNode = new EnvLibEntryNode(insertx, inserty);
-    EnvLibEntrySeg* newSeg = new EnvLibEntrySeg();
+    auto* newNode = new EnvLibEntryNode(insertx, inserty);
+    auto* newSeg = new EnvLibEntrySeg();
 
     leftNode->rightSeg->rightNode = newNode;
     newNode->leftSeg = leftNode->rightSeg;

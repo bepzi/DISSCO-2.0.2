@@ -216,7 +216,7 @@ void ProjectViewController::initializeModifiers() {
     defaultNoteModifiers.insert(pair<string, bool>("tremolo", true));
     defaultNoteModifiers.insert(pair<string, bool>("vibrato", true));
 
-    std::map<string, bool>::iterator iter = defaultNoteModifiers.begin();
+    auto iter = defaultNoteModifiers.begin();
     while (iter != defaultNoteModifiers.end()) {
         (*iter).second = true;
         iter++;
@@ -284,7 +284,7 @@ ProjectViewController::ProjectViewController(std::string _pathAndName, MainWindo
     sharedPointers->eventAttributesView = eventAttributesView;
     sharedPointers->paletteView = paletteView;
 
-    IEvent* newEvent = new IEvent();
+    auto* newEvent = new IEvent();
     newEvent->setEventName("0");
     newEvent->setEventType(eventTop);
     paletteView->insertEvent(newEvent, "Top");
@@ -760,7 +760,7 @@ void ProjectViewController::insertObject() {
             std::cout << " also duplicated file names are not checked here.";
             std::cout << std::endl;
             modified();
-            IEvent* newEvent = new IEvent();
+            auto* newEvent = new IEvent();
             newEvent->setEventName(nameEntry->get_text());
             newEvent->setEventType(type);
             paletteView->insertEvent(newEvent, flagForFolderMatching);
@@ -773,7 +773,7 @@ void ProjectViewController::insertObject() {
             std::cout << " also duplicated file names are not checked here.";
             std::cout << std::endl;
             modified();
-            IEvent* newEvent = new IEvent();
+            auto* newEvent = new IEvent();
             newEvent->setEventName(nameEntry->get_text());
 
             if (selectedPaletteFolder == "Top") {
@@ -845,7 +845,7 @@ void ProjectViewController::insertObject() {
 
             if (nameEntry->get_text() != "" && renameDialogFlag != 0) {
                 modified();
-                IEvent* newEvent = new IEvent();
+                auto* newEvent = new IEvent();
                 newEvent->setEventName(nameEntry->get_text());
 
                 newEvent->setEventType(type);
@@ -1281,7 +1281,7 @@ void ProjectViewController::save() {
     fputs("    <DefaultModifiers>", file);
 
     stringBuffer = "";
-    std::map<string, bool>::iterator iter = defaultNoteModifiers.begin();
+    auto iter = defaultNoteModifiers.begin();
 
     while (iter != defaultNoteModifiers.end()) {
         // cout <<(*iter).second;
@@ -1297,7 +1297,7 @@ void ProjectViewController::save() {
 
     fputs("    <CustomModifiers>\n", file);
     if (customNoteModifiers.size() != 0) {
-        std::vector<string>::iterator iter2 = customNoteModifiers.begin();
+        auto iter2 = customNoteModifiers.begin();
 
         while (iter2 != customNoteModifiers.end()) {
             stringBuffer = "      <Modifier>" + *iter2 + "</Modifier>\n";
@@ -1420,7 +1420,7 @@ PaletteViewController* ProjectViewController::getPalette() { return paletteView;
 //---------------------------------------------------------------------------//
 
 IEvent* ProjectViewController::getEventByTypeAndName(EventType type, std::string _name) {
-    std::vector<IEvent*>::iterator i = events.begin();
+    auto i = events.begin();
     bool found = false;
     IEvent* beReturn = nullptr;
 
@@ -1577,7 +1577,7 @@ ProjectViewController::ProjectViewController(MainWindow* _mainWindow, std::strin
 
     // Start Parsing File
     XMLPlatformUtils::Initialize();
-    XercesDOMParser* parser = new XercesDOMParser();
+    auto* parser = new XercesDOMParser();
 
     string disscoFile = pathAndName + "/" + _projectTitle;
     // removeExtraEntry(disscoFile);
@@ -1709,7 +1709,7 @@ ProjectViewController::ProjectViewController(MainWindow* _mainWindow, std::strin
     textData = (DOMCharacterData*)element->getFirstChild();
     charBuffer = XMLString::transcode(textData->getData());
 
-    std::map<string, bool>::iterator modifierMapIter = defaultNoteModifiers.begin();
+    auto modifierMapIter = defaultNoteModifiers.begin();
     int index = 0;
     while (modifierMapIter != defaultNoteModifiers.end()) {
         (*modifierMapIter).second = true;
@@ -1764,7 +1764,7 @@ ProjectViewController::ProjectViewController(MainWindow* _mainWindow, std::strin
     XMLString::release(&charBuffer);
     fclose(file);
 
-    EnvelopeLibrary* envelopeLibrary = new EnvelopeLibrary();
+    auto* envelopeLibrary = new EnvelopeLibrary();
     envelopeLibrary->loadLibraryNewFormat((char*)fileString.c_str());
     string deleteCommand = "rm " + fileString;
     system(deleteCommand.c_str());
@@ -1798,7 +1798,7 @@ ProjectViewController::ProjectViewController(MainWindow* _mainWindow, std::strin
     XMLString::release(&charBuffer);
     if (tagName == "MarkovModelLibrary") {
         currentElement = markovModelLibraryElement;
-        DOMText* text = dynamic_cast<DOMText*>(markovModelLibraryElement->getFirstChild());
+        auto* text = dynamic_cast<DOMText*>(markovModelLibraryElement->getFirstChild());
         string data = charBuffer = XMLString::transcode(text->getWholeText());
         XMLString::release(&charBuffer);
 
@@ -1831,13 +1831,13 @@ ProjectViewController::ProjectViewController(MainWindow* _mainWindow, std::strin
     DOMElement* eventElement = domEvents->getFirstElementChild();
 
     while (eventElement != nullptr) {
-        IEvent* newEvent = new IEvent(eventElement);
+        auto* newEvent = new IEvent(eventElement);
         paletteView->insertEvent(newEvent, newEvent->getEventTypeString());
         events.push_back(newEvent);
         eventElement = eventElement->getNextElementSibling();
     }
 
-    std::vector<IEvent*>::iterator eventsIter = events.begin();
+    auto eventsIter = events.begin();
 
     for (eventsIter; eventsIter != events.end(); eventsIter++) {
         (*eventsIter)->link(this);
@@ -1879,7 +1879,7 @@ EnvelopeLibraryEntry* ProjectViewController::convertToLASSIEEnvLibEntry(Envelope
 IEvent* ProjectViewController::findIEvent(EventType _type, std::string _eventName) {
     IEvent* toReturn = nullptr;
 
-    std::vector<IEvent*>::iterator eventsIter = events.begin();
+    auto eventsIter = events.begin();
 
     while (eventsIter != events.end()) {
         if ((_eventName.compare((*eventsIter)->getEventName()) == 0) &&
@@ -1930,7 +1930,7 @@ bool ProjectViewController::getEmptyProject() { return emptyProject; }
 //---------------------------------------------------------------------------//
 
 void ProjectViewController::projectPropertiesDialogFunctionButtonClicked() {
-    FunctionGenerator* generator = new FunctionGenerator(functionReturnFloat, duration);
+    auto* generator = new FunctionGenerator(functionReturnFloat, duration);
     generator->run();
 
     if (generator->getResultString() != "") {
@@ -2002,7 +2002,7 @@ void ProjectViewController::configureNoteModifiers() {
                                                            noteModifiersConfigurationCustomVBox);
 
     CustomNoteModifierHBox* box;
-    vector<string>::iterator iter = customNoteModifiers.begin();
+    auto iter = customNoteModifiers.begin();
 
     for (iter; iter != customNoteModifiers.end(); iter++) {
         box = new CustomNoteModifierHBox(this, *iter);
@@ -2188,7 +2188,7 @@ void ProjectViewController::configureNoteModifiers() {
         noteModifiersConfigurationDialogRefBuilder->get_widget("VibratoButton", checkButton);
         defaultNoteModifiers["vibrato"] = checkButton->get_active();
 
-        std::vector<CustomNoteModifierHBox*>::iterator iter = customNotModifierHBoxes.begin();
+        auto iter = customNotModifierHBoxes.begin();
         customNoteModifiers.clear();
         string modifierText;
         for (iter; iter != customNotModifierHBoxes.end(); iter++) {
@@ -2205,7 +2205,7 @@ void ProjectViewController::configureNoteModifiers() {
     noteModifiersConfigurationDialog = nullptr;
     noteModifiersConfigurationCustomVBox = nullptr;
 
-    std::vector<CustomNoteModifierHBox*>::iterator iter2 = customNotModifierHBoxes.begin();
+    auto iter2 = customNotModifierHBoxes.begin();
     for (iter2; iter2 != customNotModifierHBoxes.end(); iter2++) {
         delete (*iter2);
     }
@@ -2215,7 +2215,7 @@ void ProjectViewController::configureNoteModifiers() {
 //---------------------------------------------------------------------------//
 
 void ProjectViewController::ConfigureNoteModifiersAddButtonClicked() {
-    CustomNoteModifierHBox* newHBox = new CustomNoteModifierHBox(this);
+    auto* newHBox = new CustomNoteModifierHBox(this);
     customNotModifierHBoxes.push_back(newHBox);
     noteModifiersConfigurationCustomVBox->pack_start(*newHBox, Gtk::PACK_SHRINK);
     noteModifiersConfigurationDialog->show_all_children();
@@ -2267,7 +2267,7 @@ void CustomNoteModifierHBox::removeButtonClicked() { projectView->removeCustomNo
 //---------------------------------------------------------------------------//
 
 void ProjectViewController::removeCustomNoteModifier(CustomNoteModifierHBox* _hbox) {
-    std::vector<CustomNoteModifierHBox*>::iterator iter = customNotModifierHBoxes.begin();
+    auto iter = customNotModifierHBoxes.begin();
     while (*iter != _hbox && iter != customNotModifierHBoxes.end()) {
         iter++;
     }
@@ -2288,7 +2288,7 @@ void ProjectViewController::saveNoteModifierConfiguration() {
 
     stringbuffer = "LASSIENOTEDEFAULTMODIFIER = <";
 
-    std::map<string, bool>::iterator iter = defaultNoteModifiers.begin();
+    auto iter = defaultNoteModifiers.begin();
 
     while (iter != defaultNoteModifiers.end()) {
         // cout <<(*iter).second;
@@ -2306,7 +2306,7 @@ void ProjectViewController::saveNoteModifierConfiguration() {
     if (customNoteModifiers.size() != 0) {
         stringbuffer = "LASSIENOTECUSTOMMODIFIER = <";
 
-        std::vector<string>::iterator iter2 = customNoteModifiers.begin();
+        auto iter2 = customNoteModifiers.begin();
 
         while (iter2 != customNoteModifiers.end()) {
             stringbuffer = stringbuffer + "`" + *iter2 + "`";
@@ -2360,7 +2360,7 @@ void ProjectViewController::saveAs(std::string _newPathAndName) {
 //--------------------------------------------------------------------------//
 
 bool ProjectViewController::checkNameExists(string _name, EventType _type) {
-    vector<IEvent*>::iterator iter = events.begin();
+    auto iter = events.begin();
     bool returnValue = false;
     while (!returnValue && iter != events.end()) {
         if ((*iter)->getEventName() == _name && (*iter)->getEventType() == _type) {
@@ -2377,7 +2377,7 @@ bool ProjectViewController::checkNameExists(string _name, EventType _type) {
 
 void ProjectViewController::deleteObject(IEvent* _toDelete) {
     modified();
-    std::vector<IEvent*>::iterator iter = events.begin();
+    auto iter = events.begin();
 
     while ((*iter) != _toDelete && iter != events.end()) {
         iter++;
@@ -2396,7 +2396,7 @@ void ProjectViewController::deleteObject(IEvent* _toDelete) {
 //--------------------------------------------------------------------------//
 
 void ProjectViewController::clearDeletedEvents() {
-    std::vector<IEvent*>::iterator iter = deletedEvents.begin();
+    auto iter = deletedEvents.begin();
     /*
 
     for (iter; iter!= deletedEvents.end(); iter++){
@@ -2469,7 +2469,7 @@ void ProjectViewController::clearDeletedEvents() {
 std::string ProjectViewController::searchPossibleParents(string _fileName) {
     // cout<<"_fileName is :"<<_fileName<<endl;
     string result = "";
-    std::vector<IEvent*>::iterator iter = events.begin();
+    auto iter = events.begin();
 
     for (iter; iter != events.end(); iter++) {
         if ((*iter)->haveString(_fileName)) {

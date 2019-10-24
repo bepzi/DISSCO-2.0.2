@@ -559,7 +559,7 @@ void PaletteViewController::duplicateObject() {
             return;
         }
         sharedPointers->eventAttributesView->saveCurrentShownEventData();
-        IEvent* newIEvent = new IEvent(originalEvent, nameEntry->get_text());
+        auto* newIEvent = new IEvent(originalEvent, nameEntry->get_text());
         string typeString;
         /*
         if (newIEvent->getEventTypeString() =="Env."){

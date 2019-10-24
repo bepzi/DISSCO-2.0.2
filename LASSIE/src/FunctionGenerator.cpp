@@ -1279,7 +1279,7 @@ FunctionGenerator::FunctionGenerator(FunctionReturnType _returnType, std::string
     list<FileValue>::iterator argumentsIter;
 
     XMLPlatformUtils::Initialize();
-    XercesDOMParser* parser = new XercesDOMParser();
+    auto* parser = new XercesDOMParser();
 
     xercesc::MemBufInputSource myxml_buf((const XMLByte*)_originalString.c_str(),
                                          _originalString.size(), "function (in memory)");
@@ -1353,7 +1353,7 @@ FunctionGenerator::FunctionGenerator(FunctionReturnType _returnType, std::string
 
         if (functionFlag == 1) {  // functions
             while (envelopeElement != nullptr) {
-                StochosSubAlignment* newSubAlignment = new StochosSubAlignment(this, 1);
+                auto* newSubAlignment = new StochosSubAlignment(this, 1);
                 if (stochosSubAlignments == nullptr) {
                     stochosSubAlignments = newSubAlignment;
                 } else {
@@ -1369,7 +1369,7 @@ FunctionGenerator::FunctionGenerator(FunctionReturnType _returnType, std::string
             }
         } else {
             while (envelopeElement != nullptr) {
-                StochosSubAlignment* newSubAlignment = new StochosSubAlignment(this, 0);
+                auto* newSubAlignment = new StochosSubAlignment(this, 0);
                 if (stochosSubAlignments == nullptr) {
                     stochosSubAlignments = newSubAlignment;
                 } else {
@@ -1414,7 +1414,7 @@ FunctionGenerator::FunctionGenerator(FunctionReturnType _returnType, std::string
             std::vector<std::string>::iterator functionString;
             for (functionString = listElements.begin(); functionString != listElements.end();
                  ++functionString) {
-                SelectSubAlignment* newSubAlignment = new SelectSubAlignment(this);
+                auto* newSubAlignment = new SelectSubAlignment(this);
                 if (selectSubAlignments == nullptr) {
                     selectSubAlignments = newSubAlignment;
                 } else {
@@ -3100,7 +3100,7 @@ void FunctionGenerator::randomLowBoundFunButtonClicked() {
     Gtk::Entry* entry;
     attributesRefBuilder->get_widget("RandomLowBoundEntry", entry);
 
-    FunctionGenerator* generator = new FunctionGenerator(functionReturnFloat, entry->get_text());
+    auto* generator = new FunctionGenerator(functionReturnFloat, entry->get_text());
     generator->run();
 
     if (generator->getResultString() != "") {
@@ -3112,7 +3112,7 @@ void FunctionGenerator::randomHighBoundFunButtonClicked() {
     Gtk::Entry* entry;
     attributesRefBuilder->get_widget("RandomHighBoundEntry", entry);
 
-    FunctionGenerator* generator = new FunctionGenerator(functionReturnFloat, entry->get_text());
+    auto* generator = new FunctionGenerator(functionReturnFloat, entry->get_text());
     generator->run();
 
     if (generator->getResultString() != "") {
@@ -3138,7 +3138,7 @@ void FunctionGenerator::randomIntLowBoundFunButtonClicked() {
     Gtk::Entry* entry;
     attributesRefBuilder->get_widget("RandomIntLowBoundEntry", entry);
 
-    FunctionGenerator* generator = new FunctionGenerator(functionReturnInt, entry->get_text());
+    auto* generator = new FunctionGenerator(functionReturnInt, entry->get_text());
     generator->run();
 
     if (generator->getResultString() != "") {
@@ -3150,7 +3150,7 @@ void FunctionGenerator::randomIntHighBoundFunButtonClicked() {
     Gtk::Entry* entry;
     attributesRefBuilder->get_widget("RandomIntHighBoundEntry", entry);
 
-    FunctionGenerator* generator = new FunctionGenerator(functionReturnInt, entry->get_text());
+    auto* generator = new FunctionGenerator(functionReturnInt, entry->get_text());
     generator->run();
 
     if (generator->getResultString() != "") {
@@ -3177,7 +3177,7 @@ void FunctionGenerator::randomizerBaseFunButtonClicked() {
     Gtk::Entry* entry;
     attributesRefBuilder->get_widget("RandomizerBaseEntry", entry);
 
-    FunctionGenerator* generator = new FunctionGenerator(functionReturnFloat, entry->get_text());
+    auto* generator = new FunctionGenerator(functionReturnFloat, entry->get_text());
     generator->run();
 
     if (generator->getResultString() != "") {
@@ -3189,7 +3189,7 @@ void FunctionGenerator::randomizerDeviationFunButtonClicked() {
     Gtk::Entry* entry;
     attributesRefBuilder->get_widget("RandomizerDeviationEntry", entry);
 
-    FunctionGenerator* generator = new FunctionGenerator(functionReturnFloat, entry->get_text());
+    auto* generator = new FunctionGenerator(functionReturnFloat, entry->get_text());
     generator->run();
 
     if (generator->getResultString() != "") {
@@ -3231,7 +3231,7 @@ void FunctionGenerator::decayBaseFunButtonClicked() {
     Gtk::Entry* entry;
     attributesRefBuilder->get_widget("DecayBaseEntry", entry);
 
-    FunctionGenerator* generator = new FunctionGenerator(functionReturnFloat, entry->get_text());
+    auto* generator = new FunctionGenerator(functionReturnFloat, entry->get_text());
     generator->run();
 
     if (generator->getResultString() != "") {
@@ -3243,7 +3243,7 @@ void FunctionGenerator::decayRateFunButtonClicked() {
     Gtk::Entry* entry;
     attributesRefBuilder->get_widget("DecayRateEntry", entry);
 
-    FunctionGenerator* generator = new FunctionGenerator(functionReturnFloat, entry->get_text());
+    auto* generator = new FunctionGenerator(functionReturnFloat, entry->get_text());
     generator->run();
 
     if (generator->getResultString() != "") {
@@ -3256,7 +3256,7 @@ void FunctionGenerator::decayIndexFunButtonClicked() {
     Gtk::Entry* entry;
     attributesRefBuilder->get_widget("DecayIndexEntry", entry);
 
-    FunctionGenerator* generator = new FunctionGenerator(functionReturnInt, entry->get_text());
+    auto* generator = new FunctionGenerator(functionReturnInt, entry->get_text());
     generator->run();
 
     if (generator->getResultString() != "") {
@@ -3299,7 +3299,7 @@ void FunctionGenerator::inverseFunButtonClicked() {
     Gtk::Entry* entry;
     attributesRefBuilder->get_widget("InverseEntry", entry);
 
-    FunctionGenerator* generator = new FunctionGenerator(functionReturnFloat, entry->get_text());
+    auto* generator = new FunctionGenerator(functionReturnFloat, entry->get_text());
     generator->run();
 
     if (generator->getResultString() != "") {
@@ -3331,7 +3331,7 @@ void FunctionGenerator::LNFunButtonClicked() {
     Gtk::Entry* entry;
     attributesRefBuilder->get_widget("LNEntry", entry);
 
-    FunctionGenerator* generator = new FunctionGenerator(functionReturnFloat, entry->get_text());
+    auto* generator = new FunctionGenerator(functionReturnFloat, entry->get_text());
     generator->run();
 
     if (generator->getResultString() != "") {
@@ -3353,7 +3353,7 @@ void FunctionGenerator::FibonacciFunButtonClicked() {
     Gtk::Entry* entry;
     attributesRefBuilder->get_widget("FibonacciEntry", entry);
 
-    FunctionGenerator* generator = new FunctionGenerator(functionReturnInt, entry->get_text());
+    auto* generator = new FunctionGenerator(functionReturnInt, entry->get_text());
     generator->run();
 
     if (generator->getResultString() != "") {
@@ -3397,7 +3397,7 @@ void FunctionGenerator::selectIndexFunButtonClicked() {
     Gtk::Entry* entry;
     attributesRefBuilder->get_widget("SelectIndexEntry", entry);
 
-    FunctionGenerator* generator = new FunctionGenerator(functionReturnInt, entry->get_text());
+    auto* generator = new FunctionGenerator(functionReturnInt, entry->get_text());
     generator->run();
 
     if (generator->getResultString() != "") {
@@ -3431,7 +3431,7 @@ void FunctionGenerator::selectEntryChanged() {
 }
 
 void FunctionGenerator::selectAddNodeButtonClicked() {
-    SelectSubAlignment* newSubAlignment = new SelectSubAlignment(this);
+    auto* newSubAlignment = new SelectSubAlignment(this);
     if (selectSubAlignments == nullptr) {
         selectSubAlignments = newSubAlignment;
     } else {
@@ -3447,9 +3447,9 @@ void FunctionGenerator::selectAddNodeButtonClicked() {
 }
 
 void FunctionGenerator::selectFunButtonClicked() {
-    Gtk::Entry* entry = dynamic_cast<Gtk::Entry*>(get_focus());
+    auto* entry = dynamic_cast<Gtk::Entry*>(get_focus());
     if (entry) {
-        FunctionGenerator* generator =
+        auto* generator =
             new FunctionGenerator(functionReturnMakeListFun, entry->get_text());
         int result = generator->run();
         if (generator->getResultString() != "" && result == 0) {
@@ -3564,7 +3564,7 @@ void FunctionGenerator::SelectSubAlignment::clear() {
 }
 
 void FunctionGenerator::stochosAddNodeButtonClicked() {
-    StochosSubAlignment* newSubAlignment = new StochosSubAlignment(this, stochosMethodFlag);
+    auto* newSubAlignment = new StochosSubAlignment(this, stochosMethodFlag);
     if (stochosSubAlignments == nullptr) {
         stochosSubAlignments = newSubAlignment;
     } else {
@@ -3657,12 +3657,12 @@ void FunctionGenerator::stochosRemoveNode(StochosSubAlignment* _remove) {
 }
 
 void FunctionGenerator::stochosFunButtonClicked() {
-    Gtk::Entry* entry = dynamic_cast<Gtk::Entry*>(get_focus());
+    auto* entry = dynamic_cast<Gtk::Entry*>(get_focus());
     if (entry) {
         Gtk::Entry* offset;
         attributesRefBuilder->get_widget("StochosOffsetEntry", offset);
 
-        FunctionGenerator* generator = new FunctionGenerator(
+        auto* generator = new FunctionGenerator(
             (entry == offset) ? functionReturnInt : functionReturnENV, entry->get_text());
         int result = generator->run();
         if (generator->getResultString() != "" && result == 0) {
@@ -3831,7 +3831,7 @@ void FunctionGenerator::valuePickAbsRangeFunButtonClicked() {
     Gtk::Entry* entry;
     attributesRefBuilder->get_widget("ValuePickAbsRangeEntry", entry);
 
-    FunctionGenerator* generator = new FunctionGenerator(functionReturnFloat, entry->get_text());
+    auto* generator = new FunctionGenerator(functionReturnFloat, entry->get_text());
     generator->run();
 
     if (generator->getResultString() != "") {
@@ -3844,7 +3844,7 @@ void FunctionGenerator::valuePickLowFunButtonClicked() {
     Gtk::Entry* entry;
     attributesRefBuilder->get_widget("ValuePickLowEntry", entry);
 
-    FunctionGenerator* generator = new FunctionGenerator(functionReturnENV, entry->get_text());
+    auto* generator = new FunctionGenerator(functionReturnENV, entry->get_text());
     generator->run();
 
     if (generator->getResultString() != "") {
@@ -3857,7 +3857,7 @@ void FunctionGenerator::valuePickHighFunButtonClicked() {
     Gtk::Entry* entry;
     attributesRefBuilder->get_widget("ValuePickHighEntry", entry);
 
-    FunctionGenerator* generator = new FunctionGenerator(functionReturnENV, entry->get_text());
+    auto* generator = new FunctionGenerator(functionReturnENV, entry->get_text());
     generator->run();
 
     if (generator->getResultString() != "") {
@@ -3870,7 +3870,7 @@ void FunctionGenerator::valuePickDistFunButtonClicked() {
     Gtk::Entry* entry;
     attributesRefBuilder->get_widget("ValuePickDistEntry", entry);
 
-    FunctionGenerator* generator = new FunctionGenerator(functionReturnENV, entry->get_text());
+    auto* generator = new FunctionGenerator(functionReturnENV, entry->get_text());
     generator->run();
 
     if (generator->getResultString() != "") {
@@ -3965,7 +3965,7 @@ void FunctionGenerator::chooseLFunButtonClicked() {
     Gtk::Entry* entry;
     attributesRefBuilder->get_widget("ChooseLEntry", entry);
 
-    FunctionGenerator* generator = new FunctionGenerator(functionReturnSIV, entry->get_text());
+    auto* generator = new FunctionGenerator(functionReturnSIV, entry->get_text());
     generator->run();
 
     if (generator->getResultString() != "") {
@@ -3988,7 +3988,7 @@ void FunctionGenerator::getPatternOffsetFunButtonClicked() {
     Gtk::Entry* entry;
     attributesRefBuilder->get_widget("GetPatternOffsetEntry", entry);
 
-    FunctionGenerator* generator = new FunctionGenerator(functionReturnInt, entry->get_text());
+    auto* generator = new FunctionGenerator(functionReturnInt, entry->get_text());
     generator->run();
 
     if (generator->getResultString() != "") {
@@ -4001,7 +4001,7 @@ void FunctionGenerator::getPatternFunButtonClicked() {
     Gtk::Entry* entry;
     attributesRefBuilder->get_widget("GetPatternEntry", entry);
 
-    FunctionGenerator* generator = new FunctionGenerator(functionReturnPAT, entry->get_text());
+    auto* generator = new FunctionGenerator(functionReturnPAT, entry->get_text());
     generator->run();
 
     if (generator->getResultString() != "") {
@@ -4053,7 +4053,7 @@ void FunctionGenerator::makeListFunctionFunButtonClicked() {
     Gtk::Entry* entry;
     attributesRefBuilder->get_widget("MakeListFunctionEntry", entry);
 
-    FunctionGenerator* generator =
+    auto* generator =
         new FunctionGenerator(functionReturnMakeListFun, entry->get_text());
     generator->run();
 
@@ -4067,7 +4067,7 @@ void FunctionGenerator::makeListSizeFunButtonClicked() {
     Gtk::Entry* entry;
     attributesRefBuilder->get_widget("MakeListSizeEntry", entry);
 
-    FunctionGenerator* generator = new FunctionGenerator(functionReturnInt, entry->get_text());
+    auto* generator = new FunctionGenerator(functionReturnInt, entry->get_text());
     generator->run();
 
     if (generator->getResultString() != "") {
@@ -4121,7 +4121,7 @@ void FunctionGenerator::envLibEnvelopeFunButtonClicked() {
     Gtk::Entry* entry;
     attributesRefBuilder->get_widget("EnvLibEnvelopeEntry", entry);
 
-    FunctionGenerator* generator = new FunctionGenerator(functionReturnInt, entry->get_text());
+    auto* generator = new FunctionGenerator(functionReturnInt, entry->get_text());
     generator->run();
 
     if (generator->getResultString() != "") {
@@ -4134,7 +4134,7 @@ void FunctionGenerator::envLibScalingFactorFunButtonClicked() {
     Gtk::Entry* entry;
     attributesRefBuilder->get_widget("EnvLibScalingFactorEntry", entry);
 
-    FunctionGenerator* generator = new FunctionGenerator(functionReturnFloat, entry->get_text());
+    auto* generator = new FunctionGenerator(functionReturnFloat, entry->get_text());
     generator->run();
 
     if (generator->getResultString() != "") {
@@ -4337,7 +4337,7 @@ void FunctionGenerator::MakeEnvelopeSubAlignment::xValueFunButtonClicked() {
     Gtk::Entry* entry;
     attributesRefBuilder->get_widget("XValueEntry", entry);
 
-    FunctionGenerator* generator = new FunctionGenerator(functionReturnFloat, entry->get_text());
+    auto* generator = new FunctionGenerator(functionReturnFloat, entry->get_text());
     generator->run();
 
     if (generator->getResultString() != "") {
@@ -4350,7 +4350,7 @@ void FunctionGenerator::MakeEnvelopeSubAlignment::yValueFunButtonClicked() {
     Gtk::Entry* entry;
     attributesRefBuilder->get_widget("YValueEntry", entry);
 
-    FunctionGenerator* generator = new FunctionGenerator(functionReturnFloat, entry->get_text());
+    auto* generator = new FunctionGenerator(functionReturnFloat, entry->get_text());
     generator->run();
 
     if (generator->getResultString() != "") {
@@ -4427,7 +4427,7 @@ void FunctionGenerator::makeEnvelopeTextChanged() {
 }
 
 void FunctionGenerator::makeEnvelopeInsertNode(MakeEnvelopeSubAlignment* _insertAfter) {
-    MakeEnvelopeSubAlignment* newNode = new MakeEnvelopeSubAlignment(this);
+    auto* newNode = new MakeEnvelopeSubAlignment(this);
     newNode->next = _insertAfter->next;
     newNode->prev = _insertAfter;
     _insertAfter->next = newNode;
@@ -4492,7 +4492,7 @@ void FunctionGenerator::makeEnvelopeScalingFactorFunButtonClicked() {
     Gtk::Entry* entry;
     attributesRefBuilder->get_widget("MakeEnvelopeScalingFactorEntry", entry);
 
-    FunctionGenerator* generator = new FunctionGenerator(functionReturnFloat, entry->get_text());
+    auto* generator = new FunctionGenerator(functionReturnFloat, entry->get_text());
     generator->run();
 
     if (generator->getResultString() != "") {
@@ -4505,7 +4505,7 @@ void FunctionGenerator::makeEnvelopeXValueFunButtonClicked() {
     Gtk::Entry* entry;
     attributesRefBuilder->get_widget("MakeEnvelopeXValueEntry", entry);
 
-    FunctionGenerator* generator = new FunctionGenerator(functionReturnFloat, entry->get_text());
+    auto* generator = new FunctionGenerator(functionReturnFloat, entry->get_text());
     generator->run();
 
     if (generator->getResultString() != "") {
@@ -4518,7 +4518,7 @@ void FunctionGenerator::makeEnvelopeYValueFunButtonClicked() {
     Gtk::Entry* entry;
     attributesRefBuilder->get_widget("MakeEnvelopeYValueEntry", entry);
 
-    FunctionGenerator* generator = new FunctionGenerator(functionReturnFloat, entry->get_text());
+    auto* generator = new FunctionGenerator(functionReturnFloat, entry->get_text());
     generator->run();
 
     if (generator->getResultString() != "") {
@@ -4531,7 +4531,7 @@ void FunctionGenerator::makePatternIntervalsFunButtonClicked() {
     Gtk::Entry* entry;
     attributesRefBuilder->get_widget("MakePatternIntervalsEntry", entry);
 
-    FunctionGenerator* generator = new FunctionGenerator(functionReturnList, entry->get_text());
+    auto* generator = new FunctionGenerator(functionReturnList, entry->get_text());
     generator->run();
 
     if (generator->getResultString() != "") {
@@ -4556,7 +4556,7 @@ void FunctionGenerator::expandPatternModuloFunButtonClicked() {
     Gtk::Entry* entry;
     attributesRefBuilder->get_widget("ExpandPatternModuloEntry", entry);
 
-    FunctionGenerator* generator = new FunctionGenerator(functionReturnInt, entry->get_text());
+    auto* generator = new FunctionGenerator(functionReturnInt, entry->get_text());
     generator->run();
 
     if (generator->getResultString() != "") {
@@ -4569,7 +4569,7 @@ void FunctionGenerator::expandPatternLowFunButtonClicked() {
     Gtk::Entry* entry;
     attributesRefBuilder->get_widget("ExpandPatternLowEntry", entry);
 
-    FunctionGenerator* generator = new FunctionGenerator(functionReturnInt, entry->get_text());
+    auto* generator = new FunctionGenerator(functionReturnInt, entry->get_text());
     generator->run();
 
     if (generator->getResultString() != "") {
@@ -4582,7 +4582,7 @@ void FunctionGenerator::expandPatternHighFunButtonClicked() {
     Gtk::Entry* entry;
     attributesRefBuilder->get_widget("ExpandPatternHighEntry", entry);
 
-    FunctionGenerator* generator = new FunctionGenerator(functionReturnInt, entry->get_text());
+    auto* generator = new FunctionGenerator(functionReturnInt, entry->get_text());
     generator->run();
 
     if (generator->getResultString() != "") {
@@ -4595,7 +4595,7 @@ void FunctionGenerator::expandPatternPatternFunButtonClicked() {
     Gtk::Entry* entry;
     attributesRefBuilder->get_widget("ExpandPatternPatternEntry", entry);
 
-    FunctionGenerator* generator = new FunctionGenerator(functionReturnPAT, entry->get_text());
+    auto* generator = new FunctionGenerator(functionReturnPAT, entry->get_text());
     generator->run();
 
     if (generator->getResultString() != "") {
@@ -4741,7 +4741,7 @@ void FunctionGenerator::makeFilterFrequencyFunButtonClicked() {
     Gtk::Entry* entry;
     attributesRefBuilder->get_widget("MakeFilterFrequencyEntry", entry);
 
-    FunctionGenerator* generator = new FunctionGenerator(functionReturnFloat, entry->get_text());
+    auto* generator = new FunctionGenerator(functionReturnFloat, entry->get_text());
     generator->run();
 
     if (generator->getResultString() != "") {
@@ -4754,7 +4754,7 @@ void FunctionGenerator::makeFilterBandWidthFunButtonClicked() {
     Gtk::Entry* entry;
     attributesRefBuilder->get_widget("MakeFilterBandWidthEntry", entry);
 
-    FunctionGenerator* generator = new FunctionGenerator(functionReturnFloat, entry->get_text());
+    auto* generator = new FunctionGenerator(functionReturnFloat, entry->get_text());
     generator->run();
 
     if (generator->getResultString() != "") {
@@ -4769,7 +4769,7 @@ void FunctionGenerator::makeFilterDBGainFunButtonClicked() {
 
     if (!entry->get_sensitive()) return;
 
-    FunctionGenerator* generator = new FunctionGenerator(functionReturnFloat, entry->get_text());
+    auto* generator = new FunctionGenerator(functionReturnFloat, entry->get_text());
     generator->run();
 
     if (generator->getResultString() != "") {
@@ -4794,7 +4794,7 @@ void FunctionGenerator::REV_SimpleEntryFunButtonClicked() {
     Gtk::Entry* entry;
     attributesRefBuilder->get_widget("REV_SimpleEntry", entry);
 
-    FunctionGenerator* generator = new FunctionGenerator(functionReturnFloat, entry->get_text());
+    auto* generator = new FunctionGenerator(functionReturnFloat, entry->get_text());
     generator->run();
 
     if (generator->getResultString() != "") {
@@ -4819,7 +4819,7 @@ void FunctionGenerator::REV_MediumReverbPercentFunButtonClicked() {
     Gtk::Entry* entry;
     attributesRefBuilder->get_widget("REV_MediumReverbPercentEntry", entry);
 
-    FunctionGenerator* generator = new FunctionGenerator(functionReturnENV, entry->get_text());
+    auto* generator = new FunctionGenerator(functionReturnENV, entry->get_text());
     generator->run();
 
     if (generator->getResultString() != "") {
@@ -4832,7 +4832,7 @@ void FunctionGenerator::REV_MediumHilowSpreadFunButtonClicked() {
     Gtk::Entry* entry;
     attributesRefBuilder->get_widget("REV_MediumHilowSpreadEntry", entry);
 
-    FunctionGenerator* generator = new FunctionGenerator(functionReturnFloat, entry->get_text());
+    auto* generator = new FunctionGenerator(functionReturnFloat, entry->get_text());
     generator->run();
 
     if (generator->getResultString() != "") {
@@ -4845,7 +4845,7 @@ void FunctionGenerator::REV_MediumGainAllPassFunButtonClicked() {
     Gtk::Entry* entry;
     attributesRefBuilder->get_widget("REV_MediumGainAllPassEntry", entry);
 
-    FunctionGenerator* generator = new FunctionGenerator(functionReturnFloat, entry->get_text());
+    auto* generator = new FunctionGenerator(functionReturnFloat, entry->get_text());
     generator->run();
 
     if (generator->getResultString() != "") {
@@ -4858,7 +4858,7 @@ void FunctionGenerator::REV_MediumDelayFunButtonClicked() {
     Gtk::Entry* entry;
     attributesRefBuilder->get_widget("REV_MediumDelayEntry", entry);
 
-    FunctionGenerator* generator = new FunctionGenerator(functionReturnFloat, entry->get_text());
+    auto* generator = new FunctionGenerator(functionReturnFloat, entry->get_text());
     generator->run();
 
     if (generator->getResultString() != "") {
@@ -4891,7 +4891,7 @@ void FunctionGenerator::REV_AdvancedReverbPercentFunButtonClicked() {
     Gtk::Entry* entry;
     attributesRefBuilder->get_widget("REV_AdvancedReverbPercentEntry", entry);
 
-    FunctionGenerator* generator = new FunctionGenerator(functionReturnENV, entry->get_text());
+    auto* generator = new FunctionGenerator(functionReturnENV, entry->get_text());
     generator->run();
 
     if (generator->getResultString() != "") {
@@ -4904,7 +4904,7 @@ void FunctionGenerator::REV_AdvancedCombGainListFunButtonClicked() {
     Gtk::Entry* entry;
     attributesRefBuilder->get_widget("REV_AdvancedCombGainListEntry", entry);
 
-    FunctionGenerator* generator = new FunctionGenerator(functionReturnList, entry->get_text());
+    auto* generator = new FunctionGenerator(functionReturnList, entry->get_text());
     generator->run();
 
     if (generator->getResultString() != "") {
@@ -4917,7 +4917,7 @@ void FunctionGenerator::REV_AdvancedLPGainListFunButtonClicked() {
     Gtk::Entry* entry;
     attributesRefBuilder->get_widget("REV_LPGainListEntry", entry);
 
-    FunctionGenerator* generator = new FunctionGenerator(functionReturnList, entry->get_text());
+    auto* generator = new FunctionGenerator(functionReturnList, entry->get_text());
     generator->run();
 
     if (generator->getResultString() != "") {
@@ -4930,7 +4930,7 @@ void FunctionGenerator::REV_AdvancedGainAllPassFunButtonClicked() {
     Gtk::Entry* entry;
     attributesRefBuilder->get_widget("REV_AdvancedGainAllPassEntry", entry);
 
-    FunctionGenerator* generator = new FunctionGenerator(functionReturnFloat, entry->get_text());
+    auto* generator = new FunctionGenerator(functionReturnFloat, entry->get_text());
     generator->run();
 
     if (generator->getResultString() != "") {
@@ -4943,7 +4943,7 @@ void FunctionGenerator::REV_AdvancedDelayFunButtonClicked() {
     Gtk::Entry* entry;
     attributesRefBuilder->get_widget("REV_AdvancedDelayEntry", entry);
 
-    FunctionGenerator* generator = new FunctionGenerator(functionReturnFloat, entry->get_text());
+    auto* generator = new FunctionGenerator(functionReturnFloat, entry->get_text());
     generator->run();
 
     if (generator->getResultString() != "") {
@@ -4991,7 +4991,7 @@ void FunctionGenerator::makeSieveLowFunButtonClicked() {
     Gtk::Entry* entry;
     attributesRefBuilder->get_widget("MakeSieveLowEntry", entry);
 
-    FunctionGenerator* generator = new FunctionGenerator(functionReturnInt, entry->get_text());
+    auto* generator = new FunctionGenerator(functionReturnInt, entry->get_text());
     generator->run();
 
     if (generator->getResultString() != "") {
@@ -5004,7 +5004,7 @@ void FunctionGenerator::makeSieveHighFunButtonClicked() {
     Gtk::Entry* entry;
     attributesRefBuilder->get_widget("MakeSieveHighEntry", entry);
 
-    FunctionGenerator* generator = new FunctionGenerator(functionReturnInt, entry->get_text());
+    auto* generator = new FunctionGenerator(functionReturnInt, entry->get_text());
     generator->run();
 
     if (generator->getResultString() != "") {
@@ -5088,7 +5088,7 @@ void FunctionGenerator::Spectrum_GenEnvelopeFunButtonClicked() {
     Gtk::Entry* entry;
     attributesRefBuilder->get_widget("Spectrum_GenEnvelopeEntry", entry);
 
-    FunctionGenerator* generator = new FunctionGenerator(functionReturnENV, entry->get_text());
+    auto* generator = new FunctionGenerator(functionReturnENV, entry->get_text());
     generator->run();
 
     if (generator->getResultString() != "") {
@@ -5101,7 +5101,7 @@ void FunctionGenerator::Spectrum_GenDistanceFunButtonClicked() {
     Gtk::Entry* entry;
     attributesRefBuilder->get_widget("Spectrum_GenDistanceEntry", entry);
 
-    FunctionGenerator* generator = new FunctionGenerator(functionReturnFloat, entry->get_text());
+    auto* generator = new FunctionGenerator(functionReturnFloat, entry->get_text());
     generator->run();
 
     if (generator->getResultString() != "") {
@@ -5222,7 +5222,7 @@ void FunctionGenerator::SPAPartialAlignment::funButtonClicked() {
         return;
     }
 
-    FunctionGenerator* generator = new FunctionGenerator(functionReturnENV, entry->get_text());
+    auto* generator = new FunctionGenerator(functionReturnENV, entry->get_text());
     generator->run();
 
     if (generator->getResultString() != "") {
@@ -5473,7 +5473,7 @@ void FunctionGenerator::SPAInsertChannel(SPAChannelAlignment* _insertAfter) {
     }
 
     SPANumOfChannels++;
-    SPAChannelAlignment* newChannel =
+    auto* newChannel =
         new SPAChannelAlignment(this, SPANumOfPartials, _insertAfter->getButtonsShownStatus());
 
     newChannel->prev = _insertAfter;
@@ -5867,7 +5867,7 @@ std::string FunctionGenerator::getFunctionString(FileValue* _value,
             stringbuffer = stringbuffer + "(";
         }
         list<FileValue> arguments = _value->getFtnArgs();
-        list<FileValue>::iterator iter = arguments.begin();
+        auto iter = arguments.begin();
         FileValue* argument;
         while (iter != arguments.end()) {
             argument = &(*iter);
@@ -5916,7 +5916,7 @@ list<std::string> FunctionGenerator::fileValueListToStringList(list<FileValue> _
                                                                FunctionReturnType _returnType) {
     list<string> stringList;
 
-    list<FileValue>::iterator iter = _valueList.begin();
+    auto iter = _valueList.begin();
     FileValue* value;
 
     while (iter != _valueList.end()) {
@@ -5929,7 +5929,7 @@ list<std::string> FunctionGenerator::fileValueListToStringList(list<FileValue> _
 
 std::string FunctionGenerator::stringListToString(list<std::string> _list) {
     string stringbuffer = "<";
-    list<std::string>::iterator iter = _list.begin();
+    auto iter = _list.begin();
     while (iter != _list.end()) {
         stringbuffer += *iter;
         iter++;

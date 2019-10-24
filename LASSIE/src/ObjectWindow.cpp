@@ -150,7 +150,7 @@ void ObjectWindow::refresh() {
     Gtk::Table* table;
     attributesRefBuilder->get_widget("objectTable", table);
     vector<Gtk::Widget*> children = table->get_children();
-    vector<Gtk::Widget*>::iterator iter = children.begin();
+    auto iter = children.begin();
     for (iter; iter != children.end(); iter++) {
         table->remove(*(*iter));
     }
@@ -232,7 +232,7 @@ void ObjectWindow::sizeChange(int _newNumOfColumns) {
     attributesRefBuilder->get_widget("objectTable", table);
 
     vector<Gtk::Widget*> children = table->get_children();
-    vector<Gtk::Widget*>::iterator iter = children.begin();
+    auto iter = children.begin();
     for (iter; iter != children.end(); iter++) {
         table->remove(*(*iter));
     }
@@ -300,7 +300,7 @@ void ObjectWindow::numOfObjectsChange() {
     Gtk::Table* table;
     attributesRefBuilder->get_widget("objectTable", table);
     vector<Gtk::Widget*> children = table->get_children();
-    vector<Gtk::Widget*>::iterator iter = children.begin();
+    auto iter = children.begin();
     for (iter; iter != children.end(); iter++) {
         table->remove(*(*iter));
     }
