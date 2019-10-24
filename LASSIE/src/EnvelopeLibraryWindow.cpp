@@ -50,7 +50,7 @@ EnvelopeLibraryWindow::EnvelopeLibraryWindow() {
     }
 
 #else
-    std::auto_ptr<Glib::Error> error;
+    std::unique_ptr<Glib::Error> error;
     if (!attributesRefBuilder->add_from_file("./LASSIE/src/UI/EnvelopeLibraryWindow.ui", error)) {
         std::cerr << error->what() << std::endl;
     }
@@ -191,9 +191,9 @@ EnvelopeLibraryWindow::EnvelopeLibraryWindow() {
         std::cerr << "building menus failed: " << ex.what();
     }
 #else
-    std::auto_ptr<Glib::Error> ex;
-    m_refUIManager->add_ui_from_string(ui_info, ex);
-    if (ex.get()) {
+    std::unique_ptr<Glib::Error> ex;
+    m_refUIManager->add_ui_from_string(ui_info /*, ex */);
+    if (ex) {
         std::cerr << "building menus failed: " << ex->what();
     }
 #endif  // GLIBMM_EXCEPTIONS_ENABLED

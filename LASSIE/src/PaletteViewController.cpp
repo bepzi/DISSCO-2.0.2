@@ -182,9 +182,9 @@ PaletteViewController::PaletteViewController(SharedPointers* _sharedPointers)
         std::cerr << "building menus failed: " << ex.what();
     }
 #else
-    std::auto_ptr<Glib::Error> ex;
+    std::unique_ptr<Glib::Error> ex;
     m_refUIManager->add_ui_from_string(ui_info, ex);
-    if (ex.get()) {
+    if (ex) {
         std::cerr << "building menus failed: " << ex->what();
     }
 #endif  // GLIBMM_EXCEPTIONS_ENABLED
@@ -497,7 +497,7 @@ void PaletteViewController::duplicateObject() {
         std::cerr << "BuilderError: " << ex.what() << std::endl;
     }
 #else
-    std::auto_ptr<Glib::Error> error;
+    std::unique_ptr<Glib::Error> error;
 
     if (!refBuilder->add_from_file("./LASSIE/src/UI/DuplicateObjectDialog.ui", error)) {
         std::cerr << error->what() << std::endl;

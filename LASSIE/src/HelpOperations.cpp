@@ -42,7 +42,7 @@ void HelpOperations::showAbout() {
         std::cerr << "BuilderError: " << ex.what() << std::endl;
     }
 #else
-    std::auto_ptr<Glib::Error> error;
+    std::unique_ptr<Glib::Error> error;
     if (!refBuilder->add_from_file("./LASSIE/src/UI/HelpAbout.ui", error)) {
         std::cerr << error->what() << std::endl;
     }

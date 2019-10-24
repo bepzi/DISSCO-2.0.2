@@ -158,7 +158,7 @@ FunctionGenerator::FunctionGenerator(FunctionReturnType _returnType, const std::
     }
 
 #else
-    std::auto_ptr<Glib::Error> error;
+    std::unique_ptr<Glib::Error> error;
     if (!attributesRefBuilder->add_from_file("./LASSIE/src/UI/FunctionGenerator.ui", error)) {
         std::cerr << error->what() << std::endl;
     }
@@ -3502,7 +3502,7 @@ FunctionGenerator::SelectSubAlignment::SelectSubAlignment(FunctionGenerator* _pa
         std::cerr << "BuilderError: " << ex.what() << std::endl;
     }
 #else
-    std::auto_ptr<Glib::Error> error;
+    std::unique_ptr<Glib::Error> error;
     if (!attributesRefBuilder->add_from_file("./LASSIE/src/UI/FunGenSelectSubAlignment.ui",
                                              error)) {
         std::cerr << error->what() << std::endl;
@@ -3692,7 +3692,7 @@ FunctionGenerator::StochosSubAlignment::StochosSubAlignment(FunctionGenerator* _
     }
 
 #else
-    std::auto_ptr<Glib::Error> error;
+    std::unique_ptr<Glib::Error> error;
     if (!attributesRefBuilder->add_from_file("./LASSIE/src/UI/FunGenStochosSubAlignment.ui",
                                              error)) {
         std::cerr << error->what() << std::endl;
@@ -4108,7 +4108,7 @@ Gtk::Builder::create(); #ifdef GLIBMM_EXCEPTIONS_ENABLED try{
   }
 
    #else
-  std::auto_ptr<Glib::Error> error;
+  std::unique_ptr<Glib::Error> error;
   if (!attributesRefBuilder->add_from_file("./LASSIE/src/UI/RawList.ui",
 error)){ std::cerr << error->what() << std::endl;
   }
@@ -4188,7 +4188,7 @@ FunctionGenerator::MakeEnvelopeSubAlignment::MakeEnvelopeSubAlignment(FunctionGe
     }
 
 #else
-    std::auto_ptr<Glib::Error> error;
+    std::unique_ptr<Glib::Error> error;
     if (!attributesRefBuilder->add_from_file("./LASSIE/src/UI/FunGenMakeEnvelopeSubAlignment.ui",
                                              error)) {
         std::cerr << error->what() << std::endl;
@@ -5146,7 +5146,7 @@ FunctionGenerator::SPAPartialAlignment::SPAPartialAlignment(FunctionGenerator* _
     }
 
 #else
-    std::auto_ptr<Glib::Error> error;
+    std::unique_ptr<Glib::Error> error;
     if (!attributesRefBuilder->add_from_file("./LASSIE/src/UI/FunGenSPAPartialAlignment.ui",
                                              error)) {
         std::cerr << error->what() << std::endl;
@@ -5270,7 +5270,7 @@ FunctionGenerator::SPAChannelAlignment::SPAChannelAlignment(FunctionGenerator* _
     }
 
 #else
-    std::auto_ptr<Glib::Error> error;
+    std::unique_ptr<Glib::Error> error;
     if (!attributesRefBuilder->add_from_file("./LASSIE/src/UI/FunGenSPAChannelAlignment.ui",
                                              error)) {
         std::cerr << error->what() << std::endl;

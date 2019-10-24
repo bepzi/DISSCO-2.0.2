@@ -307,9 +307,9 @@ MainWindow::MainWindow() {
         std::cerr << "building menus failed: " << ex.what();
     }
 #else
-    std::auto_ptr<Glib::Error> ex;
+    std::unique_ptr<Glib::Error> ex;
     menuRefUIManager->add_ui_from_string(ui_info, ex);
-    if (ex.get()) {
+    if (ex) {
         std::cerr << "building menus failed: " << ex->what();
     }
 #endif  // GLIBMM_EXCEPTIONS_ENABLED
@@ -629,7 +629,7 @@ void MainWindow::menuProjectSynthesize() {
         std::cerr << "BuilderError: " << ex.what() << std::endl;
     }
 #else
-    std::auto_ptr<Glib::Error> error;
+    std::unique_ptr<Glib::Error> error;
 
     if (!synthesizeDialogRefBuilder->add_from_file("./LASSIE/src/UI/SynthesizeDialog.ui", error)) {
         std::cerr << error->what() << std::endl;

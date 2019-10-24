@@ -117,7 +117,7 @@ ObjectWindow::ObjectWindow(EventType _type, ProjectViewController* _projectView)
     }
 
 #else
-    std::auto_ptr<Glib::Error> error;
+    std::unique_ptr<Glib::Error> error;
     if (!attributesRefBuilder->add_from_file("./LASSIE/src/UI/ObjectWindow.ui", error)) {
         std::cerr << error->what() << std::endl;
     }

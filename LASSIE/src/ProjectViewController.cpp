@@ -480,7 +480,7 @@ void ProjectViewController::insertObject() {
         std::cerr << "BuilderError: " << ex.what() << std::endl;
     }
 #else
-    std::auto_ptr<Glib::Error> error;
+    std::unique_ptr<Glib::Error> error;
 
     if (!refBuilder->add_from_file("./LASSIE/src/UI/FileNewObject.ui", error)) {
         std::cerr << error->what() << std::endl;
@@ -696,7 +696,7 @@ void ProjectViewController::insertObject() {
                 std::cerr << "BuilderError: " << ex.what() << std::endl;
             }
 #else
-            std::auto_ptr<Glib::Error> error;
+            std::unique_ptr<Glib::Error> error;
             if (!refBuilder1->add_from_file("./LASSIE/src/UI/FileNewObject.ui", error)) {
                 std::cerr << error->what() << std::endl;
             }
@@ -943,7 +943,7 @@ void ProjectViewController::setProperties() {
         std::cerr << "BuilderError: " << ex.what() << std::endl;
     }
 #else
-    std::auto_ptr<Glib::Error> error;
+    std::unique_ptr<Glib::Error> error;
 
     if (!refBuilder->add_from_file("./LASSIE/src/UI/ProjectPropertiesDialog.ui", error)) {
         std::cerr << error->what() << std::endl;
@@ -1986,7 +1986,7 @@ void ProjectViewController::configureNoteModifiers() {
         std::cerr << "BuilderError: " << ex.what() << std::endl;
     }
 #else
-    std::auto_ptr<Glib::Error> error;
+    std::unique_ptr<Glib::Error> error;
 
     if (!noteModifiersConfigurationDialogRefBuilder->add_from_file(
             "./LASSIE/src/UI/NoteModifiersConfiguration.ui", error)) {

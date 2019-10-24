@@ -77,7 +77,7 @@ EventAttributesViewController::EventAttributesViewController(SharedPointers* _sh
         std::cerr << "BuilderError: " << ex.what() << std::endl;
     }
 #else
-    std::auto_ptr<Glib::Error> error;
+    std::unique_ptr<Glib::Error> error;
     if (!attributesRefBuilder->add_from_file("./LASSIE/src/UI/Attributes.ui", error)) {
         std::cerr << error->what() << std::endl;
     }
@@ -2677,9 +2677,9 @@ EventAttributesViewController::LayerBox::LayerBox(EventAttributesViewController*
         std::cerr << "building menus failed: " << ex.what();
     }
 #else
-    std::auto_ptr<Glib::Error> ex;
-    m_refUIManager->add_ui_from_string(ui_info, ex);
-    if (ex.get()) {
+    std::unique_ptr<Glib::Error> ex;
+    m_refUIManager->add_ui_from_string(ui_info /*, ex */);
+    if (ex) {
         std::cerr << "building menus failed: " << ex->what();
     }
 #endif  // GLIBMM_EXCEPTIONS_ENABLED
@@ -3059,7 +3059,7 @@ BottomEventModifierAlignment::BottomEventModifierAlignment(
     }
 
 #else
-    std::auto_ptr<Glib::Error> error;
+    std::unique_ptr<Glib::Error> error;
     if (!attributesRefBuilder->add_from_file("./LASSIE/src/UI/Modifier.ui", error)) {
         std::cerr << error->what() << std::endl;
     }
