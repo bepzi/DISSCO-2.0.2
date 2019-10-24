@@ -140,8 +140,8 @@ ProjectViewController::ProjectViewController(MainWindow* _mainWindow) {
     xmlDocument = nullptr;
 
     ///////////////////////////////////////////////drag and drop//////////////
-    listTargets.push_back(Gtk::TargetEntry("STRING"));
-    listTargets.push_back(Gtk::TargetEntry("text/plain"));
+    listTargets.emplace_back("STRING");
+    listTargets.emplace_back("text/plain");
 
     //////////////////////////////////////////////////////////////////////////
 
@@ -234,7 +234,7 @@ ProjectViewController::ProjectViewController(const std::string& _pathAndName, Ma
     seed = "";
 
     ///////////////////////////////////////////////drag and drop//////////////
-    listTargets.push_back(Gtk::TargetEntry("STRING"));
+    listTargets.emplace_back("STRING");
     // listTargets.push_back( Gtk::TargetEntry("text/plain") );
     //////////////////////////////////////////////////////////////////////////
 
@@ -1454,7 +1454,7 @@ EnvelopeLibraryEntry* ProjectViewController::duplicateEnvelope(
 }
 
 int ProjectViewController::createNewMarkovModel() {
-    markovModels.push_back(MarkovModel<float>());
+    markovModels.emplace_back();
     return markovModels.size() - 1;
 }
 
@@ -1462,7 +1462,7 @@ int ProjectViewController::duplicateMarkovModel(int idx) {
     if (idx < 0 || idx >= markovModels.size()) {
         return -1;
     }
-    markovModels.push_back(MarkovModel<float>(markovModels[idx]));
+    markovModels.emplace_back(markovModels[idx]);
     return markovModels.size() - 1;
 }
 
@@ -1565,7 +1565,7 @@ ProjectViewController::ProjectViewController(MainWindow* _mainWindow, std::strin
     seed = "";
     modifiedButNotSaved = false;
     ///////////////////////////////////////////////drag and drop//////////////
-    listTargets.push_back(Gtk::TargetEntry("STRING"));
+    listTargets.emplace_back("STRING");
     // listTargets.push_back( Gtk::TargetEntry("text/plain") );
     //////////////////////////////////////////////////////////////////////////
     // datPathAndName = _datPathAndName;
@@ -1726,7 +1726,7 @@ ProjectViewController::ProjectViewController(MainWindow* _mainWindow, std::strin
     while (modifier != nullptr) {
         textData = (DOMCharacterData*)modifier->getFirstChild();
         charBuffer = XMLString::transcode(textData->getData());
-        customNoteModifiers.push_back(string(charBuffer));
+        customNoteModifiers.emplace_back(charBuffer);
         XMLString::release(&charBuffer);
         modifier = modifier->getNextElementSibling();
     }
