@@ -43,7 +43,7 @@ class ProjectViewController;
 class EventBottomModifier {  // implemented as a linked list for the convenience
 public:
     EventBottomModifier();
-    EventBottomModifier(EventBottomModifier* _original);
+    explicit EventBottomModifier(EventBottomModifier* _original);
     ~EventBottomModifier();
 
     ModifierType getModifierType();
@@ -97,7 +97,7 @@ public:
     std::string attackEnvScale;
     std::string durationEnv;
     std::string durationEnvScale;
-    EventDiscretePackage(IEvent* _event) {
+    explicit EventDiscretePackage(IEvent* _event) {
         event = _event;
 
         // this is used to store file name of the event for linking after open
@@ -108,9 +108,9 @@ public:
         durationEnv = "";
         durationEnvScale = "";
     }
-    EventDiscretePackage(EventDiscretePackage* _originalPackage);
-    EventDiscretePackage(FileValue* _thisPackageFileValue);
-    EventDiscretePackage(DOMElement* _thisPackageElement);
+    explicit EventDiscretePackage(EventDiscretePackage* _originalPackage);
+    explicit EventDiscretePackage(FileValue* _thisPackageFileValue);
+    explicit EventDiscretePackage(DOMElement* _thisPackageElement);
     std::string getLASSIEMetadataString();
     std::string getXMLString();
     bool link(ProjectViewController* _projectView, IEvent* _thisEvent);
@@ -120,7 +120,7 @@ public:
 
 class EventLayer {
 public:
-    EventLayer(IEvent* _thisEvent);
+    explicit EventLayer(IEvent* _thisEvent);
     EventLayer(IEvent* _thisEvent, EventLayer* _originalLayer);
     EventLayer(FileValue* _thisLayerFileValue, IEvent* _thisEvent);
     EventLayer(DOMElement* _thisLayerElement, IEvent* _thisEvent);
@@ -182,7 +182,7 @@ public:
     // when open project
 
     IEvent(IEvent* _original, string _newName);
-    IEvent(DOMElement* _domElement);
+    explicit IEvent(DOMElement* _domElement);
 
     ~IEvent();
 
@@ -519,8 +519,8 @@ public:
     class BottomEventExtraInfo : public EventExtraInfo {
     public:
         BottomEventExtraInfo();
-        BottomEventExtraInfo(BottomEventExtraInfo* _original);
-        BottomEventExtraInfo(int _childTypeFlag);  // called when parsing files.
+        explicit BottomEventExtraInfo(BottomEventExtraInfo* _original);
+        explicit BottomEventExtraInfo(int _childTypeFlag);  // called when parsing files.
         BottomEventExtraInfo(int _childTypeFlag, DOMElement* _thisElement);
         ~BottomEventExtraInfo();
         int getFrequencyFlag() override;  // 0 = Well_tempered, 1 = Fundamental, 2 =
@@ -566,7 +566,7 @@ public:
     // Envelope
     class EnvelopeExtraInfo : public EventExtraInfo {
     public:
-        EnvelopeExtraInfo(EnvelopeExtraInfo* _original) {
+        explicit EnvelopeExtraInfo(EnvelopeExtraInfo* _original) {
             envelopeBuilder = _original->envelopeBuilder;
         }
         EnvelopeExtraInfo() { envelopeBuilder = ""; }
@@ -582,7 +582,7 @@ public:
     // Pattern
     class PatternExtraInfo : public EventExtraInfo {
     public:
-        PatternExtraInfo(PatternExtraInfo* _original) {
+        explicit PatternExtraInfo(PatternExtraInfo* _original) {
             patternBuilder = _original->patternBuilder;
         }
         PatternExtraInfo() { patternBuilder = ""; }
@@ -598,7 +598,7 @@ public:
     // Spatialization
     class SpatializationExtraInfo : public EventExtraInfo {
     public:
-        SpatializationExtraInfo(SpatializationExtraInfo* _original) {
+        explicit SpatializationExtraInfo(SpatializationExtraInfo* _original) {
             spatializationBuilder = _original->spatializationBuilder;
         }
         SpatializationExtraInfo() { spatializationBuilder = ""; }
@@ -614,7 +614,7 @@ public:
     // Sieve
     class SieveExtraInfo : public EventExtraInfo {
     public:
-        SieveExtraInfo(SieveExtraInfo* _original) { sieveBuilder = _original->sieveBuilder; }
+        explicit SieveExtraInfo(SieveExtraInfo* _original) { sieveBuilder = _original->sieveBuilder; }
         SieveExtraInfo() { sieveBuilder = ""; }
         ~SieveExtraInfo() = default;
         std::string getSieveBuilder() override;
@@ -628,7 +628,7 @@ public:
     // Reverb
     class ReverbExtraInfo : public EventExtraInfo {
     public:
-        ReverbExtraInfo(ReverbExtraInfo* _original);
+        explicit ReverbExtraInfo(ReverbExtraInfo* _original);
         ReverbExtraInfo() { reverbBuilder = ""; }
         ~ReverbExtraInfo() = default;
         std::string getReverbBuilder() override;
@@ -642,7 +642,7 @@ public:
     // Filter
     class FilterExtraInfo : public EventExtraInfo {
     public:
-        FilterExtraInfo(FilterExtraInfo* _original);
+        explicit FilterExtraInfo(FilterExtraInfo* _original);
         FilterExtraInfo() { filterBuilder = ""; }
         ~FilterExtraInfo() = default;
         std::string getFilterBuilder() override;
@@ -656,7 +656,7 @@ public:
     // Measurement
     class MeasureExtraInfo : public EventExtraInfo {
     public:
-        MeasureExtraInfo(MeasureExtraInfo* _original);
+        explicit MeasureExtraInfo(MeasureExtraInfo* _original);
         MeasureExtraInfo() { measureBuilder = ""; }
         ~MeasureExtraInfo() = default;
         std::string getMeasureBuilder() override;
@@ -671,7 +671,7 @@ public:
     class SoundExtraInfo : public EventExtraInfo {
     public:
         SoundExtraInfo();
-        SoundExtraInfo(SoundExtraInfo* _original);
+        explicit SoundExtraInfo(SoundExtraInfo* _original);
         ~SoundExtraInfo();
 
         // void        setNumPartials(std::string _numPartials);
@@ -700,7 +700,7 @@ public:
     class NoteExtraInfo : public EventExtraInfo {
     public:
         NoteExtraInfo();
-        NoteExtraInfo(NoteExtraInfo* _original);
+        explicit NoteExtraInfo(NoteExtraInfo* _original);
         ~NoteExtraInfo();
         std::list<std::string> getNoteModifiers() override;
         void addNoteModifiers(std::string _modifier) override;

@@ -146,7 +146,7 @@ public:
      *  @param _projectView the pointer to its parent ProjectViewController
      *object
      ****************************************************************************/
-    EventAttributesViewController(SharedPointers* _sharedPointers);
+    explicit EventAttributesViewController(SharedPointers* _sharedPointers);
 
     /*! \brief destructor of EventAttributesViewController
      *

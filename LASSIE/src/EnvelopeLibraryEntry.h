@@ -71,7 +71,7 @@ public:
 
 class EnvelopeLibraryEntry {
 public:
-    EnvelopeLibraryEntry(int _number);
+    explicit EnvelopeLibraryEntry(int _number);
     EnvelopeLibraryEntry(Envelope* _envelope, int _number);
     EnvelopeLibraryEntry(EnvelopeLibraryEntry* _originalEnvelope, int _number);
     ~EnvelopeLibraryEntry();

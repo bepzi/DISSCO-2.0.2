@@ -39,7 +39,7 @@ class IEvent;
 
 class ObjectWindowObjectPackage : public Gtk::Button {
 public:
-    ObjectWindowObjectPackage(ProjectViewController* _projectView);
+    explicit ObjectWindowObjectPackage(ProjectViewController* _projectView);
     ~ObjectWindowObjectPackage() override;
     int count();
     void clear();

@@ -52,7 +52,7 @@ class ProjectViewController;
 
 class CustomNoteModifierHBox : public Gtk::HBox {
 public:
-    CustomNoteModifierHBox(ProjectViewController* _projectView);
+    explicit CustomNoteModifierHBox(ProjectViewController* _projectView);
     CustomNoteModifierHBox(ProjectViewController* _projectView, const std::string& _string);
     ~CustomNoteModifierHBox() override;
     std::string getText();
@@ -74,7 +74,7 @@ public:
     /*! \brief The constructor of ProjectViewController
      *
      ***************************************************************************/
-    ProjectViewController(MainWindow* _mainWindow);
+    explicit ProjectViewController(MainWindow* _mainWindow);
     ProjectViewController(const std::string& _pathAndName, MainWindow* _mainWindow);
     ProjectViewController(MainWindow* _mainWindow, std::string _pathAndName,
                           const std::string& _projectTitle);

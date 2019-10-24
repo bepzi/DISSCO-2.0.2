@@ -254,7 +254,7 @@ private:
     // select
     class SelectSubAlignment : public Gtk::Alignment {
     public:
-        SelectSubAlignment(FunctionGenerator* _parent);
+        explicit SelectSubAlignment(FunctionGenerator* _parent);
         ~SelectSubAlignment() override;
         void appendNewNode(SelectSubAlignment* _newNode);
         void clear();
@@ -338,7 +338,7 @@ private:
     class RawListHBox : public Gtk::HBox {
     public:
         Glib::RefPtr<Gtk::Builder> attributesRefBuilder;
-        RawListHBox(FunctionGenerator* _parentGenerator);
+        explicit RawListHBox(FunctionGenerator* _parentGenerator);
         ~RawListHBox() override;
         RawListHBox* next;
         RawListHBox* prev;
@@ -356,7 +356,7 @@ private:
     // MakeEnvelope
     class MakeEnvelopeSubAlignment : public Gtk::Alignment {
     public:
-        MakeEnvelopeSubAlignment(FunctionGenerator* _parent);
+        explicit MakeEnvelopeSubAlignment(FunctionGenerator* _parent);
         ~MakeEnvelopeSubAlignment() override;
 
         MakeEnvelopeSubAlignment* prev;

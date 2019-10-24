@@ -41,7 +41,7 @@ class ObjectWindowObjectPackage;
 
 class PaletteViewController : public Gtk::VBox {
 public:
-    PaletteViewController(SharedPointers* _sharedPointers);
+    explicit PaletteViewController(SharedPointers* _sharedPointers);
     ~PaletteViewController() override;
 
     void insertEvent(IEvent* _event);

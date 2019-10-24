@@ -9,7 +9,7 @@ class EnvLibEntryNode;
 class EnvelopeLibraryWindow;
 class EnvLibDrawingArea : public Gtk::DrawingArea {
 public:
-    EnvLibDrawingArea(EnvelopeLibraryWindow* _envelopeLibraryWindow);
+    explicit EnvLibDrawingArea(EnvelopeLibraryWindow* _envelopeLibraryWindow);
 
     ~EnvLibDrawingArea() override;
     void resetFields();
