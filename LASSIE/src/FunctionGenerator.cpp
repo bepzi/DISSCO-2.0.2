@@ -1310,7 +1310,7 @@ FunctionGenerator::FunctionGenerator(FunctionReturnType _returnType, const std::
         XMLString::release(&functionNameChars);
     }
 
-    if (functionName.compare("RandomInt") == 0) {
+    if (functionName == "RandomInt") {
         iter = combobox->get_model()->get_iter("0");
         row = *iter;
 
@@ -1329,7 +1329,7 @@ FunctionGenerator::FunctionGenerator(FunctionReturnType _returnType, const std::
         entry->set_text(getFunctionString(thisElement));
     }
 
-    if (functionName.compare("Stochos") == 0) {
+    if (functionName == "Stochos") {
         iter = combobox->get_model()->get_iter("0");
         row = *iter;
         while (row[functionListColumns.m_col_name] != "Stochos") {
@@ -1398,7 +1398,7 @@ FunctionGenerator::FunctionGenerator(FunctionReturnType _returnType, const std::
         entry->set_text(getFunctionString(thisElement));
     }
 
-    if (functionName.compare("Select") == 0) {
+    if (functionName == "Select") {
         iter = combobox->get_model()->get_iter("0");
         row = *iter;
         while (row[functionListColumns.m_col_name] != "Select") {
@@ -1412,7 +1412,7 @@ FunctionGenerator::FunctionGenerator(FunctionReturnType _returnType, const std::
         // separate into a vector of strings
         std::vector<std::string> listElements = Utilities::listElementToStringVector(thisElement);
         // If the string isn't empty
-        if (listElements.size() > 1 || listElements[0].compare("") != 0) {
+        if (listElements.size() > 1 || listElements[0] != "") {
             std::vector<std::string>::iterator functionString;
             for (functionString = listElements.begin(); functionString != listElements.end();
                  ++functionString) {
@@ -1454,7 +1454,7 @@ FunctionGenerator::FunctionGenerator(FunctionReturnType _returnType, const std::
     }
 
     // check if CURRENT_TYPE
-    if (functionName.compare("CURRENT_TYPE") == 0) {
+    if (functionName == "CURRENT_TYPE") {
         iter = combobox->get_model()->get_iter("0");
         row = *iter;
         while (row[functionListColumns.m_col_name] != "CURRENT_TYPE") {
@@ -1465,7 +1465,7 @@ FunctionGenerator::FunctionGenerator(FunctionReturnType _returnType, const std::
     }
 
     // check if CURRENT_CHILD_NUM
-    if (functionName.compare("CURRENT_CHILD_NUM") == 0) {
+    if (functionName == "CURRENT_CHILD_NUM") {
         iter = combobox->get_model()->get_iter("0");
         row = *iter;
         while (row[functionListColumns.m_col_name] != "CURRENT_CHILD_NUM") {
@@ -1476,7 +1476,7 @@ FunctionGenerator::FunctionGenerator(FunctionReturnType _returnType, const std::
     }
 
     // check if CURRENT_PARTIAL_NUM
-    if (functionName.compare("CURRENT_PARTIAL_NUM") == 0) {
+    if (functionName == "CURRENT_PARTIAL_NUM") {
         iter = combobox->get_model()->get_iter("0");
         row = *iter;
         while (row[functionListColumns.m_col_name] != "CURRENT_PARTIAL_NUM") {
@@ -1487,7 +1487,7 @@ FunctionGenerator::FunctionGenerator(FunctionReturnType _returnType, const std::
     }
 
     // check if CURRENT_SEGMENT
-    if (functionName.compare("CURRENT_SEGMENT") == 0) {
+    if (functionName == "CURRENT_SEGMENT") {
         iter = combobox->get_model()->get_iter("0");
         row = *iter;
         while (row[functionListColumns.m_col_name] != "CURRENT_SEGMENT") {
@@ -1498,7 +1498,7 @@ FunctionGenerator::FunctionGenerator(FunctionReturnType _returnType, const std::
     }
 
     // check if AVAILABLE_EDU
-    if (functionName.compare("AVAILABLE_EDU") == 0) {
+    if (functionName == "AVAILABLE_EDU") {
         iter = combobox->get_model()->get_iter("0");
         row = *iter;
         while (row[functionListColumns.m_col_name] != "AVAILABLE_EDU") {
@@ -1509,7 +1509,7 @@ FunctionGenerator::FunctionGenerator(FunctionReturnType _returnType, const std::
     }
 
     // check if PREVIOUS_CHILD_DURATION
-    if (functionName.compare("PREVIOUS_CHILD_DURATION") == 0) {
+    if (functionName == "PREVIOUS_CHILD_DURATION") {
         iter = combobox->get_model()->get_iter("0");
         row = *iter;
         while (row[functionListColumns.m_col_name] != "PREVIOUS_CHILD_DURATION") {
@@ -1520,7 +1520,7 @@ FunctionGenerator::FunctionGenerator(FunctionReturnType _returnType, const std::
     }
 
     // check if CURRENT_LAYER
-    if (functionName.compare("CURRENT_LAYER") == 0) {
+    if (functionName == "CURRENT_LAYER") {
         iter = combobox->get_model()->get_iter("0");
         row = *iter;
         while (row[functionListColumns.m_col_name] != "CURRENT_LAYER") {
@@ -1530,7 +1530,7 @@ FunctionGenerator::FunctionGenerator(FunctionReturnType _returnType, const std::
         combobox->set_active(iter);
     }
     // check if ValuePick
-    if (functionName.compare("ValuePick") == 0) {
+    if (functionName == "ValuePick") {
         iter = combobox->get_model()->get_iter("0");
         row = *iter;
         while (row[functionListColumns.m_col_name] != "ValuePick") {
@@ -1634,7 +1634,7 @@ FunctionGenerator::FunctionGenerator(FunctionReturnType _returnType, const std::
     }
 
     // check if ChooseL
-    if (functionName.compare("ChooseL") == 0) {
+    if (functionName == "ChooseL") {
         iter = combobox->get_model()->get_iter("0");
         row = *iter;
         while (row[functionListColumns.m_col_name] != "ChooseL") {
@@ -1651,7 +1651,7 @@ FunctionGenerator::FunctionGenerator(FunctionReturnType _returnType, const std::
     }
 
     // check if GetPattern
-    if (functionName.compare("GetPattern") == 0) {
+    if (functionName == "GetPattern") {
         iter = combobox->get_model()->get_iter("0");
         row = *iter;
         while (row[functionListColumns.m_col_name] != "GetPattern") {
@@ -1696,7 +1696,7 @@ FunctionGenerator::FunctionGenerator(FunctionReturnType _returnType, const std::
         // end parsing
     }
 
-    if (functionName.compare("Random") == 0) {
+    if (functionName == "Random") {
         iter = combobox->get_model()->get_iter("0");
         row = *iter;
         while (row[functionListColumns.m_col_name] != "Random") {
@@ -1715,7 +1715,7 @@ FunctionGenerator::FunctionGenerator(FunctionReturnType _returnType, const std::
     }
 
     // check if Randomizer
-    if (functionName.compare("Randomizer") == 0) {
+    if (functionName == "Randomizer") {
         iter = combobox->get_model()->get_iter("0");
         row = *iter;
         while (row[functionListColumns.m_col_name] != "Randomizer") {
@@ -1733,7 +1733,7 @@ FunctionGenerator::FunctionGenerator(FunctionReturnType _returnType, const std::
         // end parsing
     }
 
-    if (functionName.compare("RandomDensity") == 0) {
+    if (functionName == "RandomDensity") {
         iter = combobox->get_model()->get_iter("0");
         row = *iter;
         while (row[functionListColumns.m_col_name] != "RandomDensity") {
@@ -1755,7 +1755,7 @@ FunctionGenerator::FunctionGenerator(FunctionReturnType _returnType, const std::
     }
 
     // check if Inverse
-    if (functionName.compare("Inverse") == 0) {
+    if (functionName == "Inverse") {
         iter = combobox->get_model()->get_iter("0");
         row = *iter;
         while (row[functionListColumns.m_col_name] != "Inverse") {
@@ -1773,7 +1773,7 @@ FunctionGenerator::FunctionGenerator(FunctionReturnType _returnType, const std::
     }
 
     // check if Markov
-    if (functionName.compare("Markov") == 0) {
+    if (functionName == "Markov") {
         iter = combobox->get_model()->get_iter("0");
         row = *iter;
         while (row[functionListColumns.m_col_name] != "GetFromMarkovChain") {
@@ -1788,7 +1788,7 @@ FunctionGenerator::FunctionGenerator(FunctionReturnType _returnType, const std::
     }
 
     // check if LN
-    if (functionName.compare("LN") == 0) {
+    if (functionName == "LN") {
         iter = combobox->get_model()->get_iter("0");
         row = *iter;
         while (row[functionListColumns.m_col_name] != "LN") {
@@ -1805,7 +1805,7 @@ FunctionGenerator::FunctionGenerator(FunctionReturnType _returnType, const std::
     }
 
     // check if Fibonacci
-    if (functionName.compare("Fibonacci") == 0) {
+    if (functionName == "Fibonacci") {
         iter = combobox->get_model()->get_iter("0");
         row = *iter;
         while (row[functionListColumns.m_col_name] != "Fibonacci") {
@@ -1821,7 +1821,7 @@ FunctionGenerator::FunctionGenerator(FunctionReturnType _returnType, const std::
         // end parsing
     }
     // check if Decay
-    if (functionName.compare("Decay") == 0) {
+    if (functionName == "Decay") {
         iter = combobox->get_model()->get_iter("0");
         row = *iter;
         while (row[functionListColumns.m_col_name] != "Decay") {
@@ -1863,7 +1863,7 @@ FunctionGenerator::FunctionGenerator(FunctionReturnType _returnType, const std::
     }
 
     // check if EnvLib
-    if (functionName.compare("EnvLib") == 0) {
+    if (functionName == "EnvLib") {
         iter = combobox->get_model()->get_iter("0");
         row = *iter;
         while (row[functionListColumns.m_col_name] != "EnvLib") {
@@ -1882,7 +1882,7 @@ FunctionGenerator::FunctionGenerator(FunctionReturnType _returnType, const std::
     }
 
     // check if MakeEnvelope
-    if (functionName.compare("MakeEnvelope") == 0) {
+    if (functionName == "MakeEnvelope") {
         iter = combobox->get_model()->get_iter("0");
         row = *iter;
         while (row[functionListColumns.m_col_name] != "MakeEnvelope") {
@@ -1969,7 +1969,7 @@ FunctionGenerator::FunctionGenerator(FunctionReturnType _returnType, const std::
     }
 
     // check if ReadENVFile
-    if (functionName.compare("ReadENVFile") == 0) {
+    if (functionName == "ReadENVFile") {
         iter = combobox->get_model()->get_iter("0");
         row = *iter;
         while (row[functionListColumns.m_col_name] != "ReadENVFile") {
@@ -1988,7 +1988,7 @@ FunctionGenerator::FunctionGenerator(FunctionReturnType _returnType, const std::
     }
 
     // check if MakeList
-    if (functionName.compare("MakeList") == 0) {
+    if (functionName == "MakeList") {
         iter = combobox->get_model()->get_iter("0");
         row = *iter;
         while (row[functionListColumns.m_col_name] != "MakeList") {
@@ -2024,7 +2024,7 @@ FunctionGenerator::FunctionGenerator(FunctionReturnType _returnType, const std::
     }
     */
     // check if SPA
-    if (functionName.compare("SPA") == 0) {
+    if (functionName == "SPA") {
         iter = combobox->get_model()->get_iter("0");
         row = *iter;
         while (row[functionListColumns.m_col_name] != "SPA") {
@@ -2111,7 +2111,7 @@ FunctionGenerator::FunctionGenerator(FunctionReturnType _returnType, const std::
     }
 
     // check if ReadSPAFile
-    if (functionName.compare("ReadSPAFile") == 0) {
+    if (functionName == "ReadSPAFile") {
         iter = combobox->get_model()->get_iter("0");
         row = *iter;
         while (row[functionListColumns.m_col_name] != "ReadSPAFile") {
@@ -2130,7 +2130,7 @@ FunctionGenerator::FunctionGenerator(FunctionReturnType _returnType, const std::
     }
 
     // check if MakePattern
-    if (functionName.compare("MakePattern") == 0) {
+    if (functionName == "MakePattern") {
         iter = combobox->get_model()->get_iter("0");
         row = *iter;
         while (row[functionListColumns.m_col_name] != "MakePattern") {
@@ -2150,7 +2150,7 @@ FunctionGenerator::FunctionGenerator(FunctionReturnType _returnType, const std::
     }
 
     // check if ExpandPattern
-    if (functionName.compare("ExpandPattern") == 0) {
+    if (functionName == "ExpandPattern") {
         iter = combobox->get_model()->get_iter("0");
         row = *iter;
         while (row[functionListColumns.m_col_name] != "ExpandPattern") {
@@ -2197,7 +2197,7 @@ FunctionGenerator::FunctionGenerator(FunctionReturnType _returnType, const std::
 
     // check if ReadPATFile
 
-    if (functionName.compare("ReadPATFile") == 0) {
+    if (functionName == "ReadPATFile") {
         iter = combobox->get_model()->get_iter("0");
         row = *iter;
         while (row[functionListColumns.m_col_name] != "ReadPATFile") {
@@ -2216,7 +2216,7 @@ FunctionGenerator::FunctionGenerator(FunctionReturnType _returnType, const std::
     }
 
     // check if REV_Simple
-    if (functionName.compare("REV_Simple") == 0) {
+    if (functionName == "REV_Simple") {
         iter = combobox->get_model()->get_iter("0");
         row = *iter;
         while (row[functionListColumns.m_col_name] != "REV_Simple") {
@@ -2232,7 +2232,7 @@ FunctionGenerator::FunctionGenerator(FunctionReturnType _returnType, const std::
         // end parsing
     }
     // check if REV_Medium
-    if (functionName.compare("REV_Medium") == 0) {
+    if (functionName == "REV_Medium") {
         iter = combobox->get_model()->get_iter("0");
         row = *iter;
         while (row[functionListColumns.m_col_name] != "REV_Medium") {
@@ -2262,7 +2262,7 @@ FunctionGenerator::FunctionGenerator(FunctionReturnType _returnType, const std::
     }
 
     // check if REV_Advanced
-    if (functionName.compare("REV_Advanced") == 0) {
+    if (functionName == "REV_Advanced") {
         iter = combobox->get_model()->get_iter("0");
         row = *iter;
         while (row[functionListColumns.m_col_name] != "REV_Advanced") {
@@ -2296,7 +2296,7 @@ FunctionGenerator::FunctionGenerator(FunctionReturnType _returnType, const std::
 
     // check if ReadREVFile
 
-    if (functionName.compare("ReadREVFile") == 0) {
+    if (functionName == "ReadREVFile") {
         iter = combobox->get_model()->get_iter("0");
         row = *iter;
         while (row[functionListColumns.m_col_name] != "ReadREVFile") {
@@ -2316,7 +2316,7 @@ FunctionGenerator::FunctionGenerator(FunctionReturnType _returnType, const std::
 
     // check if ReadFILFile
 
-    if (functionName.compare("ReadFILFile") == 0) {
+    if (functionName == "ReadFILFile") {
         iter = combobox->get_model()->get_iter("0");
         row = *iter;
         while (row[functionListColumns.m_col_name] != "ReadFILFile") {
@@ -2336,7 +2336,7 @@ FunctionGenerator::FunctionGenerator(FunctionReturnType _returnType, const std::
 
     // check if MakeFilter
 
-    if (functionName.compare("MakeFilter") == 0) {
+    if (functionName == "MakeFilter") {
         iter = combobox->get_model()->get_iter("0");
         row = *iter;
         while (row[functionListColumns.m_col_name] != "MakeFilter") {
@@ -2388,7 +2388,7 @@ FunctionGenerator::FunctionGenerator(FunctionReturnType _returnType, const std::
     }
 
     // check if MakeSieve
-    if (functionName.compare("MakeSieve") == 0) {
+    if (functionName == "MakeSieve") {
         iter = combobox->get_model()->get_iter("0");
         row = *iter;
         while (row[functionListColumns.m_col_name] != "MakeSieve") {
@@ -2457,7 +2457,7 @@ FunctionGenerator::FunctionGenerator(FunctionReturnType _returnType, const std::
 
     // check if ReadSIVFile
 
-    if (functionName.compare("ReadSIVFile") == 0) {
+    if (functionName == "ReadSIVFile") {
         iter = combobox->get_model()->get_iter("0");
         row = *iter;
         while (row[functionListColumns.m_col_name] != "ReadSIVFile") {
@@ -2475,7 +2475,7 @@ FunctionGenerator::FunctionGenerator(FunctionReturnType _returnType, const std::
         // end parsing
     }
     // check if Generate_Spectrum
-    if (functionName.compare("Generate_Spectrum") == 0) {
+    if (functionName == "Generate_Spectrum") {
         iter = combobox->get_model()->get_iter("0");
         row = *iter;
         while (row[functionListColumns.m_col_name] != "Generate_Spectrum") {

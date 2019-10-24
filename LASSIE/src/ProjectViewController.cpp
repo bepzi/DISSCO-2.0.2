@@ -1883,7 +1883,7 @@ IEvent* ProjectViewController::findIEvent(EventType _type, const std::string& _e
     auto eventsIter = events.begin();
 
     while (eventsIter != events.end()) {
-        if ((_eventName.compare((*eventsIter)->getEventName()) == 0) &&
+        if ((_eventName == (*eventsIter)->getEventName()) &&
             (_type == (*eventsIter)->getEventType())) {
             toReturn = (*eventsIter);
             break;
