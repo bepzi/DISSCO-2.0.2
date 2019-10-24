@@ -92,9 +92,9 @@ IEvent::IEvent() {
 }
 
 IEvent::~IEvent() {
-    if (extraInfo != NULL) {
+
         delete extraInfo;
-    }
+
     // delete layers here
 }
 
@@ -115,9 +115,9 @@ void IEvent::setEventName(std::string _eventName) {
 void IEvent::setEventType(EventType _type) {
     eventType = _type;
     changedButNotSaved = true;
-    if (extraInfo != NULL) {
+
         delete extraInfo;
-    }
+
     if (_type == eventSound) {
         // EventExtraInfo* SoundEventExtraInfo;
         extraInfo = (IEvent::EventExtraInfo*)new IEvent::SoundExtraInfo();
@@ -726,7 +726,7 @@ int EventBottomModifier::getModifierTypeInt() {
 }
 
 std::string EventBottomModifier::getSaveToDiskString() {
-    std::string stringbuffer = "";
+    std::string stringbuffer;
     if (type == modifierTremolo) {
         stringbuffer =
             "              <\n"
@@ -737,7 +737,7 @@ std::string EventBottomModifier::getSaveToDiskString() {
             "                " +
             ((applyHowFlag == 0) ? "\"SOUND\",\n" : "\"PARTIAL\",\n") + "                " +
             ampValue + ",\n" + "                " + rateValue +
-            (groupName == ""
+            (groupName.empty()
                  ? "\n              >"
                  : (",\n                <\"MUT_EX\", \"" + groupName + "\">\n              >"));
 
@@ -751,7 +751,7 @@ std::string EventBottomModifier::getSaveToDiskString() {
             "                " +
             ((applyHowFlag == 0) ? "\"SOUND\",\n" : "\"PARTIAL\",\n") + "                " +
             ampValue + ",\n" + "                " + rateValue +
-            (groupName == ""
+            (groupName.empty()
                  ? "\n              >"
                  : (",\n                <\"MUT_EX\", \"" + groupName + "\">\n              >"));
 
@@ -765,7 +765,7 @@ std::string EventBottomModifier::getSaveToDiskString() {
             "                " +
             ((applyHowFlag == 0) ? "\"SOUND\",\n" : "\"PARTIAL\",\n") + "                " +
             ampValue +
-            (groupName == ""
+            (groupName.empty()
                  ? "\n              >"
                  : (",\n                <\"MUT_EX\", \"" + groupName + "\">\n              >"));
     } else if (type == modifierBend) {
@@ -778,7 +778,7 @@ std::string EventBottomModifier::getSaveToDiskString() {
             "                " +
             ((applyHowFlag == 0) ? "\"SOUND\",\n" : "\"PARTIAL\",\n") + "                " +
             ampValue +
-            (groupName == ""
+            (groupName.empty()
                  ? "\n              >"
                  : (",\n                <\"MUT_EX\", \"" + groupName + "\">\n              >"));
 
@@ -792,7 +792,7 @@ std::string EventBottomModifier::getSaveToDiskString() {
             "                " +
             ((applyHowFlag == 0) ? "\"SOUND\",\n" : "\"PARTIAL\",\n") + "                " +
             ampValue +
-            (groupName == ""
+            (groupName.empty()
                  ? "\n              >"
                  : (",\n                <\"MUT_EX\", \"" + groupName + "\">\n              >"));
 
@@ -806,7 +806,7 @@ std::string EventBottomModifier::getSaveToDiskString() {
             "                " +
             ((applyHowFlag == 0) ? "\"SOUND\",\n" : "\"PARTIAL\",\n") + "                " +
             ampValue + ",\n" + "                " + rateValue + ",\n" + "                " + width +
-            (groupName == ""
+            (groupName.empty()
                  ? "\n              >"
                  : (",\n                <\"MUT_EX\", \"" + groupName + "\">\n              >"));
 
@@ -820,7 +820,7 @@ std::string EventBottomModifier::getSaveToDiskString() {
             "                " +
             ((applyHowFlag == 0) ? "\"SOUND\",\n" : "\"PARTIAL\",\n") + "                " +
             ampValue + ",\n" + "                " + rateValue + ",\n" + "                " + width +
-            (groupName == ""
+            (groupName.empty()
                  ? "\n              >"
                  : (",\n                <\"MUT_EX\", \"" + groupName + "\">\n              >"));
 
@@ -834,7 +834,7 @@ std::string EventBottomModifier::getSaveToDiskString() {
             "                " +
             ((applyHowFlag == 0) ? "\"SOUND\",\n" : "\"PARTIAL\",\n") + "                " +
             ampValue +
-            (groupName == ""
+            (groupName.empty()
                  ? "\n              >"
                  : (",\n                <\"MUT_EX\", \"" + groupName + "\">\n              >"));
     }
@@ -1081,7 +1081,7 @@ std::string EventLayer::getLASSIEMetaDataString() {
 std::string EventLayer::getXMLString() {
     auto discretePackagesIter = children.begin();
 
-    string packageBuffer = "";
+    string packageBuffer;
 
     while (discretePackagesIter != children.end()) {
         packageBuffer = packageBuffer + (*discretePackagesIter)->getXMLString();
@@ -1785,7 +1785,7 @@ bool IEvent::BottomEventExtraInfo::haveString(string _string) {
 
     EventBottomModifier* mod = getModifiers();
     if (mod != nullptr) {
-        string stringbuffer = "";
+        string stringbuffer;
 
         while (mod != nullptr) {
             stringbuffer = stringbuffer + mod->getSaveToDiskString();
@@ -1900,7 +1900,7 @@ string IEvent::getXMLTHMLB() {
     char flagChildEventDefDuratonTypeChar[10];
     sprintf(flagChildEventDefDuratonTypeChar, "%d", flagChildEventDefDurationType);
 
-    string layerbuffer = "";
+    string layerbuffer;
 
     auto layersIter = layers.begin();
 
@@ -2018,7 +2018,7 @@ string IEvent::getXMLTHMLB() {
         }
         modifiersbuffer = modifiersbuffer + "        </Modifiers>\n";
 
-        string bottomBuffer = "";
+        string bottomBuffer;
         bottomBuffer = bottomBuffer +
                        "      <ExtraInfo>\n"
                        "        <FrequencyInfo>\n"
@@ -2678,7 +2678,7 @@ std::string IEvent::getFunctionString(DOMElement* _thisFunctionElement) {
 }
 
 std::string IEvent::SoundExtraInfo::getSpectrumMetaData() {
-    std::string returnString = "";
+    std::string returnString;
     SpectrumPartial* thisPartial = spectrumPartials;
 
     while (thisPartial != nullptr) {
@@ -2698,7 +2698,7 @@ std::string IEvent::SoundExtraInfo::getSpectrumMetaData() {
 }
 
 std::string IEvent::SoundExtraInfo::getSpectrumXMLString() {
-    std::string returnString = "";
+    std::string returnString;
     SpectrumPartial* thisPartial = spectrumPartials;
 
     while (thisPartial != nullptr) {
@@ -2711,7 +2711,7 @@ std::string IEvent::SoundExtraInfo::getSpectrumXMLString() {
 }
 
 std::string IEvent::SoundExtraInfo::getSoundSpectrumEnvelopesString() {
-    std::string returnString = "";
+    std::string returnString;
     SpectrumPartial* thisPartial = spectrumPartials;
 
     while (thisPartial != nullptr) {

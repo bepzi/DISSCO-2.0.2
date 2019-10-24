@@ -1412,7 +1412,7 @@ FunctionGenerator::FunctionGenerator(FunctionReturnType _returnType, const std::
         // separate into a vector of strings
         std::vector<std::string> listElements = Utilities::listElementToStringVector(thisElement);
         // If the string isn't empty
-        if (listElements.size() > 1 || listElements[0] != "") {
+        if (listElements.size() > 1 || !listElements[0].empty()) {
             std::vector<std::string>::iterator functionString;
             for (functionString = listElements.begin(); functionString != listElements.end();
                  ++functionString) {
@@ -3589,7 +3589,7 @@ void FunctionGenerator::stochosTextChanged() {
 
     Gtk::Entry* entry;
 
-    std::string stringbuffer = "";
+    std::string stringbuffer;
     stringbuffer = stringbuffer + "<Fun><Name>Stochos</Name><Method>" +
                    ((radiobutton->get_active()) ? "RANGE_DISTRIB" : "FUNCTIONS") +
                    "</Method><Envelopes>";
@@ -3882,7 +3882,7 @@ void FunctionGenerator::valuePickDistFunButtonClicked() {
 }
 
 string FunctionGenerator::makeSieveNValuePickZeros(int _listLength) {
-    string toReturn = "";
+    string toReturn;
 
     for (int i = 0; i < _listLength - 1; i++) {
         toReturn = toReturn + "0, ";
@@ -5739,7 +5739,7 @@ void FunctionGenerator::SPAApplyByRadioButtonClicked() {
 }
 
 void FunctionGenerator::SPATextChanged() {
-    std::string stringbuffer = "";
+    std::string stringbuffer;
     int method;
     int apply;
 

@@ -3559,9 +3559,9 @@ void EventAttributesViewController::insertFunctionString(FunctionButton _button)
         }
     }
 
-    if (generator != NULL) {
+
         delete generator;
-    }
+
 }
 
 void EventAttributesViewController::LayerBox::byLayerWeightButtonClicked() {
@@ -4304,7 +4304,7 @@ string EventAttributesViewController::generateTempoStringByNoteValue() {
         }
     }
 
-    string stringbuffer = "";
+    string stringbuffer;
 
     attributesRefBuilder->get_widget("attributesStandardTempoValueEntry", entry);
 
@@ -4364,7 +4364,7 @@ string EventAttributesViewController::generateTempoStringByFraction() {
         }
     }
 
-    string stringbuffer = "";
+    string stringbuffer;
     if (tempoPrefix == tempoPrefixDotted) {
         stringbuffer = stringbuffer + "dotted ";
     } else if (tempoPrefix == tempoPrefixDoubleDotted) {

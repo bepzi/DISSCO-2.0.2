@@ -42,7 +42,7 @@ ObjectWindow::ObjectWindow(EventType _type, ProjectViewController* _projectView)
     type = _type;
     activeProject = _projectView;
     currentNumOfColumns = 1;
-    string title = "";
+    string title;
 
     switch (_type) {
         case 0: {

@@ -129,7 +129,7 @@ struct ltstr {
 };
 
 extern YY_BUFFER_STATE yy_scan_string(const char*);
-extern int yyparse();
+
 extern map<const char*, FileValue*, ltstr> file_data;
 
 /*! \brief The constructor of ProjectViewController
@@ -145,7 +145,7 @@ ProjectViewController::ProjectViewController(MainWindow* _mainWindow) {
 
     //////////////////////////////////////////////////////////////////////////
 
-    std::string topName = "";
+    std::string topName;
 
     // add the Paned widget "leftTwoPlusAttributes" as a child
     add(leftTwoPlusAttributes);
@@ -2469,7 +2469,7 @@ void ProjectViewController::clearDeletedEvents() {
 
 std::string ProjectViewController::searchPossibleParents(const string& _fileName) {
     // cout<<"_fileName is :"<<_fileName<<endl;
-    string result = "";
+    string result;
     auto iter = events.begin();
 
     for (iter; iter != events.end(); iter++) {
