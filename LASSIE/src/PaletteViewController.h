@@ -75,7 +75,7 @@ protected:
         Columns() {
             add(columnObjectType);
             add(columnObjectName);
-            /*add (columnButton)*/;
+            /*add (columnButton)*/
             add(columnEntry);
             add(columnObjectOrder);
         }

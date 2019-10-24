@@ -93,7 +93,7 @@ std::string FileOperations::saveAs(MainWindow* _mainWindow) {  // return new
                 return saveAs(_mainWindow);
             } else {
                 std::string command = dialog.get_filename();
-                ;
+
                 int mkdirChecker = mkdir(command.c_str(), S_IRWXU);
                 if (mkdirChecker == -1) {
                     fileNameExist window;

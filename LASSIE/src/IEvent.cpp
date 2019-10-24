@@ -2512,7 +2512,7 @@ IEvent::BottomEventExtraInfo::BottomEventExtraInfo(int _childTypeFlag, DOMElemen
 
     thisElement = thisElement->getNextElementSibling();
     spatialization = getFunctionString(thisElement);
-    ;
+
 
     thisElement = thisElement->getNextElementSibling();
     reverb = getFunctionString(thisElement);
