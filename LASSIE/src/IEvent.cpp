@@ -48,6 +48,7 @@ IEvent::IEvent() {
     eventName = "New IEvent";
     oldEventName = "";
     eventOrderInPalette = -1;
+    eventType = eventTop;
 
     maxChildDur = "";
 
