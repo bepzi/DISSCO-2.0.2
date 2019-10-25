@@ -1807,14 +1807,14 @@ ProjectViewController::ProjectViewController(MainWindow* _mainWindow, std::strin
         std::stringstream ss(data);
 
         // read the number of models
-        int size;
+        size_t size;
         ss >> size;
         markovModels.resize(size);
 
         // read individual models
         string modelText, line;
         getline(ss, line, '\n');
-        for (int i = 0; i < size; i++) {
+        for (size_t i = 0; i < size; i++) {
             getline(ss, line, '\n');
             modelText = line + '\n';
             getline(ss, line, '\n');

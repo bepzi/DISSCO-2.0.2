@@ -182,7 +182,12 @@ public:
     // when open project
 
     IEvent(IEvent* _original, string _newName);
-    IEvent(DOMElement* _domElement);
+
+    /**
+     * Constructor used when creating an IEvent from a snippet of XML
+     * @param _domElement An Event XML element
+     */
+    explicit IEvent(DOMElement* _domElement);
 
     ~IEvent();
 

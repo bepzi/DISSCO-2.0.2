@@ -2047,10 +2047,7 @@ string IEvent::getXMLTHMLB() {
                        "      </ExtraInfo>\n";
         stringbuffer = stringbuffer + bottomBuffer;
 
-    }
-
-    else {  // modifiers
-
+    } else {  // modifiers
         string modifiersbuffer = "      <Modifiers>\n";
         EventBottomModifier* mod = modifiers;
         while (mod != NULL) {
@@ -2330,160 +2327,189 @@ void IEvent::buildNonEventFromDOM(DOMElement* _element) {
     }
 }
 
+/**
+ * Slightly less annoying wrapper for:
+ * https://xerces.apache.org/xerces-c/apiDocs-3/classDOMElement.html#a6556e56c88fbcf9f6043e9dc2642b47f
+ */
+static std::string getAttributeString(const DOMElement& elem, const std::string& attribName) {
+    XMLCh* transcodedName = XMLString::transcode(attribName.c_str());
+    const XMLCh* attribString = elem.getAttribute(transcodedName);
+    XMLString::release(&transcodedName);
+
+    char* transcodedAttrib = XMLString::transcode(attribString);
+    std::string ret(transcodedAttrib);
+    XMLString::release(&transcodedAttrib);
+
+    return ret;
+}
+
+static std::string getTagName(const DOMElement& elem) {
+    const XMLCh* name = elem.getTagName();
+    char* transcodedName = XMLString::transcode(name);
+    std::string ret(transcodedName);
+    XMLString::release(&transcodedName);
+    return ret;
+}
+
+static std::string unsafeGetTagText(const DOMElement& elem) {
+    auto* child = (DOMCharacterData*)elem.getFirstChild();
+    if (!child) {
+        return "";
+    }
+
+    char* transcoded = XMLString::transcode(child->getData());
+    std::string ret(transcoded);
+    XMLString::release(&transcoded);
+    return ret;
+}
+
 IEvent::IEvent(DOMElement* _domElement) {
-    XMLCh* orderInPaletteXMLCh = XMLString::transcode("orderInPalette");
-    string orderInPalette = XMLString::transcode(_domElement->getAttribute(orderInPaletteXMLCh));
-    eventOrderInPalette = atoi(orderInPalette.c_str());
-
-    DOMElement* eventTypeElement = _domElement->getFirstElementChild();
-    DOMCharacterData* textData = (DOMCharacterData*)eventTypeElement->getFirstChild();
-    char* charBuffer = XMLString::transcode(textData->getData());
-    eventType = (EventType)atoi(charBuffer);
-    XMLString::release(&charBuffer);
-
-    DOMElement* eventNameElement = eventTypeElement->getNextElementSibling();
-    textData = (DOMCharacterData*)eventNameElement->getFirstChild();
-    charBuffer = XMLString::transcode(textData->getData());
-    eventName = charBuffer;
-    XMLString::release(&charBuffer);
-
-    if (eventType >= 5) {
-        buildNonEventFromDOM(eventNameElement->getNextElementSibling());
+    if (!_domElement) {
         return;
     }
 
-    // maxChildDur
-    DOMElement* thisElement = eventNameElement->getNextElementSibling();
-    maxChildDur = getFunctionString(thisElement);
+    changedButNotSaved = false;
+    modifiers = nullptr;
 
-    // EDUPerBeat
-    thisElement = thisElement->getNextElementSibling();
-    unitsPerSecond = getFunctionString(thisElement);
+    std::string orderInPalette = getAttributeString(*_domElement, "orderInPalette");
+    eventOrderInPalette = std::stoi(orderInPalette);
 
-    // TimeSignature
-    thisElement = thisElement->getNextElementSibling();
-    DOMElement* secondLevelElement = thisElement->getFirstElementChild();
-    timeSignatureEntry1 = getFunctionString(secondLevelElement);
+    DOMElement* child = _domElement->getFirstElementChild();
 
-    secondLevelElement = secondLevelElement->getNextElementSibling();
-    timeSignatureEntry2 = getFunctionString(secondLevelElement);
+    assert(getTagName(*child) == "EventType");
+    eventType = (EventType)std::stoi(unsafeGetTagText(*child));
+    child = child->getNextElementSibling();
 
-    // Tempo
+    assert(getTagName(*child) == "Name");
+    eventName = unsafeGetTagText(*child);
+    child = child->getNextElementSibling();
 
-    thisElement = thisElement->getNextElementSibling();
-    secondLevelElement = thisElement->getFirstElementChild();
-    charBuffer = (char*)getFunctionString(secondLevelElement).c_str();
-    tempoMethodFlag = atoi(charBuffer);
-
-    secondLevelElement = secondLevelElement->getNextElementSibling();
-    charBuffer = XMLString::transcode(textData->getData());
-    charBuffer = (char*)getFunctionString(secondLevelElement).c_str();
-
-    tempoPrefix = (TempoPrefix)atoi(charBuffer);
-
-    secondLevelElement = secondLevelElement->getNextElementSibling();
-    charBuffer = (char*)getFunctionString(secondLevelElement).c_str();
-    tempoNoteValue = (TempoNoteValue)atoi(charBuffer);
-
-    secondLevelElement = secondLevelElement->getNextElementSibling();
-    tempoFractionEntry1 = getFunctionString(secondLevelElement);
-
-    secondLevelElement = secondLevelElement->getNextElementSibling();
-    tempoFractionEntry2 = getFunctionString(secondLevelElement);
-
-    secondLevelElement = secondLevelElement->getNextElementSibling();
-    tempoValueEntry = getFunctionString(secondLevelElement);
-
-    // NumberOfChildren
-
-    thisElement = thisElement->getNextElementSibling();
-    secondLevelElement = thisElement->getFirstElementChild();
-    charBuffer = (char*)getFunctionString(secondLevelElement).c_str();
-    flagNumChildren = atoi(charBuffer);
-
-    secondLevelElement = secondLevelElement->getNextElementSibling();
-    numChildrenEntry1 = getFunctionString(secondLevelElement);
-
-    secondLevelElement = secondLevelElement->getNextElementSibling();
-    numChildrenEntry2 = getFunctionString(secondLevelElement);
-
-    secondLevelElement = secondLevelElement->getNextElementSibling();
-    numChildrenEntry3 = getFunctionString(secondLevelElement);
-
-    // childEventDef
-
-    thisElement = thisElement->getNextElementSibling();
-    secondLevelElement = thisElement->getFirstElementChild();
-    childEventDefEntry1 = getFunctionString(secondLevelElement);
-
-    secondLevelElement = secondLevelElement->getNextElementSibling();
-    childEventDefEntry2 = getFunctionString(secondLevelElement);
-
-    secondLevelElement = secondLevelElement->getNextElementSibling();
-    childEventDefEntry3 = getFunctionString(secondLevelElement);
-
-    secondLevelElement = secondLevelElement->getNextElementSibling();
-    childEventDefAttackSieve = getFunctionString(secondLevelElement);
-
-    secondLevelElement = secondLevelElement->getNextElementSibling();
-    childEventDefDurationSieve = getFunctionString(secondLevelElement);
-
-    secondLevelElement = secondLevelElement->getNextElementSibling();
-    charBuffer = (char*)getFunctionString(secondLevelElement).c_str();
-    flagChildEventDef = atoi(charBuffer);
-
-    secondLevelElement = secondLevelElement->getNextElementSibling();
-    charBuffer = (char*)getFunctionString(secondLevelElement).c_str();
-    flagChildEventDefStartType = atoi(charBuffer);
-
-    secondLevelElement = secondLevelElement->getNextElementSibling();
-    charBuffer = (char*)getFunctionString(secondLevelElement).c_str();
-    flagChildEventDefDurationType = atoi(charBuffer);
-
-    // layers
-    thisElement = thisElement->getNextElementSibling();
-    secondLevelElement = thisElement->getFirstElementChild();
-    while (secondLevelElement) {
-        layers.push_back(new EventLayer(secondLevelElement, this));
-        secondLevelElement = secondLevelElement->getNextElementSibling();
+    if (eventType >= eventSound) {
+        buildNonEventFromDOM(child->getNextElementSibling());
+        return;
     }
 
-    // environment
+    while (child) {
+        std::string tagName = getTagName(*child);
 
-    if (thisElement->getNextElementSibling() != NULL &&
-        thisElement->getNextElementSibling()->getNextElementSibling() != NULL) {
-        thisElement = thisElement->getNextElementSibling();
-        spatialization = getFunctionString(thisElement);
-        thisElement = thisElement->getNextElementSibling();
-        reverb = getFunctionString(thisElement);
-        thisElement = thisElement->getNextElementSibling();
-        filter = getFunctionString(thisElement);
-    }
+        if (tagName == "MaxChildDuration") {
+            maxChildDur = getFunctionString(child);
+        } else if (tagName == "EDUPerBeat") {
+            unitsPerSecond = getFunctionString(child);
+        } else if (tagName == "TimeSignature") {
+            DOMElement* signature1 = child->getFirstElementChild();
+            timeSignatureEntry1 = getFunctionString(signature1);
+            DOMElement* signature2 = signature1->getNextElementSibling();
+            timeSignatureEntry2 = getFunctionString(signature2);
 
-    thisElement = thisElement->getNextElementSibling();  // now it's either bottom or modifiers
-                                                         // or empty (missing modifiers tag)
+        } else if (tagName == "Tempo") {
+            DOMElement* subchild = child->getFirstElementChild();
+            while (subchild) {
+                std::string subchildName = getTagName(*subchild);
 
-    if (eventType == eventBottom) {
-        string firstChar = eventName.substr(0, 1);
-        int childTypeFlag = -1;
-        if (firstChar == "s") {
-            childTypeFlag = 0;
-        } else if (firstChar == "n") {
-            childTypeFlag = 1;
+                if (subchildName == "MethodFlag") {
+                    tempoMethodFlag = std::stoi(getFunctionString(subchild));
+                } else if (subchildName == "Prefix") {
+                    tempoPrefix = (TempoPrefix)std::stoi(getFunctionString(subchild));
+                } else if (subchildName == "NoteValue") {
+                    tempoNoteValue = (TempoNoteValue)std::stoi(getFunctionString(subchild));
+                } else if (subchildName == "FractionEntry1") {
+                    tempoFractionEntry1 = getFunctionString(subchild);
+                } else if (subchildName == "FractionEntry2") {
+                    tempoFractionEntry2 = getFunctionString(subchild);
+                } else {
+                    assert(subchildName == "ValueEntry");
+                    tempoValueEntry = getFunctionString(subchild);
+                }
+
+                subchild = subchild->getNextElementSibling();
+            }
+
+        } else if (tagName == "NumberOfChildren") {
+            DOMElement* subchild = child->getFirstElementChild();
+            while (subchild) {
+                std::string subchildName = getTagName(*subchild);
+
+                if (subchildName == "MethodFlag") {
+                    flagNumChildren = std::stoi(getFunctionString(subchild));
+                } else if (subchildName == "Entry1") {
+                    numChildrenEntry1 = getFunctionString(subchild);
+                } else if (subchildName == "Entry2") {
+                    numChildrenEntry2 = getFunctionString(subchild);
+                } else {
+                    assert(subchildName == "Entry3");
+                    numChildrenEntry3 = getFunctionString(subchild);
+                }
+
+                subchild = subchild->getNextElementSibling();
+            }
+
+        } else if (tagName == "ChildEventDefinition") {
+            DOMElement* subchild = child->getFirstElementChild();
+            while (subchild) {
+                std::string subchildName = getTagName(*subchild);
+
+                if (subchildName == "Entry1") {
+                    childEventDefEntry1 = getFunctionString(subchild);
+                } else if (subchildName == "Entry2") {
+                    childEventDefEntry2 = getFunctionString(subchild);
+                } else if (subchildName == "Entry3") {
+                    childEventDefEntry3 = getFunctionString(subchild);
+                } else if (subchildName == "AttackSieve") {
+                    childEventDefAttackSieve = getFunctionString(subchild);
+                } else if (subchildName == "DurationSieve") {
+                    childEventDefDurationSieve = getFunctionString(subchild);
+                } else if (subchildName == "DefinitionFlag") {
+                    flagChildEventDef = std::stoi(getFunctionString(subchild));
+                } else if (subchildName == "StartTypeFlag") {
+                    flagChildEventDefStartType = std::stoi(getFunctionString(subchild));
+                } else {
+                    assert(subchildName == "DurationTypeFlag");
+                    flagChildEventDefDurationType = std::stoi(getFunctionString(subchild));
+                }
+
+                subchild = subchild->getNextElementSibling();
+            }
+
+        } else if (tagName == "Layers") {
+            DOMElement* subchild = child->getFirstElementChild();
+            while (subchild) {
+                layers.push_back(new EventLayer(subchild, this));
+                subchild = subchild->getNextElementSibling();
+            }
+
+        } else if (tagName == "Spatialization") {
+            spatialization = getFunctionString(child);
+        } else if (tagName == "Reverb") {
+            reverb = getFunctionString(child);
+        } else if (tagName == "Filter") {
+            filter = getFunctionString(child);
+        } else if (tagName == "Modifiers") {
+            assert(eventType != eventBottom);
+            modifiers =
+                BottomEventExtraInfo::buildModifiersFromDOMElement(child->getFirstElementChild());
+
         } else {
-            childTypeFlag = 2;
-        }
-        extraInfo =
-            (EventExtraInfo*)new BottomEventExtraInfo(childTypeFlag, thisElement);  // line 2789
-        modifiers = NULL;
+            assert(tagName == "ExtraInfo");
+            assert(eventType == eventBottom);
 
-    } else {  // if not bottom, the following element is modifiers
-        if (thisElement != NULL) {
-            modifiers = BottomEventExtraInfo::buildModifiersFromDOMElement(
-                thisElement->getFirstElementChild());
-        } else {
-            modifiers = NULL;
+            int childTypeFlag;
+            switch (eventName[0]) {
+                case 's':
+                    childTypeFlag = 0;
+                    break;
+                case 'n':
+                    childTypeFlag = 1;
+                    break;
+                default:
+                    childTypeFlag = 2;
+                    break;
+            }
+
+            extraInfo = (EventExtraInfo*)new BottomEventExtraInfo(childTypeFlag, child);
         }
+
+        child = child->getNextElementSibling();
     }
 }
 
