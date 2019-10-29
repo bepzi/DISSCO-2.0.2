@@ -172,12 +172,12 @@ private:
     /*! \brief pointer to eventAttributesView
      *
      ***************************************************************************/
-    EventAttributesViewController* eventAttributesView;
+    EventAttributesViewController* eventAttributesView = nullptr;
 
     /*! \brief pointer to paletteView
      *
      ***************************************************************************/
-    PaletteViewController* paletteView;
+    PaletteViewController* paletteView = nullptr;
 
     /*! \brief pointer to leftTwoPlusAttributes
      *
@@ -188,19 +188,19 @@ private:
      ***************************************************************************/
     Gtk::HPaned leftTwoPlusAttributes;
 
-    IEvent* top;
-    bool modifiedButNotSaved;
+    IEvent* top = nullptr;
+    bool modifiedButNotSaved = false;
 
     std::vector<MarkovModel<float>> markovModels;
 
     // this thing is a double-linked list
-    EnvelopeLibraryEntry* envelopeLibraryEntries;
-    Gtk::Dialog* newObjectDialog;
-    Gtk::Dialog* noteModifiersConfigurationDialog;
-    Gtk::VBox* noteModifiersConfigurationCustomVBox;
+    EnvelopeLibraryEntry* envelopeLibraryEntries = nullptr;
+    Gtk::Dialog* newObjectDialog = nullptr;
+    Gtk::Dialog* noteModifiersConfigurationDialog = nullptr;
+    Gtk::VBox* noteModifiersConfigurationCustomVBox = nullptr;
     void newObjectButtonClicked();
 
-    Gtk::Dialog* projectPropertiesDialog;
+    Gtk::Dialog* projectPropertiesDialog = nullptr;
 
     void projectPropertiesDialogButtonClicked();
     void projectPropertiesDialogFunctionButtonClicked();
@@ -229,10 +229,10 @@ private:
     std::vector<std::string> customNoteModifiers;
     std::map<std::string, bool> defaultNoteModifiers;
     std::vector<CustomNoteModifierHBox*> customNotModifierHBoxes;
-    SharedPointers* sharedPointers;
+    SharedPointers* sharedPointers = nullptr;
     void clearDeletedEvents();
 
-    DOMDocument* xmlDocument;
+    DOMDocument* xmlDocument = nullptr;
 };
 
 #endif  // PROJECT_VIEW_CONTROLLER_H
