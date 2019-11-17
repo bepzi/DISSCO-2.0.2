@@ -457,7 +457,7 @@ int Bottom::computeNumPartials(float baseFreq, DOMElement* _spectrum) {
 
     // Decrease numPartials until p < CEILING
     // (CEILING is a global def from define.h)
-    while (numPartsResult * baseFreq > CEILING) {
+    while (numPartsResult * baseFreq > 22050.0L) {
         numPartsResult--;
     }
 
