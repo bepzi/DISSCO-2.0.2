@@ -2205,14 +2205,54 @@ string IEvent::getXMLNote() {
     return buffer;
 }
 
+/**
+ * Slightly less annoying wrapper for:
+ * https://xerces.apache.org/xerces-c/apiDocs-3/classDOMElement.html#a6556e56c88fbcf9f6043e9dc2642b47f
+ */
+static std::string getAttributeString(const DOMElement& elem, const std::string& attribName) {
+    XMLCh* transcodedName = XMLString::transcode(attribName.c_str());
+    const XMLCh* attribString = elem.getAttribute(transcodedName);
+    XMLString::release(&transcodedName);
+
+    char* transcodedAttrib = XMLString::transcode(attribString);
+    std::string ret(transcodedAttrib);
+    XMLString::release(&transcodedAttrib);
+
+    return ret;
+}
+
+static std::string getTagName(const DOMElement& elem) {
+    const XMLCh* name = elem.getTagName();
+    char* transcodedName = XMLString::transcode(name);
+    std::string ret(transcodedName);
+    XMLString::release(&transcodedName);
+    return ret;
+}
+
+static std::string unsafeGetTagText(const DOMElement& elem) {
+    auto* child = (DOMCharacterData*)elem.getFirstChild();
+    if (!child) {
+        return "";
+    }
+
+    char* transcoded = XMLString::transcode(child->getData());
+    std::string ret(transcoded);
+    XMLString::release(&transcoded);
+    return ret;
+}
+
 void IEvent::buildNonEventFromDOM(DOMElement* _element) {
-    DOMCharacterData* textData;
-    char* charBuffer;
     if (eventType == eventSound) {
         extraInfo = (EventExtraInfo*)new SoundExtraInfo();
+
+        std::string tagName = getTagName(*_element);
+
+        assert(getTagName(*_element) == "NumberOfPartials");
         extraInfo->setNumPartials(getFunctionString(_element));
 
+
         DOMElement* deviationElement = _element->getNextElementSibling();
+        assert(getTagName(*deviationElement) == "Deviation");
         extraInfo->setDeviation(getFunctionString(deviationElement));
 
         DOMElement* spectrumGenElement = deviationElement->getNextElementSibling();
@@ -2294,42 +2334,6 @@ void IEvent::buildNonEventFromDOM(DOMElement* _element) {
     }
 }
 
-/**
- * Slightly less annoying wrapper for:
- * https://xerces.apache.org/xerces-c/apiDocs-3/classDOMElement.html#a6556e56c88fbcf9f6043e9dc2642b47f
- */
-static std::string getAttributeString(const DOMElement& elem, const std::string& attribName) {
-    XMLCh* transcodedName = XMLString::transcode(attribName.c_str());
-    const XMLCh* attribString = elem.getAttribute(transcodedName);
-    XMLString::release(&transcodedName);
-
-    char* transcodedAttrib = XMLString::transcode(attribString);
-    std::string ret(transcodedAttrib);
-    XMLString::release(&transcodedAttrib);
-
-    return ret;
-}
-
-static std::string getTagName(const DOMElement& elem) {
-    const XMLCh* name = elem.getTagName();
-    char* transcodedName = XMLString::transcode(name);
-    std::string ret(transcodedName);
-    XMLString::release(&transcodedName);
-    return ret;
-}
-
-static std::string unsafeGetTagText(const DOMElement& elem) {
-    auto* child = (DOMCharacterData*)elem.getFirstChild();
-    if (!child) {
-        return "";
-    }
-
-    char* transcoded = XMLString::transcode(child->getData());
-    std::string ret(transcoded);
-    XMLString::release(&transcoded);
-    return ret;
-}
-
 IEvent::IEvent(DOMElement* _domElement) {
     if (!_domElement) {
         return;
@@ -2352,7 +2356,7 @@ IEvent::IEvent(DOMElement* _domElement) {
     child = child->getNextElementSibling();
 
     if (eventType >= eventSound) {
-        buildNonEventFromDOM(child->getNextElementSibling());
+        buildNonEventFromDOM(child);
         return;
     }
 
@@ -2484,14 +2488,12 @@ IEvent::BottomEventExtraInfo::BottomEventExtraInfo(int _childTypeFlag, DOMElemen
     childTypeFlag = _childTypeFlag;
 
     DOMElement* thisElement = _thisElement->getFirstElementChild()->getFirstElementChild();
-
-    char* charBuffer;
-    charBuffer = (char*)getFunctionString(thisElement).c_str();
-    frequencyFlag = atoi(charBuffer);
+    assert(getTagName(*thisElement) == "FrequencyFlag");
+    frequencyFlag = std::stoi(unsafeGetTagText(*thisElement));
 
     thisElement = thisElement->getNextElementSibling();
-    charBuffer = (char*)getFunctionString(thisElement).c_str();
-    frequencyContinuumFlag = atoi(charBuffer);
+    assert(getTagName(*thisElement) == "FrequencyContinuumFlag");
+    frequencyContinuumFlag = std::stoi(unsafeGetTagText(*thisElement));
 
     thisElement = thisElement->getNextElementSibling();
     frequencyEntry1 = getFunctionString(thisElement);
